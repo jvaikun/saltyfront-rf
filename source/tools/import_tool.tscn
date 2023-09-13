@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://fp3w4s6ahjl4"]
+
+[ext_resource type="Script" path="res://tools/import_tool.gd" id="1_256tg"]
+
+[node name="ImportTool" type="Node3D"]
+script = ExtResource("1_256tg")

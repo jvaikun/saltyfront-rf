@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyou1csv2ethm"]
+
+[ext_resource type="ArrayMesh" uid="uid://c3rgtmn8otlrb" path="res://parts/pod/models/pod0.obj" id="1_bbjx2"]
+[ext_resource type="Texture2D" uid="uid://c7ghvyi5uj5pv" path="res://parts/pod/textures/tex_pod0.png" id="2_bmt65"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_am652"]
+albedo_texture = ExtResource("2_bmt65")
+
+[node name="Pod0" type="Node3D"]
+
+[node name="Pod0" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = ExtResource("1_bbjx2")
+surface_material_override/0 = SubResource("StandardMaterial3D_am652")

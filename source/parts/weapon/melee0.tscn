@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0k4ejkqpfaxw"]
+
+[ext_resource type="ArrayMesh" uid="uid://bnxgahvbp234y" path="res://parts/weapon/models/melee0.obj" id="1_ybefu"]
+[ext_resource type="Texture2D" uid="uid://c2us5co5sg0nh" path="res://parts/weapon/textures/tex_melee0.png" id="2_iojme"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blcv2"]
+albedo_texture = ExtResource("2_iojme")
+
+[node name="Melee0" type="Node3D"]
+
+[node name="Melee0" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ybefu")
+surface_material_override/0 = SubResource("StandardMaterial3D_blcv2")

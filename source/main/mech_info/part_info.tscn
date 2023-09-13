@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://k0d6avuun7q0"]
+
+[ext_resource type="Script" path="res://main/mech_info/part_info.gd" id="1_jcnuh"]
+[ext_resource type="Texture2D" uid="uid://c4iwlhoim2r2" path="res://ui/icons/icon_melee.png" id="1_vsaci"]
+
+[node name="PartInfo" type="VBoxContainer"]
+script = ExtResource("1_jcnuh")
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 2
+text = "Mech Part"
+
+[node name="Body" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Body"]
+layout_mode = 2
+texture = ExtResource("1_vsaci")
+
+[node name="Info" type="Label" parent="Body"]
+layout_mode = 2
+text = "Part Info"

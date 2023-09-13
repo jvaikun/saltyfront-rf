@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://2gvpw6ppkp0s"]
+
+[ext_resource type="Script" path="res://hangar/robot_arm.gd" id="1_3aipk"]
+[ext_resource type="PackedScene" uid="uid://ck6ty4egvjlns" path="res://hangar/mesh/robot_arm.glb" id="1_ft24u"]
+
+[sub_resource type="Gradient" id="Gradient_bdn37"]
+offsets = PackedFloat32Array(0, 0.25, 0.5)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t1scb"]
+gradient = SubResource("Gradient_bdn37")
+
+[sub_resource type="Curve" id="Curve_n5wdb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qyuot"]
+curve = SubResource("Curve_n5wdb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1fv58"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 1.0
+initial_velocity_max = 10.0
+scale_curve = SubResource("CurveTexture_qyuot")
+color_ramp = SubResource("GradientTexture1D_t1scb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fa1lj"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_e5bu6"]
+material = SubResource("StandardMaterial3D_fa1lj")
+size = Vector3(0.01, 0.2, 0.01)
+
+[node name="RobotArm" type="Node3D"]
+script = ExtResource("1_3aipk")
+
+[node name="robot_arm" parent="." instance=ExtResource("1_ft24u")]
+
+[node name="Wrist" type="BoneAttachment3D" parent="robot_arm/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-1, -2.84217e-14, 3.50916e-07, 2.48135e-07, -0.707106, 0.707107, 2.48135e-07, 0.707107, 0.707107, 1.66702e-14, 0.487222, 0.0970572)
+bone_name = "Wrist"
+bone_idx = 3
+
+[node name="Sparks" type="GPUParticles3D" parent="robot_arm/Armature/Skeleton3D/Wrist"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.25
+randomness = 0.8
+process_material = SubResource("ParticleProcessMaterial_1fv58")
+draw_pass_1 = SubResource("BoxMesh_e5bu6")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="animation_finished" from="robot_arm/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="robot_arm"]

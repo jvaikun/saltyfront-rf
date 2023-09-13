@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://drrt672mw5vs1"]
+
+[ext_resource type="PackedScene" uid="uid://b2qvtbc7t7vwn" path="res://main/team_list/team_list.tscn" id="1_i00ix"]
+[ext_resource type="Script" path="res://main/versus_header/versus_header.gd" id="1_p4ovf"]
+
+[node name="VersusHeader" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_p4ovf")
+
+[node name="Panels" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Team1" parent="Panels" instance=ExtResource("1_i00ix")]
+layout_mode = 2
+
+[node name="Countdown" type="PanelContainer" parent="Panels"]
+layout_mode = 2
+
+[node name="Body" type="VBoxContainer" parent="Panels/Countdown"]
+layout_mode = 2
+
+[node name="Match" type="Label" parent="Panels/Countdown/Body"]
+layout_mode = 2
+text = "Tournament 1
+Quarterfinal 1"
+horizontal_alignment = 1
+
+[node name="Count" type="Label" parent="Panels/Countdown/Body"]
+layout_mode = 2
+text = "- 0 -"
+horizontal_alignment = 1
+
+[node name="Map" type="Label" parent="Panels/Countdown/Body"]
+layout_mode = 2
+text = "Next Map"
+horizontal_alignment = 1
+
+[node name="Team2" parent="Panels" instance=ExtResource("1_i00ix")]
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

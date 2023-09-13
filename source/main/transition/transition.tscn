@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvfdm2nsot88v"]
+
+[ext_resource type="Shader" path="res://main/transition/mask_dissolve.gdshader" id="1_vbnxj"]
+
+[sub_resource type="Gradient" id="Gradient_emtbb"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nxxqd"]
+gradient = SubResource("Gradient_emtbb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0acb6"]
+shader = ExtResource("1_vbnxj")
+shader_parameter/progress = 0.0
+shader_parameter/smoothing = null
+shader_parameter/mask = SubResource("GradientTexture2D_nxxqd")
+
+[node name="Transition" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+
+[node name="ScreenBuffer" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_0acb6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScreenFade" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1ald4udaepk0"]
+
+[ext_resource type="Texture2D" uid="uid://dndx7s0juehth" path="res://ui/textures/portraits.png" id="1_cjowu"]
+[ext_resource type="Script" path="res://hangar/bay_sign.gd" id="1_nvkd8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8csxa"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgv5e"]
+resource_local_to_scene = true
+atlas = ExtResource("1_cjowu")
+region = Rect2(0, 0, 64, 80)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1slwn"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_163f6"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_1slwn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_bdes0"]
+size = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3hv71"]
+albedo_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3ohh4"]
+size = Vector3(1, 0.5, 0.05)
+
+[node name="BaySign" type="Node3D"]
+script = ExtResource("1_nvkd8")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(256, 128)
+
+[node name="Panel" type="PanelContainer" parent="SubViewport"]
+custom_minimum_size = Vector2(256, 128)
+offset_right = 256.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8csxa")
+
+[node name="Content" type="VBoxContainer" parent="SubViewport/Panel"]
+layout_mode = 2
+
+[node name="Color" type="ColorRect" parent="SubViewport/Panel/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Pilot" type="TextureRect" parent="SubViewport/Panel/Content/Color"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 256.0
+offset_bottom = 98.0
+texture = SubResource("AtlasTexture_bgv5e")
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="SubViewport/Panel/Content"]
+layout_mode = 2
+text = "Pilot Name"
+horizontal_alignment = 1
+
+[node name="Sign" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.051)
+material_override = SubResource("StandardMaterial3D_163f6")
+mesh = SubResource("QuadMesh_bdes0")
+
+[node name="Back" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.025)
+material_override = SubResource("StandardMaterial3D_3hv71")
+mesh = SubResource("BoxMesh_3ohh4")

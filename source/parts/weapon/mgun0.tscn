@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://oh6ck1g6ilv6"]
+
+[ext_resource type="ArrayMesh" uid="uid://cmdfij8xd2qpi" path="res://parts/weapon/models/mgun0.obj" id="1_bul0x"]
+[ext_resource type="Texture2D" uid="uid://cuig7j06d2u65" path="res://parts/weapon/textures/tex_mgun0.png" id="2_pdhe2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2py0"]
+albedo_texture = ExtResource("2_pdhe2")
+
+[node name="Mgun0" type="Node3D"]
+
+[node name="Mgun0" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_bul0x")
+surface_material_override/0 = SubResource("StandardMaterial3D_m2py0")

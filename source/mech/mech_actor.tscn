@@ -1,0 +1,321 @@
+[gd_scene load_steps=76 format=3 uid="uid://blalfjvqi78v5"]
+
+[ext_resource type="Script" path="res://mech/mech_actor.gd" id="1_r7np7"]
+[ext_resource type="AudioStream" uid="uid://cys1mtkpf3c1e" path="res://sfx/explode/explode_sm3.wav" id="4"]
+[ext_resource type="Texture2D" uid="uid://bcs4vo13scopn" path="res://arena/mech_tag.png" id="5"]
+[ext_resource type="AudioStream" uid="uid://bapk8a2emj3vb" path="res://sfx/explode/explode_sm6.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://qkuttwj0msn8" path="res://sfx/walk/step_mech.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://cg1di7qaiq0fl" path="res://sfx/explode/explode_sm1.wav" id="8"]
+[ext_resource type="AudioStream" uid="uid://cglxriq4maijo" path="res://sfx/explode/explode_sm2.wav" id="10"]
+[ext_resource type="AudioStream" uid="uid://bmbqpwippwsv" path="res://sfx/explode/explode_sm4.wav" id="12"]
+[ext_resource type="AudioStream" uid="uid://bpy2tub2dtj27" path="res://sfx/explode/explode_sm5.wav" id="13"]
+[ext_resource type="AudioStream" uid="uid://bo6yxgk4hywfq" path="res://sfx/walk/step0.wav" id="16"]
+[ext_resource type="AudioStream" uid="uid://pr2wr0omvmch" path="res://sfx/walk/step1.wav" id="18"]
+[ext_resource type="Texture2D" uid="uid://d3tlyeqtqcibf" path="res://mech/textures/tex_glow.png" id="19"]
+[ext_resource type="AudioStream" uid="uid://clx0w5qe7lrgq" path="res://sfx/explode/explode_sm0.wav" id="20"]
+[ext_resource type="AudioStream" uid="uid://cpqsxex1og6qm" path="res://sfx/explode/explode_lg1.wav" id="24"]
+[ext_resource type="AudioStream" uid="uid://b285al33ym76p" path="res://sfx/explode/explode_lg0.wav" id="25"]
+[ext_resource type="AudioStream" uid="uid://tnre27fqmv5v" path="res://sfx/explode/explode_lg6.wav" id="26"]
+[ext_resource type="AudioStream" uid="uid://62cjjtlronkn" path="res://sfx/explode/explode_lg3.wav" id="27"]
+[ext_resource type="AudioStream" uid="uid://cxg7tk5ktfi00" path="res://sfx/explode/explode_lg2.wav" id="28"]
+[ext_resource type="AudioStream" uid="uid://duco0ij4sb6dp" path="res://sfx/explode/explode_lg4.wav" id="29"]
+[ext_resource type="AudioStream" uid="uid://xfmence8id80" path="res://sfx/explode/explode_lg5.wav" id="30"]
+[ext_resource type="AudioStream" uid="uid://b2r1pj81j2etk" path="res://sfx/hit/bullet_hit8.wav" id="37"]
+[ext_resource type="AudioStream" uid="uid://gb84mo0n2nf1" path="res://sfx/hit/bullet_hit0.wav" id="38"]
+[ext_resource type="AudioStream" uid="uid://w7niqm4q6y0d" path="res://sfx/hit/bullet_hit1.wav" id="41"]
+[ext_resource type="AudioStream" uid="uid://da2vgg1amega" path="res://sfx/hit/bullet_hit4.wav" id="42"]
+[ext_resource type="AudioStream" uid="uid://otmmrdy6cxyj" path="res://sfx/hit/bullet_hit3.wav" id="43"]
+[ext_resource type="Texture2D" uid="uid://dpv44ce8h2fd0" path="res://effects/tex_smoke.png" id="46_ueva8"]
+[ext_resource type="AudioStream" uid="uid://7wtwq48rji7" path="res://sfx/miss/bullet_miss9.wav" id="47"]
+[ext_resource type="AudioStream" uid="uid://xm71n17v1wmu" path="res://sfx/miss/bullet_miss6.wav" id="50"]
+[ext_resource type="FontFile" uid="uid://b20jdsyu8cy2h" path="res://ui/fonts/font_square_mini.ttf" id="55_us67o"]
+[ext_resource type="Texture2D" uid="uid://3qg6hakqxsdb" path="res://ui/textures/ui_frame.png" id="56_71o1v"]
+[ext_resource type="Texture2D" uid="uid://q5yxd1gvap13" path="res://effects/spark_04.png" id="61"]
+[ext_resource type="AudioStream" uid="uid://d0yc3tboc10rh" path="res://sfx/miss/bullet_miss8.wav" id="62"]
+[ext_resource type="Texture2D" uid="uid://d1p5btiswlih6" path="res://effects/spark_02.png" id="63"]
+[ext_resource type="Texture2D" uid="uid://cxluss23ch4p8" path="res://effects/spark_03.png" id="66"]
+[ext_resource type="AudioStream" uid="uid://vvglbcflqrqh" path="res://sfx/skill_activate.wav" id="67"]
+[ext_resource type="Texture2D" uid="uid://crtyiox0rj77y" path="res://effects/spark_01.png" id="69"]
+[ext_resource type="AudioStream" uid="uid://iq4s4r3yvj6e" path="res://sfx/miss/bullet_miss7.wav" id="73"]
+[ext_resource type="AudioStream" uid="uid://cxwqdv4ipdsbm" path="res://sfx/hit/bullet_hit14.wav" id="79"]
+[ext_resource type="AudioStream" uid="uid://hvm6phoxyltx" path="res://sfx/hit/bullet_hit6.wav" id="80"]
+[ext_resource type="AudioStream" uid="uid://bg1351pcdc5bi" path="res://sfx/miss/bullet_miss0.wav" id="81"]
+[ext_resource type="AudioStream" uid="uid://d1qt7gyo7xncw" path="res://sfx/miss/bullet_miss3.wav" id="82"]
+[ext_resource type="AudioStream" uid="uid://bpfoperp17yev" path="res://sfx/miss/bullet_miss5.wav" id="83"]
+[ext_resource type="AudioStream" uid="uid://13fvvjckm0pi" path="res://sfx/hit/bullet_hit2.wav" id="84"]
+[ext_resource type="AudioStream" uid="uid://bscjao11y1eqr" path="res://sfx/hit/bullet_hit7.wav" id="85"]
+[ext_resource type="AudioStream" uid="uid://dlv2ndc6utfbi" path="res://sfx/hit/bullet_hit12.wav" id="86"]
+[ext_resource type="AudioStream" uid="uid://dcjim63amq11j" path="res://sfx/hit/bullet_hit10.wav" id="87"]
+[ext_resource type="AudioStream" uid="uid://cg7krc4xsr5ej" path="res://sfx/hit/bullet_hit13.wav" id="88"]
+[ext_resource type="AudioStream" uid="uid://bx1e6to261p4t" path="res://sfx/miss/bullet_miss1.wav" id="89"]
+[ext_resource type="AudioStream" uid="uid://bnjy1x2kx1ykg" path="res://sfx/hit/bullet_hit9.wav" id="90"]
+[ext_resource type="AudioStream" uid="uid://nxm1rs6iuwwg" path="res://sfx/miss/bullet_miss2.wav" id="91"]
+[ext_resource type="AudioStream" uid="uid://crx1a4gunucdr" path="res://sfx/hit/bullet_hit11.wav" id="92"]
+[ext_resource type="AudioStream" uid="uid://cckx10n5w1d8c" path="res://sfx/hit/bullet_hit5.wav" id="93"]
+[ext_resource type="AudioStream" uid="uid://b47yypa0uwvm" path="res://sfx/miss/bullet_miss4.wav" id="94"]
+[ext_resource type="AudioStream" uid="uid://785o0ri0f8y1" path="res://sfx/hit/bullet_hit15.wav" id="95"]
+[ext_resource type="PackedScene" uid="uid://cmkjb7btuarte" path="res://effects/Fire.tscn" id="97"]
+[ext_resource type="ArrayMesh" uid="uid://ijcj0ad80iyp" path="res://mech/meshes/glow.obj" id="98"]
+
+[sub_resource type="SphereShape3D" id="1"]
+
+[sub_resource type="SphereShape3D" id="2"]
+
+[sub_resource type="Gradient" id="10"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.5, 0.5, 0.5, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="11"]
+gradient = SubResource("10")
+
+[sub_resource type="ParticleProcessMaterial" id="12"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+color_ramp = SubResource("11")
+
+[sub_resource type="StandardMaterial3D" id="13"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("46_ueva8")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="14"]
+material = SubResource("13")
+
+[sub_resource type="SpriteFrames" id="15"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("69")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="StandardMaterial3D" id="16"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+albedo_color = Color(1, 0.666667, 0, 0)
+albedo_texture = ExtResource("19")
+disable_receive_shadows = true
+
+[sub_resource type="Animation" id="35"]
+length = 0.001
+
+[sub_resource type="Animation" id="19"]
+resource_name = "skill_proc"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glow:material_override:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glow:material_override:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.666667, 0, 0), Color(1, 0.666667, 0, 1), Color(1, 0.666667, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_do0p5"]
+_data = {
+"RESET": SubResource("35"),
+"skill_proc": SubResource("19")
+}
+
+[sub_resource type="ViewportTexture" id="50"]
+viewport_path = NodePath("MechTag/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="51"]
+resource_local_to_scene = true
+no_depth_test = true
+shading_mode = 0
+albedo_texture = SubResource("50")
+texture_filter = 0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+fixed_size = true
+
+[sub_resource type="QuadMesh" id="52"]
+size = Vector2(0.05, 0.05)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lrufj"]
+viewport_path = NodePath("SkillTag/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_komjf"]
+resource_local_to_scene = true
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_lrufj")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+fixed_size = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_xn0p5"]
+size = Vector2(0.2, 0.1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_je5om"]
+texture = ExtResource("56_71o1v")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[node name="MechActor" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_r7np7")
+
+[node name="Resources" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("bullet_hit0", "bullet_hit1", "bullet_hit10", "bullet_hit11", "bullet_hit12", "bullet_hit13", "bullet_hit14", "bullet_hit15", "bullet_hit2", "bullet_hit3", "bullet_hit4", "bullet_hit5", "bullet_hit6", "bullet_hit7", "bullet_hit8", "bullet_hit9", "bullet_miss0", "bullet_miss1", "bullet_miss2", "bullet_miss3", "bullet_miss4", "bullet_miss5", "bullet_miss6", "bullet_miss7", "bullet_miss8", "bullet_miss9", "explode_lg0", "explode_lg1", "explode_lg2", "explode_lg3", "explode_lg4", "explode_lg5", "explode_lg6", "explode_sm0", "explode_sm1", "explode_sm2", "explode_sm3", "explode_sm4", "explode_sm5", "explode_sm6", "skill_activate", "step0", "step1", "step_mech"), [ExtResource("38"), ExtResource("41"), ExtResource("87"), ExtResource("92"), ExtResource("86"), ExtResource("88"), ExtResource("79"), ExtResource("95"), ExtResource("84"), ExtResource("43"), ExtResource("42"), ExtResource("93"), ExtResource("80"), ExtResource("85"), ExtResource("37"), ExtResource("90"), ExtResource("81"), ExtResource("89"), ExtResource("91"), ExtResource("82"), ExtResource("94"), ExtResource("83"), ExtResource("50"), ExtResource("73"), ExtResource("62"), ExtResource("47"), ExtResource("25"), ExtResource("24"), ExtResource("28"), ExtResource("27"), ExtResource("29"), ExtResource("30"), ExtResource("26"), ExtResource("20"), ExtResource("8"), ExtResource("10"), ExtResource("4"), ExtResource("12"), ExtResource("13"), ExtResource("6"), ExtResource("67"), ExtResource("16"), ExtResource("18"), ExtResource("7")]]
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("1")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("2")
+
+[node name="Effects" type="Node3D" parent="."]
+
+[node name="Smoke" type="GPUParticles3D" parent="Effects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+process_material = SubResource("12")
+draw_pass_1 = SubResource("14")
+
+[node name="Fire" parent="Effects" instance=ExtResource("97")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+
+[node name="Stun" type="AnimatedSprite3D" parent="Effects"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 1.5, 0)
+visible = false
+billboard = 1
+sprite_frames = SubResource("15")
+frame_progress = 0.999758
+
+[node name="Glow" type="MeshInstance3D" parent="Effects"]
+material_override = SubResource("16")
+cast_shadow = 0
+mesh = ExtResource("98")
+
+[node name="AnimEffect" type="AnimationPlayer" parent="Effects"]
+libraries = {
+"": SubResource("AnimationLibrary_do0p5")
+}
+
+[node name="Headlight" type="SpotLight3D" parent="Effects"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.5, 0)
+visible = false
+spot_range = 2.5
+
+[node name="CamPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MechTag" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+visible = false
+layers = 2
+material_override = SubResource("51")
+cast_shadow = 0
+mesh = SubResource("52")
+skeleton = NodePath("")
+
+[node name="SubViewport" type="SubViewport" parent="MechTag"]
+transparent_bg = true
+size = Vector2i(24, 24)
+
+[node name="Tag" type="TextureRect" parent="MechTag/SubViewport"]
+offset_right = 24.0
+offset_bottom = 24.0
+texture = ExtResource("5")
+
+[node name="Label" type="Label" parent="MechTag/SubViewport"]
+offset_top = -4.125
+offset_right = 27.0
+offset_bottom = 25.875
+theme_override_fonts/font = ExtResource("55_us67o")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillTag" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_komjf")
+mesh = SubResource("QuadMesh_xn0p5")
+
+[node name="SubViewport" type="SubViewport" parent="SkillTag"]
+transparent_bg = true
+size = Vector2i(256, 128)
+
+[node name="SkillName" type="Label" parent="SkillTag/SubViewport"]
+custom_minimum_size = Vector2(256, 128)
+offset_right = 256.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_je5om")
+text = "Skill Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Parts" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_Area_area_entered"]

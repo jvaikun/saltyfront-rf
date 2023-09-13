@@ -1,0 +1,316 @@
+[gd_scene load_steps=4 format=3 uid="uid://du7v0rt7t8dmn"]
+
+[ext_resource type="Script" path="res://main/title/title.gd" id="1_y1st8"]
+[ext_resource type="Texture2D" uid="uid://5f53y8rnvpij" path="res://ui/textures/title_bg.png" id="2_ugsrx"]
+[ext_resource type="FontFile" uid="uid://cnpjljjw2tov4" path="res://ui/fonts/font_square.ttf" id="3_hjav1"]
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y1st8")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ugsrx")
+stretch_mode = 1
+
+[node name="Header" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.125
+anchor_right = 0.5
+anchor_bottom = 0.125
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="Title" type="Label" parent="Header"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hjav1")
+theme_override_font_sizes/font_size = 64
+text = "SALTYFRONT"
+horizontal_alignment = 1
+
+[node name="SubTitle" type="Label" parent="Header"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hjav1")
+theme_override_font_sizes/font_size = 32
+text = "GET PAID, OR GET SMOKED"
+horizontal_alignment = 1
+
+[node name="Main" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.6
+anchor_right = 0.5
+anchor_bottom = 0.6
+offset_left = -256.0
+offset_top = -170.0
+offset_right = 256.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Settings" type="VBoxContainer" parent="Main"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="Label" parent="Main/Settings"]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="Tabs" type="TabContainer" parent="Main/Settings"]
+layout_mode = 2
+
+[node name="Game" type="GridContainer" parent="Main/Settings/Tabs"]
+layout_mode = 2
+columns = 3
+
+[node name="Head1" type="Label" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+text = "Property"
+
+[node name="Head2" type="Label" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+text = "Normal"
+
+[node name="Head3" type="Label" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+text = "Fast"
+
+[node name="Signup" type="Label" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+text = "Signup Wait Time: "
+
+[node name="SignupNorm" type="LineEdit" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+
+[node name="SignupFast" type="LineEdit" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+
+[node name="Betting" type="Label" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+text = "Betting Wait Time: "
+
+[node name="BettingNorm" type="LineEdit" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+
+[node name="BettingFast" type="LineEdit" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+
+[node name="Payout" type="Label" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+text = "Payout Wait Time: "
+
+[node name="PayoutNorm" type="LineEdit" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+
+[node name="PayoutFast" type="LineEdit" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+
+[node name="Roster" type="Label" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+text = "Roster Display Time: "
+
+[node name="RosterNorm" type="LineEdit" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+
+[node name="RosterFast" type="LineEdit" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+
+[node name="Mech" type="Label" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+text = "Mech Display Time: "
+
+[node name="MechNorm" type="LineEdit" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+
+[node name="MechFast" type="LineEdit" parent="Main/Settings/Tabs/Game"]
+layout_mode = 2
+
+[node name="Combat" type="GridContainer" parent="Main/Settings/Tabs"]
+visible = false
+layout_mode = 2
+columns = 3
+
+[node name="Head1" type="Label" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+text = "Property"
+
+[node name="Head2" type="Label" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+text = "Normal"
+
+[node name="Head3" type="Label" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+text = "Fast"
+
+[node name="MoveSpeed" type="Label" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+text = "Movement Speed:"
+
+[node name="MoveNorm" type="LineEdit" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+
+[node name="MoveFast" type="LineEdit" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+
+[node name="AnimSpeed" type="Label" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+text = "Animation Speed:"
+
+[node name="AnimNorm" type="LineEdit" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+
+[node name="AnimFast" type="LineEdit" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+
+[node name="WaitTime" type="Label" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+text = "Action Wait Time:"
+
+[node name="WaitNorm" type="LineEdit" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+
+[node name="WaitFast" type="LineEdit" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+
+[node name="TimeOutTurn" type="Label" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+text = "Time Out Turns:"
+
+[node name="TimeOutTurns" type="LineEdit" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+
+[node name="Spacer" type="Label" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+
+[node name="TimeOutSec" type="Label" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+text = "Time Out Seconds:"
+
+[node name="TimeOutSecs" type="LineEdit" parent="Main/Settings/Tabs/Combat"]
+layout_mode = 2
+
+[node name="Connection" type="GridContainer" parent="Main/Settings/Tabs"]
+visible = false
+layout_mode = 2
+
+[node name="ConnectList" type="OptionButton" parent="Main/Settings/Tabs/Connection"]
+layout_mode = 2
+
+[node name="ConnectInfo" type="Label" parent="Main/Settings/Tabs/Connection"]
+layout_mode = 2
+text = "Nick:
+Client:
+Channel:"
+
+[node name="Paths" type="GridContainer" parent="Main/Settings/Tabs"]
+visible = false
+layout_mode = 2
+columns = 2
+
+[node name="Data" type="Label" parent="Main/Settings/Tabs/Paths"]
+layout_mode = 2
+text = "General Data: "
+
+[node name="DataPath" type="LineEdit" parent="Main/Settings/Tabs/Paths"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Parts" type="Label" parent="Main/Settings/Tabs/Paths"]
+layout_mode = 2
+text = "Mech Part Data: "
+
+[node name="PartPath" type="LineEdit" parent="Main/Settings/Tabs/Paths"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Users" type="Label" parent="Main/Settings/Tabs/Paths"]
+layout_mode = 2
+text = "User Data: "
+
+[node name="UserPath" type="LineEdit" parent="Main/Settings/Tabs/Paths"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Music" type="Label" parent="Main/Settings/Tabs/Paths"]
+layout_mode = 2
+text = "BGM Files: "
+
+[node name="MusicPath" type="LineEdit" parent="Main/Settings/Tabs/Paths"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Records" type="Label" parent="Main/Settings/Tabs/Paths"]
+layout_mode = 2
+text = "Records and Logs: "
+
+[node name="RecordPath" type="LineEdit" parent="Main/Settings/Tabs/Paths"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Screenshot" type="Label" parent="Main/Settings/Tabs/Paths"]
+layout_mode = 2
+text = "Screenshots: "
+
+[node name="ShotPath" type="LineEdit" parent="Main/Settings/Tabs/Paths"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnSave" type="Button" parent="Main/Settings"]
+layout_mode = 2
+text = "Save Settings"
+
+[node name="BtnCancel" type="Button" parent="Main/Settings"]
+layout_mode = 2
+text = "Discard Changes"
+
+[node name="Buttons" type="VBoxContainer" parent="Main"]
+layout_mode = 2
+
+[node name="Offline" type="CheckButton" parent="Main/Buttons"]
+layout_mode = 2
+text = "Offline Mode"
+
+[node name="FastWait" type="CheckButton" parent="Main/Buttons"]
+layout_mode = 2
+text = "Fast Wait Times"
+
+[node name="FastCombat" type="CheckButton" parent="Main/Buttons"]
+layout_mode = 2
+text = "Fast Combat"
+
+[node name="BtnNormal" type="Button" parent="Main/Buttons"]
+layout_mode = 2
+text = "Normal Mode"
+
+[node name="BtnSim" type="Button" parent="Main/Buttons"]
+layout_mode = 2
+text = "Simulation Mode"
+
+[node name="BtnQuit" type="Button" parent="Main/Buttons"]
+layout_mode = 2
+text = "Quit to Desktop"
+
+[connection signal="item_selected" from="Main/Settings/Tabs/Connection/ConnectList" to="." method="_on_connect_list_item_selected"]
+[connection signal="toggled" from="Main/Buttons/Offline" to="." method="_on_offline_toggled"]
+[connection signal="toggled" from="Main/Buttons/FastWait" to="." method="_on_fast_wait_toggled"]
+[connection signal="toggled" from="Main/Buttons/FastCombat" to="." method="_on_fast_combat_toggled"]
+[connection signal="pressed" from="Main/Buttons/BtnNormal" to="." method="_on_btn_normal_pressed"]
+[connection signal="pressed" from="Main/Buttons/BtnSim" to="." method="_on_btn_sim_pressed"]
+[connection signal="pressed" from="Main/Buttons/BtnQuit" to="." method="_on_btn_quit_pressed"]

@@ -1,0 +1,308 @@
+[gd_scene load_steps=3 format=3 uid="uid://co7psc84u86qh"]
+
+[ext_resource type="PackedScene" uid="uid://claxt7y6mkb35" path="res://main/pilot_info/pilot_info.tscn" id="1_e1tq8"]
+[ext_resource type="Script" path="res://main/match_stats/match_stats.gd" id="1_xvywl"]
+
+[node name="MatchStats" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xvywl")
+
+[node name="Rankings" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -241.0
+offset_right = 344.0
+offset_bottom = 241.0
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="Rankings"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Rankings/Content"]
+layout_mode = 2
+text = "! - PERFORMANCE BONUSES - !"
+horizontal_alignment = 1
+
+[node name="Body" type="GridContainer" parent="Rankings/Content"]
+layout_mode = 2
+columns = 2
+
+[node name="Team1Mech1" type="HBoxContainer" parent="Rankings/Content/Body"]
+layout_mode = 2
+
+[node name="PilotInfo" parent="Rankings/Content/Body/Team1Mech1" instance=ExtResource("1_e1tq8")]
+layout_mode = 2
+
+[node name="Bonuses" type="Label" parent="Rankings/Content/Body/Team1Mech1"]
+layout_mode = 2
+text = "Bonus List
+Bonus 1
+Bonus 2
+Bonus 3"
+
+[node name="Team1Mech2" type="HBoxContainer" parent="Rankings/Content/Body"]
+layout_mode = 2
+
+[node name="PilotInfo" parent="Rankings/Content/Body/Team1Mech2" instance=ExtResource("1_e1tq8")]
+layout_mode = 2
+
+[node name="Bonuses" type="Label" parent="Rankings/Content/Body/Team1Mech2"]
+layout_mode = 2
+text = "Bonus List
+Bonus 1
+Bonus 2
+Bonus 3"
+
+[node name="Team1Mech3" type="HBoxContainer" parent="Rankings/Content/Body"]
+layout_mode = 2
+
+[node name="PilotInfo" parent="Rankings/Content/Body/Team1Mech3" instance=ExtResource("1_e1tq8")]
+layout_mode = 2
+
+[node name="Bonuses" type="Label" parent="Rankings/Content/Body/Team1Mech3"]
+layout_mode = 2
+text = "Bonus List
+Bonus 1
+Bonus 2
+Bonus 3"
+
+[node name="Team1Mech4" type="HBoxContainer" parent="Rankings/Content/Body"]
+layout_mode = 2
+
+[node name="PilotInfo" parent="Rankings/Content/Body/Team1Mech4" instance=ExtResource("1_e1tq8")]
+layout_mode = 2
+
+[node name="Bonuses" type="Label" parent="Rankings/Content/Body/Team1Mech4"]
+layout_mode = 2
+text = "Bonus List
+Bonus 1
+Bonus 2
+Bonus 3"
+
+[node name="Team2Mech1" type="HBoxContainer" parent="Rankings/Content/Body"]
+layout_mode = 2
+
+[node name="PilotInfo" parent="Rankings/Content/Body/Team2Mech1" instance=ExtResource("1_e1tq8")]
+layout_mode = 2
+
+[node name="Bonuses" type="Label" parent="Rankings/Content/Body/Team2Mech1"]
+layout_mode = 2
+text = "Bonus List
+Bonus 1
+Bonus 2
+Bonus 3"
+
+[node name="Team2Mech2" type="HBoxContainer" parent="Rankings/Content/Body"]
+layout_mode = 2
+
+[node name="PilotInfo" parent="Rankings/Content/Body/Team2Mech2" instance=ExtResource("1_e1tq8")]
+layout_mode = 2
+
+[node name="Bonuses" type="Label" parent="Rankings/Content/Body/Team2Mech2"]
+layout_mode = 2
+text = "Bonus List
+Bonus 1
+Bonus 2
+Bonus 3"
+
+[node name="Team2Mech3" type="HBoxContainer" parent="Rankings/Content/Body"]
+layout_mode = 2
+
+[node name="PilotInfo" parent="Rankings/Content/Body/Team2Mech3" instance=ExtResource("1_e1tq8")]
+layout_mode = 2
+
+[node name="Bonuses" type="Label" parent="Rankings/Content/Body/Team2Mech3"]
+layout_mode = 2
+text = "Bonus List
+Bonus 1
+Bonus 2
+Bonus 3"
+
+[node name="Team2Mech4" type="HBoxContainer" parent="Rankings/Content/Body"]
+layout_mode = 2
+
+[node name="PilotInfo" parent="Rankings/Content/Body/Team2Mech4" instance=ExtResource("1_e1tq8")]
+layout_mode = 2
+
+[node name="Bonuses" type="Label" parent="Rankings/Content/Body/Team2Mech4"]
+layout_mode = 2
+text = "Bonus List
+Bonus 1
+Bonus 2
+Bonus 3"
+
+[node name="Report" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -133.0
+offset_bottom = 133.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Stats" type="PanelContainer" parent="Report"]
+layout_mode = 2
+
+[node name="Content" type="HBoxContainer" parent="Report/Stats"]
+layout_mode = 2
+
+[node name="Team1" type="VBoxContainer" parent="Report/Stats/Content"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Report/Stats/Content/Team1"]
+layout_mode = 2
+text = "Team Name"
+horizontal_alignment = 1
+
+[node name="Hits" type="Label" parent="Report/Stats/Content/Team1"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Crits" type="Label" parent="Report/Stats/Content/Team1"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Misses" type="Label" parent="Report/Stats/Content/Team1"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DmgOut" type="Label" parent="Report/Stats/Content/Team1"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DmgIn" type="Label" parent="Report/Stats/Content/Team1"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PartDest" type="Label" parent="Report/Stats/Content/Team1"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PartLost" type="Label" parent="Report/Stats/Content/Team1"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Labels" type="VBoxContainer" parent="Report/Stats/Content"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Report/Stats/Content/Labels"]
+layout_mode = 2
+text = "STATS"
+horizontal_alignment = 1
+
+[node name="Hits" type="Label" parent="Report/Stats/Content/Labels"]
+layout_mode = 2
+text = "Hits"
+horizontal_alignment = 1
+
+[node name="Crits" type="Label" parent="Report/Stats/Content/Labels"]
+layout_mode = 2
+text = "Crits"
+horizontal_alignment = 1
+
+[node name="Misses" type="Label" parent="Report/Stats/Content/Labels"]
+layout_mode = 2
+text = "Misses"
+horizontal_alignment = 1
+
+[node name="DmgOut" type="Label" parent="Report/Stats/Content/Labels"]
+layout_mode = 2
+text = "Damage Dealt"
+horizontal_alignment = 1
+
+[node name="DmgIn" type="Label" parent="Report/Stats/Content/Labels"]
+layout_mode = 2
+text = "Damage Taken"
+horizontal_alignment = 1
+
+[node name="PartDest" type="Label" parent="Report/Stats/Content/Labels"]
+layout_mode = 2
+text = "Parts Destroyed"
+horizontal_alignment = 1
+
+[node name="PartLost" type="Label" parent="Report/Stats/Content/Labels"]
+layout_mode = 2
+text = "Parts Lost"
+horizontal_alignment = 1
+
+[node name="Team2" type="VBoxContainer" parent="Report/Stats/Content"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Report/Stats/Content/Team2"]
+layout_mode = 2
+text = "Team Name"
+horizontal_alignment = 1
+
+[node name="Hits" type="Label" parent="Report/Stats/Content/Team2"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Crits" type="Label" parent="Report/Stats/Content/Team2"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Misses" type="Label" parent="Report/Stats/Content/Team2"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DmgOut" type="Label" parent="Report/Stats/Content/Team2"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DmgIn" type="Label" parent="Report/Stats/Content/Team2"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PartDest" type="Label" parent="Report/Stats/Content/Team2"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PartLost" type="Label" parent="Report/Stats/Content/Team2"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Payout" type="PanelContainer" parent="Report"]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="Report/Payout"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Report/Payout/Content"]
+layout_mode = 2
+text = "Bet Payouts"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Report/Payout/Content"]
+layout_mode = 2
+text = "Payout List"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="hidden" from="." to="." method="_on_hidden"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

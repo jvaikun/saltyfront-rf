@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc8sok5jho4ym"]
+
+[ext_resource type="Script" path="res://main/signup/signup.gd" id="1_jlbup"]
+
+[node name="Signup" type="MarginContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -277.0
+offset_right = 277.0
+offset_bottom = 268.0
+grow_horizontal = 2
+script = ExtResource("1_jlbup")
+
+[node name="Panels" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Help" type="PanelContainer" parent="Panels"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Content" type="VBoxContainer" parent="Panels/Help"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Panels/Help/Content"]
+layout_mode = 2
+text = "HOW TO PLAY"
+horizontal_alignment = 1
+
+[node name="Body" type="RichTextLabel" parent="Panels/Help/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Type commands in chat:
+[color=white]!register[/color] or [color=white]!reg[/color] - Register your username
+[color=white]!balance[/color] or [color=white]!bal[/color] - Check your credit balance
+[color=white]!fight[/color] - Join the fight with a random class
+[color=white]!fight melee[/color] - Join as a melee class
+[color=white]!fight short[/color] - Join as a short-range class
+[color=white]!fight long[/color] - Join as a long-range class
+[color=white]!fight mixms[/color] - Join as a melee+short class
+[color=white]!fight mixml[/color] - Join as a melee+long class
+[color=white]!fight mixsl[/color] - Join as a short+long class"
+
+[node name="SignIn" type="PanelContainer" parent="Panels"]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="Panels/SignIn"]
+layout_mode = 2
+
+[node name="Message" type="Label" parent="Panels/SignIn/Content"]
+layout_mode = 2
+text = "Tournament #1 Starting Soon!"
+
+[node name="Countdown" type="Label" parent="Panels/SignIn/Content"]
+layout_mode = 2
+text = "Signup Time Left: 0"
+
+[node name="Header" type="Label" parent="Panels/SignIn/Content"]
+layout_mode = 2
+text = "Join Queue"
+horizontal_alignment = 1
+
+[node name="UserList" type="GridContainer" parent="Panels/SignIn/Content"]
+layout_mode = 2
+size_flags_horizontal = 0
+columns = 2
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

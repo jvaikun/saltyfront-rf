@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c3rgtmn8otlrb"
+path="res://.godot/imported/pod0.obj-9fd5251ba47357a1ddd17234d27d64ad.mesh"
+
+[deps]
+
+files=["res://.godot/imported/pod0.obj-9fd5251ba47357a1ddd17234d27d64ad.mesh"]
+
+source_file="res://parts/pod/models/pod0.obj"
+dest_files=["res://.godot/imported/pod0.obj-9fd5251ba47357a1ddd17234d27d64ad.mesh", "res://.godot/imported/pod0.obj-9fd5251ba47357a1ddd17234d27d64ad.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

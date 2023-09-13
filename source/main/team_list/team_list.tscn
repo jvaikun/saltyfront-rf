@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2qvtbc7t7vwn"]
+
+[ext_resource type="PackedScene" uid="uid://claxt7y6mkb35" path="res://main/pilot_info/pilot_info.tscn" id="1_kuvx8"]
+[ext_resource type="Script" path="res://main/team_list/team_list.gd" id="1_nd1ra"]
+
+[node name="TeamList" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_nd1ra")
+
+[node name="Body" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Notes" type="Label" parent="Body"]
+visible = false
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Body"]
+layout_mode = 2
+text = "Team"
+horizontal_alignment = 1
+
+[node name="PilotList" type="HBoxContainer" parent="Body"]
+layout_mode = 2
+
+[node name="PilotInfo" parent="Body/PilotList" instance=ExtResource("1_kuvx8")]
+layout_mode = 2
+
+[node name="PilotInfo2" parent="Body/PilotList" instance=ExtResource("1_kuvx8")]
+layout_mode = 2
+
+[node name="PilotInfo3" parent="Body/PilotList" instance=ExtResource("1_kuvx8")]
+layout_mode = 2
+
+[node name="PilotInfo4" parent="Body/PilotList" instance=ExtResource("1_kuvx8")]
+layout_mode = 2
+
+[node name="Lose" type="Label" parent="."]
+layout_mode = 2
+text = "S M O K E D"
+horizontal_alignment = 1

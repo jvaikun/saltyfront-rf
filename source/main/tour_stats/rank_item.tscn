@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0ajyofck2a7e"]
+
+[ext_resource type="Script" path="res://main/tour_stats/rank_item.gd" id="1_fm5tm"]
+
+[node name="RankItem" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fm5tm")
+
+[node name="Rank" type="Label" parent="."]
+layout_mode = 2
+text = "0"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Name"
+
+[node name="Number" type="Label" parent="."]
+layout_mode = 2
+text = "0"

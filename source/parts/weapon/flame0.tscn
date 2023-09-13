@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmrubo62nmece"]
+
+[ext_resource type="ArrayMesh" uid="uid://bhs1dbgod0cq3" path="res://parts/weapon/models/flame0.obj" id="1_ncwpx"]
+[ext_resource type="Texture2D" uid="uid://btl2l8ex7vtnx" path="res://parts/weapon/textures/tex_flame0.png" id="2_k1rcv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuuh4"]
+albedo_texture = ExtResource("2_k1rcv")
+
+[node name="Flame0" type="Node3D"]
+
+[node name="Flame0" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ncwpx")
+surface_material_override/0 = SubResource("StandardMaterial3D_yuuh4")

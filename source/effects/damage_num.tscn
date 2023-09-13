@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgwuc75pisg4e"]
+
+[ext_resource type="Script" path="res://effects/damage_num.gd" id="1_1ouk3"]
+
+[node name="DamageNum" type="Node3D"]
+script = ExtResource("1_1ouk3")
+
+[node name="Label3D" type="Label3D" parent="."]
+billboard = 1
+no_depth_test = true
+fixed_size = true
+texture_filter = 0
+text = "TEST"
+font_size = 16
+outline_size = 4

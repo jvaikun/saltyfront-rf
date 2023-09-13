@@ -1,0 +1,183 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfvlqbs3ljt5"]
+
+[ext_resource type="PackedScene" uid="uid://b3aojoa0klr1n" path="res://main/tour_stats/chart_bar.tscn" id="1_g8cgt"]
+[ext_resource type="Script" path="res://main/tour_stats/tour_stats.gd" id="1_kd1u4"]
+[ext_resource type="PackedScene" uid="uid://d0ajyofck2a7e" path="res://main/tour_stats/rank_item.tscn" id="2_t6e1e"]
+
+[node name="TourStats" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_kd1u4")
+
+[node name="Header" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Header"]
+layout_mode = 2
+text = "Tournament Stat Summary"
+horizontal_alignment = 1
+
+[node name="Lists" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Teams" type="PanelContainer" parent="Lists"]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="Lists/Teams"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Lists/Teams/Content"]
+layout_mode = 2
+text = "Team Stats"
+horizontal_alignment = 1
+
+[node name="ChartBar" parent="Lists/Teams/Content" instance=ExtResource("1_g8cgt")]
+layout_mode = 2
+
+[node name="ChartBar2" parent="Lists/Teams/Content" instance=ExtResource("1_g8cgt")]
+layout_mode = 2
+
+[node name="ChartBar3" parent="Lists/Teams/Content" instance=ExtResource("1_g8cgt")]
+layout_mode = 2
+
+[node name="ChartBar4" parent="Lists/Teams/Content" instance=ExtResource("1_g8cgt")]
+layout_mode = 2
+
+[node name="ChartBar5" parent="Lists/Teams/Content" instance=ExtResource("1_g8cgt")]
+layout_mode = 2
+
+[node name="ChartBar6" parent="Lists/Teams/Content" instance=ExtResource("1_g8cgt")]
+layout_mode = 2
+
+[node name="ChartBar7" parent="Lists/Teams/Content" instance=ExtResource("1_g8cgt")]
+layout_mode = 2
+
+[node name="ChartBar8" parent="Lists/Teams/Content" instance=ExtResource("1_g8cgt")]
+layout_mode = 2
+
+[node name="Ranking" type="PanelContainer" parent="Lists"]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="Lists/Ranking"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Lists/Ranking/Content"]
+layout_mode = 2
+text = "Top 10 Ranking"
+horizontal_alignment = 1
+
+[node name="RankItem" parent="Lists/Ranking/Content" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem2" parent="Lists/Ranking/Content" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem3" parent="Lists/Ranking/Content" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem4" parent="Lists/Ranking/Content" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem5" parent="Lists/Ranking/Content" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem6" parent="Lists/Ranking/Content" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem7" parent="Lists/Ranking/Content" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem8" parent="Lists/Ranking/Content" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem9" parent="Lists/Ranking/Content" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem10" parent="Lists/Ranking/Content" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="Bets" type="PanelContainer" parent="Lists"]
+layout_mode = 2
+
+[node name="Content" type="HBoxContainer" parent="Lists/Bets"]
+layout_mode = 2
+
+[node name="Gains" type="VBoxContainer" parent="Lists/Bets/Content"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Lists/Bets/Content/Gains"]
+layout_mode = 2
+text = "Top 10 Gains"
+horizontal_alignment = 1
+
+[node name="RankItem" parent="Lists/Bets/Content/Gains" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem2" parent="Lists/Bets/Content/Gains" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem3" parent="Lists/Bets/Content/Gains" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem4" parent="Lists/Bets/Content/Gains" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem5" parent="Lists/Bets/Content/Gains" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem6" parent="Lists/Bets/Content/Gains" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem7" parent="Lists/Bets/Content/Gains" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem8" parent="Lists/Bets/Content/Gains" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem9" parent="Lists/Bets/Content/Gains" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem10" parent="Lists/Bets/Content/Gains" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="Losses" type="VBoxContainer" parent="Lists/Bets/Content"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Lists/Bets/Content/Losses"]
+layout_mode = 2
+text = "Top 10 Losses"
+horizontal_alignment = 1
+
+[node name="RankItem" parent="Lists/Bets/Content/Losses" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem2" parent="Lists/Bets/Content/Losses" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem3" parent="Lists/Bets/Content/Losses" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem4" parent="Lists/Bets/Content/Losses" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem5" parent="Lists/Bets/Content/Losses" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem6" parent="Lists/Bets/Content/Losses" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem7" parent="Lists/Bets/Content/Losses" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem8" parent="Lists/Bets/Content/Losses" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem9" parent="Lists/Bets/Content/Losses" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="RankItem10" parent="Lists/Bets/Content/Losses" instance=ExtResource("2_t6e1e")]
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

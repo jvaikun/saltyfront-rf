@@ -1,0 +1,172 @@
+[gd_scene load_steps=10 format=3 uid="uid://bitw7fwae0v2b"]
+
+[ext_resource type="Script" path="res://main/mech_info/mech_info.gd" id="1_yyjuj"]
+[ext_resource type="PackedScene" uid="uid://claxt7y6mkb35" path="res://main/pilot_info/pilot_info.tscn" id="2_kig2d"]
+[ext_resource type="Texture2D" uid="uid://0xxm07hctfmx" path="res://ui/textures/bar_bg.png" id="3_055gk"]
+[ext_resource type="Texture2D" uid="uid://tt5clnei2e82" path="res://ui/textures/bar_fg.png" id="4_fphet"]
+[ext_resource type="Texture2D" uid="uid://ddfva6venyvat" path="res://ui/textures/bar_fill.png" id="5_of78r"]
+[ext_resource type="Texture2D" uid="uid://l2u6xgl326g0" path="res://ui/icons/icon_hp.png" id="6_xxp6w"]
+[ext_resource type="Texture2D" uid="uid://bhin2dvqw4465" path="res://ui/icons/icon_defense.png" id="7_43hrm"]
+[ext_resource type="Texture2D" uid="uid://cb3rum545tbfa" path="res://ui/icons/icon_dodge.png" id="8_miwhb"]
+[ext_resource type="PackedScene" uid="uid://k0d6avuun7q0" path="res://main/mech_info/part_info.tscn" id="9_j5xgf"]
+
+[node name="MechInfo" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_yyjuj")
+
+[node name="Stats" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PilotInfo" type="HBoxContainer" parent="Stats"]
+layout_mode = 2
+
+[node name="PilotInfo" parent="Stats/PilotInfo" instance=ExtResource("2_kig2d")]
+layout_mode = 2
+
+[node name="PilotData" type="GridContainer" parent="Stats/PilotInfo"]
+layout_mode = 2
+columns = 3
+
+[node name="Melee" type="Label" parent="Stats/PilotInfo/PilotData"]
+layout_mode = 2
+text = "Melee:"
+horizontal_alignment = 2
+
+[node name="MeleeBar" type="TextureProgressBar" parent="Stats/PilotInfo/PilotData"]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("3_055gk")
+texture_over = ExtResource("4_fphet")
+texture_progress = ExtResource("5_of78r")
+
+[node name="MeleeNum" type="Label" parent="Stats/PilotInfo/PilotData"]
+layout_mode = 2
+text = "0"
+
+[node name="Short" type="Label" parent="Stats/PilotInfo/PilotData"]
+layout_mode = 2
+text = "Short:"
+horizontal_alignment = 2
+
+[node name="ShortBar" type="TextureProgressBar" parent="Stats/PilotInfo/PilotData"]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("3_055gk")
+texture_over = ExtResource("4_fphet")
+texture_progress = ExtResource("5_of78r")
+
+[node name="ShortNum" type="Label" parent="Stats/PilotInfo/PilotData"]
+layout_mode = 2
+text = "0"
+
+[node name="Long" type="Label" parent="Stats/PilotInfo/PilotData"]
+layout_mode = 2
+text = "Long:"
+horizontal_alignment = 2
+
+[node name="LongBar" type="TextureProgressBar" parent="Stats/PilotInfo/PilotData"]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("3_055gk")
+texture_over = ExtResource("4_fphet")
+texture_progress = ExtResource("5_of78r")
+
+[node name="LongNum" type="Label" parent="Stats/PilotInfo/PilotData"]
+layout_mode = 2
+text = "0"
+
+[node name="Dodge" type="Label" parent="Stats/PilotInfo/PilotData"]
+layout_mode = 2
+text = "Dodge:"
+horizontal_alignment = 2
+
+[node name="DodgeBar" type="TextureProgressBar" parent="Stats/PilotInfo/PilotData"]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("3_055gk")
+texture_over = ExtResource("4_fphet")
+texture_progress = ExtResource("5_of78r")
+
+[node name="DodgeNum" type="Label" parent="Stats/PilotInfo/PilotData"]
+layout_mode = 2
+text = "0"
+
+[node name="MechData" type="GridContainer" parent="Stats/PilotInfo"]
+layout_mode = 2
+columns = 3
+
+[node name="HPIcon" type="TextureRect" parent="Stats/PilotInfo/MechData"]
+layout_mode = 2
+texture = ExtResource("6_xxp6w")
+
+[node name="DefIcon" type="TextureRect" parent="Stats/PilotInfo/MechData"]
+layout_mode = 2
+texture = ExtResource("7_43hrm")
+
+[node name="EvaIcon" type="TextureRect" parent="Stats/PilotInfo/MechData"]
+layout_mode = 2
+texture = ExtResource("8_miwhb")
+
+[node name="HP" type="Label" parent="Stats/PilotInfo/MechData"]
+layout_mode = 2
+text = "HP
+0"
+horizontal_alignment = 1
+
+[node name="Def" type="Label" parent="Stats/PilotInfo/MechData"]
+layout_mode = 2
+text = "DEF
+0"
+horizontal_alignment = 1
+
+[node name="Eva" type="Label" parent="Stats/PilotInfo/MechData"]
+layout_mode = 2
+text = "EVA
+0"
+horizontal_alignment = 1
+
+[node name="PartsList" type="GridContainer" parent="Stats"]
+layout_mode = 2
+columns = 2
+
+[node name="PodL" parent="Stats/PartsList" instance=ExtResource("9_j5xgf")]
+layout_mode = 2
+
+[node name="PodR" parent="Stats/PartsList" instance=ExtResource("9_j5xgf")]
+layout_mode = 2
+
+[node name="WeaponL" parent="Stats/PartsList" instance=ExtResource("9_j5xgf")]
+layout_mode = 2
+
+[node name="WeaponR" parent="Stats/PartsList" instance=ExtResource("9_j5xgf")]
+layout_mode = 2
+
+[node name="Pack" parent="Stats/PartsList" instance=ExtResource("9_j5xgf")]
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="hidden" from="." to="." method="_on_hidden"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

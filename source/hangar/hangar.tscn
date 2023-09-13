@@ -1,0 +1,798 @@
+[gd_scene load_steps=17 format=3 uid="uid://dy5fjo10iooin"]
+
+[ext_resource type="Script" path="res://hangar/hangar.gd" id="1_6r01m"]
+[ext_resource type="PackedScene" uid="uid://dbyew4tr7fic1" path="res://hangar/mesh/mech_hangar2.glb" id="1_becm6"]
+[ext_resource type="PackedScene" uid="uid://bew681mw7n3e1" path="res://hangar/hangar_sign.tscn" id="3_fvy00"]
+[ext_resource type="PackedScene" uid="uid://cox5pe41f3a0l" path="res://hangar/hangar_light.tscn" id="3_gxqi3"]
+[ext_resource type="PackedScene" uid="uid://c1ald4udaepk0" path="res://hangar/bay_sign.tscn" id="4_2lccg"]
+[ext_resource type="Texture2D" uid="uid://bn8f7dmwku3s" path="res://hangar/texture/tex_door.png" id="4_7a3q7"]
+[ext_resource type="Environment" uid="uid://crexw5ngg25y5" path="res://hangar/hangar_env.tres" id="6_am0md"]
+[ext_resource type="PackedScene" uid="uid://blalfjvqi78v5" path="res://mech/mech_actor.tscn" id="6_ri15s"]
+[ext_resource type="PackedScene" uid="uid://2gvpw6ppkp0s" path="res://hangar/robot_arm.tscn" id="6_wq2aj"]
+
+[sub_resource type="Animation" id="Animation_6lyja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Doors/DoorL2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1, 1.5, -18.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Doors/DoorR2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1.5, -18.2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Doors/DoorL1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1, 1.5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Doors/DoorR1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1.5, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HangarCam:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.5, 2, 17)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HangarCam:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.261799, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Team1/MechActor1:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3, 0, -3.2)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Team1/MechActor1:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Team1/MechActor2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3, 0, -7.2)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Team1/MechActor2:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Team1/MechActor3:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3, 0, -11.2)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Team1/MechActor3:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Team1/MechActor4:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3, 0, -15.2)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Team1/MechActor4:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Team2/MechActor5:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3, 0, -15.2)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Team2/MechActor5:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Team2/MechActor6:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3, 0, -11.2)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Team2/MechActor6:rotation")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Team2/MechActor7:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3, 0, -7.2)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Team2/MechActor7:rotation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Team2/MechActor8:position")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3, 0, -3.2)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Team2/MechActor8:rotation")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yaisw"]
+resource_name = "leave_workshop"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Doors/DoorL1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1, 1.5, 0), Vector3(-1, 1.5, 0), Vector3(-3, 1.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Doors/DoorR1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1.5, 0), Vector3(1, 1.5, 0), Vector3(3, 1.5, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HangarCam:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-2.5, 2, 17), Vector3(0, 1, 10), Vector3(0, 3, -0.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HangarCam:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.261799, 0), Vector3(0, 0, 0), Vector3(-0.261799, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gccpm"]
+resource_name = "mechs_out"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Team1/MechActor1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-3, 0, -3.2), Vector3(-1, 0, -3.2), Vector3(-1, 0, -3.2), Vector3(-1, 0, -20.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Team1/MechActor1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Team1/MechActor2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-3, 0, -7.2), Vector3(-1, 0, -7.2), Vector3(-1, 0, -7.2), Vector3(-1, 0, -24.2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Team1/MechActor2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Team1/MechActor3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-3, 0, -11.2), Vector3(-1, 0, -11.2), Vector3(-1, 0, -11.2), Vector3(-1, 0, -28.2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Team1/MechActor3:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Team1/MechActor4:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-3, 0, -15.2), Vector3(-1, 0, -15.2), Vector3(-1, 0, -15.2), Vector3(-1, 0, -32.2)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Team1/MechActor4:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Team2/MechActor5:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3, 0, -15.2), Vector3(1, 0, -15.2), Vector3(1, 0, -15.2), Vector3(1, 0, -32.2)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Team2/MechActor5:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Team2/MechActor6:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3, 0, -11.2), Vector3(1, 0, -11.2), Vector3(1, 0, -11.2), Vector3(1, 0, -28.2)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Team2/MechActor6:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Team2/MechActor7:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3, 0, -7.2), Vector3(1, 0, -7.2), Vector3(1, 0, -7.2), Vector3(1, 0, -24.2)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Team2/MechActor7:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Team2/MechActor8:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3, 0, -3.2), Vector3(1, 0, -3.2), Vector3(1, 0, -3.2), Vector3(1, 0, -20.2)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Team2/MechActor8:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 1, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6xepr"]
+resource_name = "open_hangar"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Doors/DoorL2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1, 1.5, -18.2), Vector3(-3, 1.5, -18.21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Doors/DoorR2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1.5, -18.2), Vector3(3, 1.5, -18.21)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wdn85"]
+_data = {
+"RESET": SubResource("Animation_6lyja"),
+"leave_workshop": SubResource("Animation_yaisw"),
+"mechs_out": SubResource("Animation_gccpm"),
+"open_hangar": SubResource("Animation_6xepr")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71w4e"]
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_7a3q7")
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_715hl"]
+size = Vector2(2, 3)
+
+[node name="Hangar" type="Node3D"]
+script = ExtResource("1_6r01m")
+
+[node name="Anims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wdn85")
+}
+
+[node name="mech_hangar2" parent="." instance=ExtResource("1_becm6")]
+
+[node name="HangarSign" parent="." instance=ExtResource("3_fvy00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -18.2)
+
+[node name="LightsHangar" type="Node3D" parent="."]
+
+[node name="HangarLight" parent="LightsHangar" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -3.2)
+
+[node name="HangarLight2" parent="LightsHangar" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -3.2)
+
+[node name="HangarLight3" parent="LightsHangar" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -7.2)
+
+[node name="HangarLight4" parent="LightsHangar" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -7.2)
+
+[node name="HangarLight5" parent="LightsHangar" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -11.2)
+
+[node name="HangarLight6" parent="LightsHangar" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -11.2)
+
+[node name="HangarLight7" parent="LightsHangar" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -15.2)
+
+[node name="HangarLight8" parent="LightsHangar" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -15.2)
+
+[node name="LightsWorkshop" type="Node3D" parent="."]
+
+[node name="HangarLight9" parent="LightsWorkshop" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 3.2)
+
+[node name="HangarLight10" parent="LightsWorkshop" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 3.2)
+
+[node name="HangarLight11" parent="LightsWorkshop" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 7.2)
+
+[node name="HangarLight12" parent="LightsWorkshop" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 7.2)
+
+[node name="HangarLight13" parent="LightsWorkshop" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 11.2)
+
+[node name="HangarLight14" parent="LightsWorkshop" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 11.2)
+
+[node name="HangarLight15" parent="LightsWorkshop" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 15.2)
+
+[node name="HangarLight16" parent="LightsWorkshop" instance=ExtResource("3_gxqi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 15.2)
+
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="DoorL1" type="MeshInstance3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_71w4e")
+mesh = SubResource("QuadMesh_715hl")
+
+[node name="DoorR1" type="MeshInstance3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_71w4e")
+mesh = SubResource("QuadMesh_715hl")
+
+[node name="DoorL2" type="MeshInstance3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, -18.2)
+material_override = SubResource("StandardMaterial3D_71w4e")
+mesh = SubResource("QuadMesh_715hl")
+
+[node name="DoorR2" type="MeshInstance3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, -18.2)
+material_override = SubResource("StandardMaterial3D_71w4e")
+mesh = SubResource("QuadMesh_715hl")
+
+[node name="Team1" type="Node3D" parent="."]
+
+[node name="MechActor1" parent="Team1" instance=ExtResource("6_ri15s")]
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, -3, 0, -3.2)
+prop_mode = true
+
+[node name="MechActor2" parent="Team1" instance=ExtResource("6_ri15s")]
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, -3, 0, -7.2)
+prop_mode = true
+
+[node name="MechActor3" parent="Team1" instance=ExtResource("6_ri15s")]
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, -3, 0, -11.2)
+prop_mode = true
+
+[node name="MechActor4" parent="Team1" instance=ExtResource("6_ri15s")]
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, -3, 0, -15.2)
+prop_mode = true
+
+[node name="Team2" type="Node3D" parent="."]
+
+[node name="MechActor5" parent="Team2" instance=ExtResource("6_ri15s")]
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 3, 0, -15.2)
+prop_mode = true
+
+[node name="MechActor6" parent="Team2" instance=ExtResource("6_ri15s")]
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 3, 0, -11.2)
+prop_mode = true
+
+[node name="MechActor7" parent="Team2" instance=ExtResource("6_ri15s")]
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 3, 0, -7.2)
+prop_mode = true
+
+[node name="MechActor8" parent="Team2" instance=ExtResource("6_ri15s")]
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 3, 0, -3.2)
+prop_mode = true
+
+[node name="Signs" type="Node3D" parent="."]
+
+[node name="BaySign" parent="Signs" instance=ExtResource("4_2lccg")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.2, 2.75, -3.2)
+
+[node name="BaySign2" parent="Signs" instance=ExtResource("4_2lccg")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.2, 2.75, -7.2)
+
+[node name="BaySign3" parent="Signs" instance=ExtResource("4_2lccg")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.2, 2.75, -11.2)
+
+[node name="BaySign4" parent="Signs" instance=ExtResource("4_2lccg")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.2, 2.75, -15.2)
+
+[node name="BaySign5" parent="Signs" instance=ExtResource("4_2lccg")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.2, 2.75, -15.2)
+
+[node name="BaySign6" parent="Signs" instance=ExtResource("4_2lccg")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.2, 2.75, -11.2)
+
+[node name="BaySign7" parent="Signs" instance=ExtResource("4_2lccg")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.2, 2.75, -7.2)
+
+[node name="BaySign8" parent="Signs" instance=ExtResource("4_2lccg")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.2, 2.75, -3.2)
+
+[node name="ArmsTop" type="Node3D" parent="."]
+
+[node name="RobotArm" parent="ArmsTop" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, -3.5, 2.5, -3.2)
+
+[node name="RobotArm2" parent="ArmsTop" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, -3.5, 2.5, -7.2)
+
+[node name="RobotArm3" parent="ArmsTop" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, -3.5, 2.5, -11.2)
+
+[node name="RobotArm4" parent="ArmsTop" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, -3.5, 2.5, -15.2)
+
+[node name="RobotArm5" parent="ArmsTop" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(4.37114e-08, 3.82137e-15, -1, 8.74228e-08, -1, 0, -1, -8.74228e-08, -4.37114e-08, 3.5, 2.5, -15.2)
+
+[node name="RobotArm6" parent="ArmsTop" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(4.37114e-08, 3.82137e-15, -1, 8.74228e-08, -1, 0, -1, -8.74228e-08, -4.37114e-08, 3.5, 2.5, -11.2)
+
+[node name="RobotArm7" parent="ArmsTop" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(4.37114e-08, 3.82137e-15, -1, 8.74228e-08, -1, 0, -1, -8.74228e-08, -4.37114e-08, 3.5, 2.5, -7.2)
+
+[node name="RobotArm8" parent="ArmsTop" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(4.37114e-08, 3.82137e-15, -1, 8.74228e-08, -1, 0, -1, -8.74228e-08, -4.37114e-08, 3.5, 2.5, -3.2)
+
+[node name="ArmsSide" type="Node3D" parent="."]
+
+[node name="RobotArm" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0.5, -4.7)
+
+[node name="RobotArm2" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0.5, -8.7)
+
+[node name="RobotArm3" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0.5, -12.7)
+
+[node name="RobotArm4" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0.5, -16.7)
+
+[node name="RobotArm5" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0.5, -16.7)
+
+[node name="RobotArm6" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0.5, -12.7)
+
+[node name="RobotArm7" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0.5, -8.7)
+
+[node name="RobotArm8" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0.5, -4.7)
+
+[node name="RobotArm9" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -3, 0.5, -1.7)
+
+[node name="RobotArm10" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -3, 0.5, -5.7)
+
+[node name="RobotArm11" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -3, 0.5, -9.7)
+
+[node name="RobotArm12" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -3, 0.5, -13.7)
+
+[node name="RobotArm13" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 3, 0.5, -13.7)
+
+[node name="RobotArm14" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 3, 0.5, -9.7)
+
+[node name="RobotArm15" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 3, 0.5, -5.7)
+
+[node name="RobotArm16" parent="ArmsSide" instance=ExtResource("6_wq2aj")]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 3, 0.5, -1.7)
+
+[node name="HangarCam" type="Camera3D" parent="."]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -2.5, 2, 17)
+environment = ExtResource("6_am0md")

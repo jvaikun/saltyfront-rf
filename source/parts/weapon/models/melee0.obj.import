@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bnxgahvbp234y"
+path="res://.godot/imported/melee0.obj-7eab8517466cee4cb50f088a67e9f17e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/melee0.obj-7eab8517466cee4cb50f088a67e9f17e.mesh"]
+
+source_file="res://parts/weapon/models/melee0.obj"
+dest_files=["res://.godot/imported/melee0.obj-7eab8517466cee4cb50f088a67e9f17e.mesh", "res://.godot/imported/melee0.obj-7eab8517466cee4cb50f088a67e9f17e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

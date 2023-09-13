@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://claxt7y6mkb35"]
+
+[ext_resource type="Texture2D" uid="uid://dndx7s0juehth" path="res://ui/textures/portraits.png" id="1_03arq"]
+[ext_resource type="Script" path="res://main/pilot_info/pilot_info.gd" id="1_rfdh1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u18x"]
+resource_local_to_scene = true
+atlas = ExtResource("1_03arq")
+region = Rect2(0, 0, 64, 80)
+
+[node name="PilotInfo" type="MarginContainer"]
+offset_right = 64.0
+offset_bottom = 107.0
+script = ExtResource("1_rfdh1")
+
+[node name="Body" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Portrait" type="MarginContainer" parent="Body"]
+layout_mode = 2
+
+[node name="TeamColor" type="ColorRect" parent="Body/Portrait"]
+layout_mode = 2
+
+[node name="PilotFace" type="TextureRect" parent="Body/Portrait"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6u18x")
+stretch_mode = 5
+
+[node name="PilotName" type="Label" parent="Body"]
+layout_mode = 2
+text = "Pilot Name"
