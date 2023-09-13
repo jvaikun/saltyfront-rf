@@ -1,13 +1,92 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0kpfk3834tb2"]
+[gd_scene load_steps=24 format=3 uid="uid://fsb7m0ksbcyq"]
 
-[ext_resource type="ArrayMesh" uid="uid://chat6txb7ns7b" path="res://parts/weapon/models/rifle0.obj" id="1_h83ra"]
-[ext_resource type="Texture2D" uid="uid://dw8045b1t2cw" path="res://parts/weapon/textures/tex_rifle0.png" id="2_xdpwf"]
+[ext_resource type="Texture2D" uid="uid://dw8045b1t2cw" path="res://parts/weapon/textures/tex_rifle0.png" id="1"]
+[ext_resource type="ArrayMesh" uid="uid://chat6txb7ns7b" path="res://parts/weapon/models/rifle0.obj" id="2"]
+[ext_resource type="Texture2D" uid="uid://bqg425k7vqa3i" path="res://Effects/muzzle_02.png" id="3"]
+[ext_resource type="AudioStream" uid="uid://du4vnbv0ca73t" path="res://sfx/shoot/rifle_shoot7.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://b42v5nbecwmqj" path="res://sfx/shoot/rifle_shoot3.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://chjit888b4e0f" path="res://sfx/shoot/rifle_shoot4.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://detl5fpoh4i6d" path="res://sfx/shoot/rifle_shoot2.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://d3p5yy2jn2dy1" path="res://sfx/shoot/rifle_shoot1.wav" id="8"]
+[ext_resource type="AudioStream" uid="uid://c2fbkqkn3nun3" path="res://sfx/shoot/rifle_shoot0.wav" id="9"]
+[ext_resource type="AudioStream" uid="uid://fxdskrdk3jf1" path="res://sfx/shoot/rifle_shoot6.wav" id="10"]
+[ext_resource type="AudioStream" uid="uid://dpqu6eekurs0e" path="res://sfx/shoot/rifle_shoot8.wav" id="11"]
+[ext_resource type="AudioStream" uid="uid://f15yrydr6bwx" path="res://sfx/shoot/rifle_shoot5.wav" id="12"]
+[ext_resource type="AudioStream" uid="uid://ce5p837khn7no" path="res://sfx/shoot/rifle_shoot9.wav" id="13"]
+[ext_resource type="Script" path="res://parts/weapon/weapon.gd" id="14"]
+[ext_resource type="AudioStream" uid="uid://scs0j00gocrq" path="res://sfx/ready/rifle_ready2.wav" id="15"]
+[ext_resource type="AudioStream" uid="uid://bko0gh4hid2oc" path="res://sfx/ready/rifle_ready1.wav" id="16"]
+[ext_resource type="AudioStream" uid="uid://bx4w6sxbuslvh" path="res://sfx/ready/rifle_ready0.wav" id="17"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rhywh"]
-albedo_texture = ExtResource("2_xdpwf")
+[sub_resource type="StandardMaterial3D" id="1"]
+resource_local_to_scene = true
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1")
+roughness = 0.6
 
-[node name="Rifle0" type="Node3D"]
+[sub_resource type="ParticleProcessMaterial" id="8"]
+direction = Vector3(1, 1, 0)
+spread = 5.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
 
-[node name="Rifle0" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_h83ra")
-surface_material_override/0 = SubResource("StandardMaterial3D_rhywh")
+[sub_resource type="StandardMaterial3D" id="7"]
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.784314, 0.827451, 0.254902, 1)
+
+[sub_resource type="BoxMesh" id="9"]
+material = SubResource("7")
+size = Vector3(0.02, 0.02, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="2"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.933333, 0.952941, 0.588235, 1)
+albedo_texture = ExtResource("3")
+
+[sub_resource type="QuadMesh" id="3"]
+
+[node name="rifle0" type="Node3D"]
+script = ExtResource("14")
+
+[node name="SFXAim" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("rifle_ready0", "rifle_ready1", "rifle_ready2"), [ExtResource("17"), ExtResource("16"), ExtResource("15")]]
+
+[node name="SFXShoot" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("rifle_shoot0", "rifle_shoot1", "rifle_shoot2", "rifle_shoot3", "rifle_shoot4", "rifle_shoot5", "rifle_shoot6", "rifle_shoot7", "rifle_shoot8", "rifle_shoot9"), [ExtResource("9"), ExtResource("8"), ExtResource("7"), ExtResource("5"), ExtResource("6"), ExtResource("12"), ExtResource("10"), ExtResource("4"), ExtResource("11"), ExtResource("13")]]
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("1")
+mesh = ExtResource("2")
+
+[node name="Eject" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0647093, 0.0970791, -0.154514)
+emitting = false
+amount = 6
+process_material = SubResource("8")
+draw_pass_1 = SubResource("9")
+
+[node name="Muzzle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0580497, -1.05286)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Muzzle"]
+transform = Transform3D(-4.37114e-08, 0, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, 0, 0, -0.5)
+material_override = SubResource("2")
+mesh = SubResource("3")
+
+[node name="MeshInstance2" type="MeshInstance3D" parent="Muzzle"]
+transform = Transform3D(-1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 1.91069e-15, -1, -4.37114e-08, -1, 1.91069e-15, 0, 0, -0.5)
+material_override = SubResource("2")
+mesh = SubResource("3")
+
+[node name="Flash" type="OmniLight3D" parent="Muzzle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.161698)
+light_color = Color(1, 1, 0.501961, 1)
+light_energy = 2.0
+omni_range = 2.0

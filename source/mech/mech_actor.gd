@@ -323,6 +323,15 @@ func update_wpn():
 				global_range_min = weapon.range_min
 
 
+func glow(skl_name):
+	$SkillTag/SubViewport/SkillName.text = skl_name
+	$SkillTag.show()
+	play_sfx("skill_activate")
+	$Effects/AnimEffect.play("skill_proc")
+	await $Effects/AnimEffect.animation_finished
+	$SkillTag.hide()
+
+
 # Randomly play effect in the corresponding array in the effect dictionary
 func play_sfx(sfx_name):
 	var player = AudioStreamPlayer.new()

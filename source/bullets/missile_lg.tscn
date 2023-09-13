@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://4u5ysvd2h6ea"]
+
+[ext_resource type="PackedScene" uid="uid://rtrr3qa3bmh4" path="res://effects/smoke_trail.tscn" id="1"]
+[ext_resource type="ArrayMesh" uid="uid://c057i3qrugsvw" path="res://bullets/missile_lg.obj" id="2"]
+[ext_resource type="Script" path="res://bullets/missile.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://btcg0ilt6ekdd" path="res://bullets/tex_missile_lg.png" id="6"]
+
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(0.06, 0.06, 0.3)
+
+[sub_resource type="Animation" id="11"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="12"]
+resource_name = "jet_fire"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 2.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gcmdw"]
+_data = {
+"RESET": SubResource("11"),
+"jet_fire": SubResource("12")
+}
+
+[sub_resource type="StandardMaterial3D" id="13"]
+albedo_texture = ExtResource("6")
+
+[node name="Missile" type="Area3D"]
+script = ExtResource("4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("1")
+
+[node name="Exhaust" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2995)
+
+[node name="Light3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3)
+light_color = Color(1, 1, 0.4, 1)
+omni_range = 2.0
+
+[node name="SmokeTrail" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "jet_fire"
+libraries = {
+"": SubResource("AnimationLibrary_gcmdw")
+}
+
+[node name="missile_lg" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+material_override = SubResource("13")
+mesh = ExtResource("2")

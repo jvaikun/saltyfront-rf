@@ -1,13 +1,178 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmrubo62nmece"]
+[gd_scene load_steps=29 format=3 uid="uid://cmm0kr7miu508"]
 
-[ext_resource type="ArrayMesh" uid="uid://bhs1dbgod0cq3" path="res://parts/weapon/models/flame0.obj" id="1_ncwpx"]
-[ext_resource type="Texture2D" uid="uid://btl2l8ex7vtnx" path="res://parts/weapon/textures/tex_flame0.png" id="2_k1rcv"]
+[ext_resource type="Texture2D" uid="uid://btl2l8ex7vtnx" path="res://parts/weapon/textures/tex_flame0.png" id="1"]
+[ext_resource type="ArrayMesh" uid="uid://bhs1dbgod0cq3" path="res://parts/weapon/models/flame0.obj" id="2"]
+[ext_resource type="AudioStream" uid="uid://gi6m7g4gcg2h" path="res://sfx/shoot/flame_shoot3.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://cse38puiakn86" path="res://sfx/shoot/flame_shoot2.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://h5h8as4uhssg" path="res://sfx/shoot/flame_shoot1.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://dx5uaq3v05xil" path="res://sfx/shoot/flame_shoot0.wav" id="7"]
+[ext_resource type="Script" path="res://parts/weapon/weapon.gd" id="8"]
+[ext_resource type="AudioStream" uid="uid://scs0j00gocrq" path="res://sfx/ready/rifle_ready2.wav" id="9"]
+[ext_resource type="AudioStream" uid="uid://bko0gh4hid2oc" path="res://sfx/ready/rifle_ready1.wav" id="10"]
+[ext_resource type="AudioStream" uid="uid://bx4w6sxbuslvh" path="res://sfx/ready/rifle_ready0.wav" id="11"]
+[ext_resource type="Texture2D" uid="uid://cr01ia0yhhqra" path="res://effects/tex_fire.png" id="11_5y7p1"]
+[ext_resource type="Texture2D" uid="uid://dpv44ce8h2fd0" path="res://effects/tex_smoke.png" id="11_w046d"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuuh4"]
-albedo_texture = ExtResource("2_k1rcv")
+[sub_resource type="StandardMaterial3D" id="1"]
+resource_local_to_scene = true
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1")
+roughness = 0.6
 
-[node name="Flame0" type="Node3D"]
+[sub_resource type="Gradient" id="Gradient_w5bhc"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0)
 
-[node name="Flame0" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_ncwpx")
-surface_material_override/0 = SubResource("StandardMaterial3D_yuuh4")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gw0q5"]
+gradient = SubResource("Gradient_w5bhc")
+
+[sub_resource type="Curve" id="Curve_oflps"]
+min_value = 0.5
+max_value = 2.0
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wr0bs"]
+curve = SubResource("Curve_oflps")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6byfh"]
+lifetime_randomness = 0.5
+direction = Vector3(0, 0, -1)
+spread = 5.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+scale_curve = SubResource("CurveTexture_wr0bs")
+color_ramp = SubResource("GradientTexture1D_gw0q5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwsp7"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("11_5y7p1")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_7sec8"]
+material = SubResource("StandardMaterial3D_wwsp7")
+
+[sub_resource type="Gradient" id="Gradient_5t5j7"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 0.8, 0.5, 0.5, 0.5, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ksr5"]
+gradient = SubResource("Gradient_5t5j7")
+
+[sub_resource type="ParticleProcessMaterial" id="3"]
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3(0, 1, 0)
+spread = 5.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+angular_velocity_min = -15.0
+angular_velocity_max = 15.0
+angle_max = 360.0
+color_ramp = SubResource("GradientTexture1D_6ksr5")
+
+[sub_resource type="StandardMaterial3D" id="4"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("11_w046d")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="5"]
+material = SubResource("4")
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="Animation" id="7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Muzzle/Flash:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="Animation" id="8"]
+resource_name = "fire_glow"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Muzzle/Flash:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.0, 3.0, 2.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3wphu"]
+_data = {
+"RESET": SubResource("7"),
+"fire_glow": SubResource("8")
+}
+
+[node name="flame0" type="Node3D"]
+script = ExtResource("8")
+
+[node name="SFXAim" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("rifle_ready0", "rifle_ready1", "rifle_ready2"), [ExtResource("11"), ExtResource("10"), ExtResource("9")]]
+
+[node name="SFXShoot" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("flame_shoot0", "flame_shoot1", "flame_shoot2", "flame_shoot3"), [ExtResource("7"), ExtResource("6"), ExtResource("5"), ExtResource("4")]]
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("1")
+mesh = ExtResource("2")
+
+[node name="Muzzle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -1.07531)
+visible = false
+
+[node name="Flash" type="OmniLight3D" parent="Muzzle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0355177)
+light_color = Color(1, 0.6, 0.2, 1)
+light_energy = 2.0
+omni_range = 2.0
+
+[node name="Flame" type="GPUParticles3D" parent="Muzzle"]
+amount = 64
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_6byfh")
+draw_pass_1 = SubResource("QuadMesh_7sec8")
+
+[node name="Eject" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0466134, -0.973703)
+emitting = false
+lifetime = 0.5
+explosiveness = 1.0
+process_material = SubResource("3")
+draw_pass_1 = SubResource("5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fire_glow"
+libraries = {
+"": SubResource("AnimationLibrary_3wphu")
+}

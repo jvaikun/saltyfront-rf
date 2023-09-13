@@ -2,8 +2,8 @@ extends CharacterBody3D
 
 enum MechState {READY, MOVE, ACTION, DONE, WAIT}
 
-const bullet_obj = preload("res://scenes/projectile/Bullet.tscn")
-const missile_obj = preload("res://scenes/projectile/MissileLarge.tscn")
+const bullet_obj = preload("res://bullets/bullet.tscn")
+const missile_obj = preload("res://bullets/missile_lg.tscn")
 const part_paths = {
 	"body": "res://scenes/parts/body/mech_body%s.tscn",
 	"pack": "res://scenes/parts/pack/mech_pack%s.tscn",
