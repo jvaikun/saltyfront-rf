@@ -1,14 +1,14 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=24 format=3]
 
-[ext_resource type="Script" path="res://classes/MechPart.gd" id="1_vmtgq"]
-[ext_resource type="Texture2D" path="res://parts/body/models/mech_body3_tex_body03.png" id="2_jnhyw"]
-[ext_resource type="Texture2D" path="res://parts/body/textures/tex_body3.png" id="3_5xb03"]
-[ext_resource type="PackedScene" path="res://effects/hit_sparks.tscn" id="4_ia1ue"]
+[ext_resource type="Script" path="res://classes/MechPart.gd" id="1_i5g01"]
+[ext_resource type="Texture2D" path="res://parts/body/models/mech_body3_tex_body03.png" id="2_kcqoo"]
+[ext_resource type="Texture2D" path="res://parts/body/textures/tex_body3.png" id="3_q2rf0"]
+[ext_resource type="PackedScene" path="res://effects/spark_damage.tscn" id="4_vqu7k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcnhv"]
 resource_name = "mat_body"
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_jnhyw")
+albedo_texture = ExtResource("2_kcqoo")
 roughness = 0.4
 texture_filter = 2
 
@@ -69,19 +69,53 @@ bind/4/name = &"pack"
 bind/4/bone = -1
 bind/4/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.41)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqjdt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_coh5e"]
 resource_local_to_scene = true
 shading_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_5xb03")
+albedo_texture = ExtResource("3_q2rf0")
 roughness = 0.6
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlcpr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abrft"]
 resource_local_to_scene = true
 shading_mode = 2
 specular_mode = 4
 albedo_color = Color(1, 0, 0, 1)
 roughness = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgbdf"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Gradient" id="Gradient_jcb6j"]
+offsets = PackedFloat32Array(0, 0.25, 0.5)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h3xgu"]
+gradient = SubResource("Gradient_jcb6j")
+
+[sub_resource type="Curve" id="11"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="12"]
+curve = SubResource("11")
+
+[sub_resource type="ParticleProcessMaterial" id="13"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+scale_min = 0.5
+scale_curve = SubResource("12")
+color_ramp = SubResource("GradientTexture1D_h3xgu")
+
+[sub_resource type="BoxMesh" id="BoxMesh_y84x8"]
+size = Vector3(0.01, 0.1, 0.01)
 
 [sub_resource type="Animation" id="Animation_f6ljk"]
 resource_name = "reset"
@@ -183,7 +217,7 @@ _data = {
 }
 
 [node name="mech_body3" type="Node3D"]
-script = ExtResource("1_vmtgq")
+script = ExtResource("1_i5g01")
 
 [node name="Armature" type="Node3D" parent="."]
 
@@ -228,14 +262,20 @@ bones/4/scale = Vector3(1, 1, 1)
 gi_mode = 0
 mesh = SubResource("ArrayMesh_pl0bd")
 skin = SubResource("Skin_8lr0x")
-surface_material_override/0 = SubResource("StandardMaterial3D_dqjdt")
-surface_material_override/1 = SubResource("StandardMaterial3D_vlcpr")
+surface_material_override/0 = SubResource("StandardMaterial3D_coh5e")
+surface_material_override/1 = SubResource("StandardMaterial3D_abrft")
 
 [node name="Head" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
 bone_name = "head"
 bone_idx = 1
 
-[node name="HitSparks" type="GPUParticles3D" parent="Armature/Skeleton3D/Head" instance=ExtResource("4_ia1ue")]
+[node name="Sparks" type="GPUParticles3D" parent="Armature/Skeleton3D/Head" instance=ExtResource("4_vqu7k")]
+material_override = SubResource("StandardMaterial3D_lgbdf")
+cast_shadow = 0
+emitting = false
+explosiveness = 1.0
+process_material = SubResource("13")
+draw_pass_1 = SubResource("BoxMesh_y84x8")
 
 [node name="ArmR" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
 bone_name = "arm.r"

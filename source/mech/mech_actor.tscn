@@ -30,12 +30,12 @@
 [ext_resource type="AudioStream" uid="uid://xm71n17v1wmu" path="res://sfx/miss/bullet_miss6.wav" id="50"]
 [ext_resource type="FontFile" uid="uid://b20jdsyu8cy2h" path="res://ui/fonts/font_square_mini.ttf" id="55_us67o"]
 [ext_resource type="Texture2D" uid="uid://3qg6hakqxsdb" path="res://ui/textures/ui_frame.png" id="56_71o1v"]
-[ext_resource type="Texture2D" uid="uid://q5yxd1gvap13" path="res://effects/spark_04.png" id="61"]
+[ext_resource type="Texture2D" uid="uid://q5yxd1gvap13" path="res://effects/tex_stun3.png" id="61"]
 [ext_resource type="AudioStream" uid="uid://d0yc3tboc10rh" path="res://sfx/miss/bullet_miss8.wav" id="62"]
-[ext_resource type="Texture2D" uid="uid://d1p5btiswlih6" path="res://effects/spark_02.png" id="63"]
-[ext_resource type="Texture2D" uid="uid://cxluss23ch4p8" path="res://effects/spark_03.png" id="66"]
+[ext_resource type="Texture2D" uid="uid://d1p5btiswlih6" path="res://effects/tex_stun1.png" id="63"]
+[ext_resource type="Texture2D" uid="uid://cxluss23ch4p8" path="res://effects/tex_stun2.png" id="66"]
 [ext_resource type="AudioStream" uid="uid://vvglbcflqrqh" path="res://sfx/skill_activate.wav" id="67"]
-[ext_resource type="Texture2D" uid="uid://crtyiox0rj77y" path="res://effects/spark_01.png" id="69"]
+[ext_resource type="Texture2D" uid="uid://crtyiox0rj77y" path="res://effects/tex_stun0.png" id="69"]
 [ext_resource type="AudioStream" uid="uid://iq4s4r3yvj6e" path="res://sfx/miss/bullet_miss7.wav" id="73"]
 [ext_resource type="AudioStream" uid="uid://cxwqdv4ipdsbm" path="res://sfx/hit/bullet_hit14.wav" id="79"]
 [ext_resource type="AudioStream" uid="uid://hvm6phoxyltx" path="res://sfx/hit/bullet_hit6.wav" id="80"]
@@ -250,7 +250,7 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 1.5, 0)
 visible = false
 billboard = 1
 sprite_frames = SubResource("15")
-frame_progress = 0.999758
+frame_progress = 0.166644
 
 [node name="Glow" type="MeshInstance3D" parent="Effects"]
 material_override = SubResource("16")

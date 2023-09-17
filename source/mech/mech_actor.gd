@@ -403,14 +403,14 @@ func glow(skl_name):
 
 # Randomly play effect in the corresponding array in the effect dictionary
 func play_sfx(sfx_name):
-	var player = AudioStreamPlayer.new()
-	add_child(player)
-	player.finished.connect(queue_free)
+	var audio_inst = AudioStreamPlayer.new()
+	add_child(audio_inst)
+	audio_inst.finished.connect(audio_inst.queue_free)
 	if sfx_name in sound_fx.keys():
-		player.stream = $Resources.get_resource(sfx_name + str(randi() % sound_fx[sfx_name]))
+		audio_inst.stream = $Resources.get_resource(sfx_name + str(randi() % sound_fx[sfx_name]))
 	else:
-		player.stream = $Resources.get_resource(sfx_name)
-	player.play()
+		audio_inst.stream = $Resources.get_resource(sfx_name)
+	audio_inst.play()
 
 
 func damage(data):
@@ -479,7 +479,6 @@ func _on_weapon_shot_fired():
 
 func _on_hit_box_area_entered(area):
 	if area.is_in_group("projectiles"):
-		area.queue_free()
 		if area.target == self:
 			damage({
 				"part":area.part,

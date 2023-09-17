@@ -1,14 +1,14 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=24 format=3]
 
-[ext_resource type="Script" path="res://classes/MechPart.gd" id="1_lyekp"]
-[ext_resource type="Texture2D" path="res://parts/legs/models/mech_legs9_tex_legs09.png" id="2_g5xw0"]
-[ext_resource type="Texture2D" path="res://parts/legs/textures/tex_legs9.png" id="3_plko3"]
-[ext_resource type="PackedScene" path="res://effects/hit_sparks.tscn" id="4_7iwvp"]
+[ext_resource type="Script" path="res://classes/MechPart.gd" id="1_2ksl4"]
+[ext_resource type="Texture2D" path="res://parts/legs/models/mech_legs9_tex_legs09.png" id="2_i72if"]
+[ext_resource type="Texture2D" path="res://parts/legs/textures/tex_legs9.png" id="3_t3xwt"]
+[ext_resource type="PackedScene" path="res://effects/spark_damage.tscn" id="4_upl16"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c6n3"]
 resource_name = "mat_legs"
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_g5xw0")
+albedo_texture = ExtResource("2_i72if")
 roughness = 0.4
 texture_filter = 2
 
@@ -69,12 +69,46 @@ bind/10/name = &"leg_ik_pole.r"
 bind/10/bone = -1
 bind/10/pose = Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, -0.369308, -0.29109, -0.725051)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0dvh"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wuy4q"]
 resource_local_to_scene = true
 shading_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_plko3")
+albedo_texture = ExtResource("3_t3xwt")
 roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgbdf"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Gradient" id="Gradient_jcb6j"]
+offsets = PackedFloat32Array(0, 0.25, 0.5)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h3xgu"]
+gradient = SubResource("Gradient_jcb6j")
+
+[sub_resource type="Curve" id="11"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="12"]
+curve = SubResource("11")
+
+[sub_resource type="ParticleProcessMaterial" id="13"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+scale_min = 0.5
+scale_curve = SubResource("12")
+color_ramp = SubResource("GradientTexture1D_h3xgu")
+
+[sub_resource type="BoxMesh" id="BoxMesh_y84x8"]
+size = Vector3(0.01, 0.1, 0.01)
 
 [sub_resource type="Animation" id="Animation_kqyjq"]
 resource_name = "reset"
@@ -559,7 +593,7 @@ _data = {
 }
 
 [node name="mech_legs9" type="Node3D"]
-script = ExtResource("1_lyekp")
+script = ExtResource("1_2ksl4")
 
 [node name="Armature" type="Node3D" parent="."]
 
@@ -646,13 +680,19 @@ bones/10/scale = Vector3(1, 1, 1)
 gi_mode = 0
 mesh = SubResource("ArrayMesh_qfole")
 skin = SubResource("Skin_ufyl7")
-surface_material_override/0 = SubResource("StandardMaterial3D_v0dvh")
+surface_material_override/0 = SubResource("StandardMaterial3D_wuy4q")
 
 [node name="Hip" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
 bone_name = "root"
 bone_idx = 0
 
-[node name="HitSparks" type="GPUParticles3D" parent="Armature/Skeleton3D/Hip" instance=ExtResource("4_7iwvp")]
+[node name="Sparks" type="GPUParticles3D" parent="Armature/Skeleton3D/Hip" instance=ExtResource("4_upl16")]
+material_override = SubResource("StandardMaterial3D_lgbdf")
+cast_shadow = 0
+emitting = false
+explosiveness = 1.0
+process_material = SubResource("13")
+draw_pass_1 = SubResource("BoxMesh_y84x8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,7 +1,5 @@
 extends Node3D
 
-const spark_obj = preload("res://effects/hit_sparks.tscn")
-
 @onready var label = $Label3D
 
 var text = "" : set = set_text
@@ -13,8 +11,6 @@ func set_text(val):
 
 
 func _ready():
-	var spark_inst = spark_obj.instantiate()
-	add_child(spark_inst)
 	var goal = position
 	goal.x += (randi() % 5 - 2) * 0.3
 	goal.y += (randi() % 5 - 2) * 0.1

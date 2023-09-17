@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q5yxd1gvap13"
-path.s3tc="res://.godot/imported/spark_04.png-672d332ca05948baa4e8aaa8a7e29518.s3tc.ctex"
+uid="uid://crtyiox0rj77y"
+path.s3tc="res://.godot/imported/tex_stun0.png-ace8b7be49a06503e2f3a332fa2f66d0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://effects/spark_04.png"
-dest_files=["res://.godot/imported/spark_04.png-672d332ca05948baa4e8aaa8a7e29518.s3tc.ctex"]
+source_file="res://effects/tex_stun0.png"
+dest_files=["res://.godot/imported/tex_stun0.png-ace8b7be49a06503e2f3a332fa2f66d0.s3tc.ctex"]
 
 [params]
 

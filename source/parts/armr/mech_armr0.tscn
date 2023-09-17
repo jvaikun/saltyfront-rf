@@ -1,14 +1,14 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=27 format=3]
 
-[ext_resource type="Script" path="res://classes/MechPart.gd" id="1_h36dd"]
-[ext_resource type="Texture2D" path="res://parts/armr/models/mech_armr0_tex_armr00.png" id="2_3d3vf"]
-[ext_resource type="Texture2D" path="res://parts/armr/textures/tex_armr0.png" id="3_io1d7"]
-[ext_resource type="PackedScene" path="res://effects/hit_sparks.tscn" id="4_8k6iu"]
+[ext_resource type="Script" path="res://classes/MechPart.gd" id="1_fh5ii"]
+[ext_resource type="Texture2D" path="res://parts/armr/models/mech_armr0_tex_armr00.png" id="2_lxpya"]
+[ext_resource type="Texture2D" path="res://parts/armr/textures/tex_armr0.png" id="3_72uca"]
+[ext_resource type="PackedScene" path="res://effects/spark_damage.tscn" id="4_ydpfi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjtti"]
 resource_name = "mat_armr"
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_3d3vf")
+albedo_texture = ExtResource("2_lxpya")
 roughness = 0.4
 texture_filter = 2
 
@@ -72,19 +72,53 @@ bind/5/name = &"shoulder"
 bind/5/bone = -1
 bind/5/pose = Transform3D(1, -1.0076e-07, 2.16081e-07, 4.26326e-14, 0.906308, 0.422618, -2.38419e-07, -0.422618, 0.906308, 0.17, 7.10543e-15, -4.05312e-08)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fok8t"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wr0dn"]
 resource_local_to_scene = true
 shading_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_io1d7")
+albedo_texture = ExtResource("3_72uca")
 roughness = 0.6
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vt5ou"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yn0r1"]
 resource_local_to_scene = true
 shading_mode = 2
 specular_mode = 4
 albedo_color = Color(1, 0, 0, 1)
 roughness = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgbdf"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Gradient" id="Gradient_jcb6j"]
+offsets = PackedFloat32Array(0, 0.25, 0.5)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h3xgu"]
+gradient = SubResource("Gradient_jcb6j")
+
+[sub_resource type="Curve" id="11"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="12"]
+curve = SubResource("11")
+
+[sub_resource type="ParticleProcessMaterial" id="13"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+scale_min = 0.5
+scale_curve = SubResource("12")
+color_ramp = SubResource("GradientTexture1D_h3xgu")
+
+[sub_resource type="BoxMesh" id="BoxMesh_y84x8"]
+size = Vector3(0.01, 0.1, 0.01)
 
 [sub_resource type="Animation" id="Animation_v1tu7"]
 resource_name = "reset"
@@ -525,7 +559,7 @@ _data = {
 }
 
 [node name="mech_armr0" type="Node3D"]
-script = ExtResource("1_h36dd")
+script = ExtResource("1_fh5ii")
 
 [node name="Armature" type="Node3D" parent="."]
 
@@ -577,8 +611,8 @@ bones/5/scale = Vector3(1, 1, 1)
 gi_mode = 0
 mesh = SubResource("ArrayMesh_14d3h")
 skin = SubResource("Skin_idige")
-surface_material_override/0 = SubResource("StandardMaterial3D_fok8t")
-surface_material_override/1 = SubResource("StandardMaterial3D_vt5ou")
+surface_material_override/0 = SubResource("StandardMaterial3D_wr0dn")
+surface_material_override/1 = SubResource("StandardMaterial3D_yn0r1")
 
 [node name="Hand" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
 bone_name = "hand"
@@ -588,7 +622,13 @@ bone_idx = 2
 bone_name = "shoulder"
 bone_idx = 5
 
-[node name="HitSparks" type="GPUParticles3D" parent="Armature/Skeleton3D/Shoulder" instance=ExtResource("4_8k6iu")]
+[node name="Sparks" type="GPUParticles3D" parent="Armature/Skeleton3D/Shoulder" instance=ExtResource("4_ydpfi")]
+material_override = SubResource("StandardMaterial3D_lgbdf")
+cast_shadow = 0
+emitting = false
+explosiveness = 1.0
+process_material = SubResource("13")
+draw_pass_1 = SubResource("BoxMesh_y84x8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

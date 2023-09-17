@@ -1,7 +1,7 @@
 extends Node3D
 
 const part_script = preload("res://classes/MechPart.gd")
-const spark_obj = preload("res://effects/hit_sparks.tscn")
+const spark_obj = preload("res://effects/spark_damage.tscn")
 
 const source_dirs = [
 	"res://parts/arml/models/",

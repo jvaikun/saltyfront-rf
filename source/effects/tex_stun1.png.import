@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqg425k7vqa3i"
-path.s3tc="res://.godot/imported/muzzle_02.png-b4c22541ef02be461ef055732440cef6.s3tc.ctex"
+uid="uid://d1p5btiswlih6"
+path.s3tc="res://.godot/imported/tex_stun1.png-8287717b1bd07d64e8af31fa3dc75ca7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://effects/muzzle_02.png"
-dest_files=["res://.godot/imported/muzzle_02.png-b4c22541ef02be461ef055732440cef6.s3tc.ctex"]
+source_file="res://effects/tex_stun1.png"
+dest_files=["res://.godot/imported/tex_stun1.png-8287717b1bd07d64e8af31fa3dc75ca7.s3tc.ctex"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crtyiox0rj77y"
-path.s3tc="res://.godot/imported/spark_01.png-c27805bf9212a1a70a51e9e983204325.s3tc.ctex"
+uid="uid://bqg425k7vqa3i"
+path.s3tc="res://.godot/imported/tex_muzzle.png-1e7ca693120d80f7be739e4a46965d52.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://effects/spark_01.png"
-dest_files=["res://.godot/imported/spark_01.png-c27805bf9212a1a70a51e9e983204325.s3tc.ctex"]
+source_file="res://effects/tex_muzzle.png"
+dest_files=["res://.godot/imported/tex_muzzle.png-1e7ca693120d80f7be739e4a46965d52.s3tc.ctex"]
 
 [params]
 

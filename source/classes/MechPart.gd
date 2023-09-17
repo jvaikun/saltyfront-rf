@@ -1,6 +1,6 @@
 extends Node3D
 
-const hitspark_obj = preload("res://effects/hit_sparks.tscn")
+const hitspark_obj = preload("res://effects/spark_hit.tscn")
 const dmgnum_obj = preload("res://effects/damage_num.tscn")
 const tex_broken = preload("res://parts/tex_damage.png")
 
@@ -13,7 +13,7 @@ func _ready():
 	var mesh_instance = $Armature/Skeleton3D.get_child(0)
 	mat_base = mesh_instance.get_active_material(0)
 	tex_normal = mat_base.albedo_texture
-	spark_damage = find_child("HitSparks")
+	spark_damage = find_child("Sparks")
 
 
 func impact(type, damage, crit):

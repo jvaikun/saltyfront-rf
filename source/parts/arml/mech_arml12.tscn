@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=3]
 
-[ext_resource type="Script" path="res://classes/MechPart.gd" id="1_tdexu"]
-[ext_resource type="Texture2D" path="res://parts/arml/models/mech_arml12_tex_arml12.png" id="2_tnip7"]
-[ext_resource type="Texture2D" path="res://parts/arml/textures/tex_arml12.png" id="3_ny6b7"]
+[ext_resource type="Script" path="res://classes/MechPart.gd" id="1_lxw12"]
+[ext_resource type="Texture2D" path="res://parts/arml/models/mech_arml12_tex_arml12.png" id="2_8o1wc"]
+[ext_resource type="Texture2D" path="res://parts/arml/textures/tex_arml12.png" id="3_u87sq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t28d1"]
 resource_name = "mat_arml"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_tnip7")
+albedo_texture = ExtResource("2_8o1wc")
 roughness = 0.5
 texture_filter = 2
 
@@ -42,15 +42,15 @@ bind/1/name = &"arm_lower.l"
 bind/1/bone = -1
 bind/1/pose = Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, 0.23, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxbog"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anx7w"]
 resource_local_to_scene = true
 shading_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_ny6b7")
+albedo_texture = ExtResource("3_u87sq")
 roughness = 0.6
 
 [node name="mech_arml12" type="Node3D"]
-script = ExtResource("1_tdexu")
+script = ExtResource("1_lxw12")
 
 [node name="Armature" type="Node3D" parent="."]
 
@@ -74,4 +74,4 @@ bones/1/scale = Vector3(1, 1, 1)
 gi_mode = 0
 mesh = SubResource("ArrayMesh_mikdt")
 skin = SubResource("Skin_w8vts")
-surface_material_override/0 = SubResource("StandardMaterial3D_pxbog")
+surface_material_override/0 = SubResource("StandardMaterial3D_anx7w")
