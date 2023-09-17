@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 enum MechState {READY, MOVE, ACTION, DONE, WAIT}
 
+const bullet_obj = preload("res://bullets/bullet.tscn")
+const missile_obj = preload("res://bullets/missile_lg.tscn")
 const part_paths = {
 	"body": "res://parts/body/mech_body%s.tscn",
 	"pack": "res://parts/pack/mech_pack%s.tscn",
@@ -20,6 +22,8 @@ const sound_fx = {
 	"explode_lg":7,
 }
 
+signal attack_finished
+
 @onready var fx_smoke = $Effects/Smoke
 @onready var fx_fire = $Effects/Fire
 @onready var anim_fx = $Effects/AnimEffect
@@ -31,6 +35,10 @@ var global_range_max = 0
 var global_range_min = 0
 var weapon_list = []
 var anim_speed = 1
+
+var attack_target = null
+var attack_weapon = null
+var attack_anim_side = null
 
 var state = MechState.DONE
 var is_dead = false
@@ -67,22 +75,22 @@ static func priority(a, b):
 		return true
 	return false
 # Sort by damage, descending
-static func damage(a, b):
+static func sort_damage(a, b):
 	if a["damage"] > b["damage"]:
 		return true
 	return false
 # Sort by distance, ascending
-static func distance(a, b):
+static func sort_distance(a, b):
 	if a["distance"] < b["distance"]:
 		return true
 	return false
 # Sort by target, descending
-static func target(a, b):
+static func sort_target(a, b):
 	if a["target"] > b["target"]:
 		return true
 	return false
 # Sort by threat, descending
-static func threat(a, b):
+static func sort_threat(a, b):
 	if a["threat"] > b["threat"]:
 		return true
 	return false
@@ -161,6 +169,63 @@ func _process(_delta):
 	pass
 
 
+# Perform attack animation and deal damage to target
+func anim_attack(shot_list):
+	if shot_list == null || !is_instance_valid(attack_target):
+		await get_tree().idle_frame
+		attack_finished.emit()
+		return
+	# Turn toward target
+	var aim = attack_target.global_transform.origin
+	aim.y = self.global_transform.origin.y
+	look_at(aim, Vector3.UP)
+	# Attack lead-in animation
+	attack_anim_side = mech_parts.arm_r.anim
+	if attack_weapon.side == "left":
+		attack_anim_side = mech_parts.arm_l.anim
+	if attack_weapon.type == "missile":
+		mech_parts.legs.anim.play("launch_in_" + attack_weapon.side, -1, anim_speed, false)
+		mech_parts.arm_r.anim.play("launch_in", -1, anim_speed, false)
+		mech_parts.arm_l.anim.play("launch_in", -1, anim_speed, false)
+		await mech_parts.legs.anim.animation_finished
+	elif attack_weapon.type != "melee":
+		mech_parts.legs.anim.play("shoot_in_" + attack_weapon.side, -1, anim_speed, false)
+		mech_parts.body.anim.play("shoot_in_" + attack_weapon.side, -1, anim_speed, false)
+		attack_anim_side.play("shoot_in", -1, anim_speed, false)
+		await mech_parts.legs.anim.animation_finished
+	# Attack loop
+	attack_weapon.obj.start_attack(shot_list)
+	await attack_weapon.obj.attack_finished
+	# Attack end animation
+	for part in ["arm_r", "arm_l", "body", "legs"]:
+		mech_parts[part].anim.stop()
+	if attack_weapon.type == "missile":
+		mech_parts.legs.anim.play("launch_in_" + attack_weapon.side, -1, -anim_speed, true)
+		mech_parts.arm_r.anim.play("launch_in", -1, -anim_speed, true)
+		mech_parts.arm_l.anim.play("launch_in", -1, -anim_speed, true)
+	elif attack_weapon.type != "melee":
+		mech_parts.legs.anim.play("shoot_in_" + attack_weapon.side, -1, -anim_speed, true)
+		mech_parts.body.anim.play("shoot_in_" + attack_weapon.side, -1, -anim_speed, true)
+		if attack_weapon.side == "right":
+			mech_parts.arm_r.anim.play("shoot_in", -1, -anim_speed, true)
+		else:
+			mech_parts.arm_l.anim.play("shoot_in", -1, -anim_speed, true)
+	if attack_weapon.type != "melee":
+		await mech_parts.legs.anim.animation_finished
+	#print("Team " + str(team) + ", Mech " + str(num) + " attack done")
+	attack_finished.emit()
+
+
+func spawn_bullet(target, object, hardpoint, speed, spread, data):
+	var bullet_inst = object.instantiate()
+	add_child(bullet_inst)
+	bullet_inst.global_transform.origin = hardpoint.global_transform.origin
+	bullet_inst.data = data
+	bullet_inst.set_target(target, spread)
+	bullet_inst.speed = speed
+	return bullet_inst
+
+
 func anim_walk(toggle : bool = true):
 	if toggle:
 		if mech_parts.legs.anim.current_animation != "walk-loop":
@@ -224,18 +289,22 @@ func setup_mech():
 	
 	mech_parts.wpn_l.obj = load(mech_parts.wpn_l.path).instantiate()
 	mech_parts.arm_l.obj.get_node("Armature/Skeleton3D/Hand").add_child(mech_parts.wpn_l.obj)
+	mech_parts.wpn_l.obj.shot_fired.connect(_on_weapon_shot_fired)
 	mech_parts.wpn_l.obj.rotation_degrees.y = 180
 	
 	mech_parts.wpn_r.obj = load(mech_parts.wpn_r.path).instantiate()
 	mech_parts.arm_r.obj.get_node("Armature/Skeleton3D/Hand").add_child(mech_parts.wpn_r.obj)
+	mech_parts.wpn_r.obj.shot_fired.connect(_on_weapon_shot_fired)
 	mech_parts.wpn_r.obj.rotation_degrees.y = 180
 	
 	mech_parts.pod_l.obj = load(mech_parts.pod_l.path).instantiate()
 	mech_parts.arm_l.obj.get_node("Armature/Skeleton3D/Shoulder").add_child(mech_parts.pod_l.obj)
+	mech_parts.pod_l.obj.shot_fired.connect(_on_weapon_shot_fired)
 	mech_parts.pod_l.obj.position += Vector3(0, 0.15, 0)
 	
 	mech_parts.pod_r.obj = load(mech_parts.pod_r.path).instantiate()
 	mech_parts.arm_r.obj.get_node("Armature/Skeleton3D/Shoulder").add_child(mech_parts.pod_r.obj)
+	mech_parts.pod_r.obj.shot_fired.connect(_on_weapon_shot_fired)
 	mech_parts.pod_r.obj.position += Vector3(0, 0.15, 0)
 	
 	# Build weapon list
@@ -282,7 +351,7 @@ func setup_mech():
 		weapon_list.back()["obj"] = mech_parts.pod_r.obj
 		weapon_list.back()["side"] = "right"
 		weapon_list.back()["active"] = true
-	weapon_list.sort_custom(damage)
+	weapon_list.sort_custom(sort_damage)
 	# Build friends and enemies lists
 #	if my_arena != null:
 #		for mech in my_arena.turns_queue:
@@ -342,3 +411,94 @@ func play_sfx(sfx_name):
 	else:
 		player.stream = $Resources.get_resource(sfx_name)
 	player.play()
+
+
+func damage(data):
+	# Get current part hp values
+	var part_hp = {
+		"body":bodyHP,
+		"arm_r":armRHP,
+		"arm_l":armLHP,
+		"legs":legsHP
+		}
+	if data.part != "miss":
+#		if "effect" in data:
+#			add_effect(data.effect)
+		# If a destroyed arm/leg was hit, apply half damage to the body instead
+		if data.part != "body" && part_hp[data.part] <= 0:
+			data.part = "body"
+			data.damage = data.damage/2
+		mech_parts[data.part].obj.impact("hit", data.damage, data.multiplier)
+		match data.type:
+			"melee":
+				play_sfx("step_mech")
+			"missile":
+				play_sfx("explode_sm")
+			"flame":
+				pass
+			_:
+				play_sfx("bullet_hit")
+		match data.part:
+			"body":
+				self.bodyHP -= data.damage
+			"arm_r":
+				self.armRHP -= data.damage
+			"arm_l":
+				self.armLHP -= data.damage
+			"legs":
+				self.legsHP -= data.damage
+		mech_data.dmg_in += data.damage
+	else:
+		mech_parts.body.obj.impact("miss", "miss", data.multiplier)
+		if !(data.type in ["melee", "missile", "flame"]):
+			play_sfx("bullet_miss")
+
+
+func _on_weapon_shot_fired():
+	match attack_weapon.type:
+		"flame":
+			await get_tree().create_timer(0.1).timeout
+		"melee":
+			mech_parts.body.anim.stop()
+			attack_anim_side.stop()
+			mech_parts.body.anim.play("melee_" + attack_weapon.side, -1, anim_speed, false)
+			attack_anim_side.play("melee", -1, anim_speed, false)
+		"mgun":
+			attack_anim_side.stop()
+			attack_anim_side.play("shoot", -1, anim_speed * 2, false)
+		"missile":
+			attack_anim_side.stop()
+			attack_anim_side.play("launch", -1, anim_speed, false)
+		"rifle":
+			attack_anim_side.stop()
+			attack_anim_side.play("shoot", -1, anim_speed, false)
+		"sgun":
+			attack_anim_side.stop()
+			attack_anim_side.play("shoot", -1, anim_speed, false)
+
+
+func _on_hit_box_area_entered(area):
+	if area.is_in_group("projectiles"):
+		area.queue_free()
+		if area.target == self:
+			damage({
+				"part":area.part,
+				"type":area.type,
+				"damage":area.damage,
+				"multiplier":area.multiplier,
+				"effect_type":area.effect_type,
+				"effect_duration":area.effect_duration,
+			})
+			if area.type == "missile" && area.part != "miss":
+				for part in ["body", "arm_r", "arm_l", "legs"]:
+					if area.part != part:
+						damage({
+							"part":part, 
+							"type":"splash", 
+							"damage":int(area.damage * 0.2), 
+							"multiplier":1,
+							"effect_type":"none",
+							"effect_duration":0,
+						})
+			area.queue_free()
+

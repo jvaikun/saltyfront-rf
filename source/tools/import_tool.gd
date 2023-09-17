@@ -1,6 +1,6 @@
 extends Node3D
 
-const scr_part = preload("res://classes/MechPart.gd")
+const part_script = preload("res://classes/MechPart.gd")
 const spark_obj = preload("res://effects/hit_sparks.tscn")
 
 const source_dirs = [
@@ -77,7 +77,7 @@ func _ready():
 					mat_team.albedo_color = Color(1, 0, 0)
 					mesh_instance.set_surface_override_material(1, mat_team.duplicate())
 				mesh_instance.mesh.resource_local_to_scene = true
-				# Add BoneAttachments to Armature/Skeleton3D
+				# Add BoneAttachment3D to Armature/Skeleton3D
 				for bone in attach_bones.keys():
 					if skel.find_bone(bone) >= 0:
 						var attach = BoneAttachment3D.new()
@@ -89,7 +89,7 @@ func _ready():
 							var spark_inst = spark_obj.instantiate()
 							attach.add_child(spark_inst)
 							spark_inst.owner = load_inst
-			load_inst.set_script(scr_part)
+			load_inst.set_script(part_script)
 			# Save object to PackedScene file then free it
 			var scene = PackedScene.new()
 			var result = scene.pack(load_inst)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://mech/mech_actor.gd" id="1_r7np7"]
 [ext_resource type="AudioStream" uid="uid://cys1mtkpf3c1e" path="res://sfx/explode/explode_sm3.wav" id="4"]
-[ext_resource type="Texture2D" uid="uid://bcs4vo13scopn" path="res://arena/mech_tag.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bcs4vo13scopn" path="res://arena/textures/mech_tag.png" id="5"]
 [ext_resource type="AudioStream" uid="uid://bapk8a2emj3vb" path="res://sfx/explode/explode_sm6.wav" id="6"]
 [ext_resource type="AudioStream" uid="uid://qkuttwj0msn8" path="res://sfx/walk/step_mech.wav" id="7"]
 [ext_resource type="AudioStream" uid="uid://cg1di7qaiq0fl" path="res://sfx/explode/explode_sm1.wav" id="8"]
@@ -58,8 +58,10 @@
 [ext_resource type="ArrayMesh" uid="uid://ijcj0ad80iyp" path="res://mech/meshes/glow.obj" id="98"]
 
 [sub_resource type="SphereShape3D" id="1"]
+radius = 1.0
 
 [sub_resource type="SphereShape3D" id="2"]
+radius = 1.0
 
 [sub_resource type="Gradient" id="10"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -225,10 +227,10 @@ resources = [PackedStringArray("bullet_hit0", "bullet_hit1", "bullet_hit10", "bu
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("1")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="HitBox" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="Collision" type="CollisionShape3D" parent="HitBox"]
 shape = SubResource("2")
 
 [node name="Effects" type="Node3D" parent="."]
@@ -318,4 +320,4 @@ vertical_alignment = 1
 [node name="Parts" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[connection signal="area_entered" from="Area3D" to="." method="_on_Area_area_entered"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

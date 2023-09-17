@@ -1,13 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpps7yy6wobsu"]
+[gd_scene load_steps=2 format=3 uid="uid://dpps7yy6wobsu"]
 
-[ext_resource type="ArrayMesh" uid="uid://oa0xgww5jbvn" path="res://parts/pack/models/pack2.obj" id="1_srisg"]
-[ext_resource type="Texture2D" uid="uid://wc13iy3l1xme" path="res://parts/pack/textures/mech_tex0.png" id="2_21yht"]
+[ext_resource type="PackedScene" uid="uid://cc8wmpsncomfr" path="res://parts/pack/models/pack2.glb" id="1_ve0ui"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltdkt"]
-albedo_texture = ExtResource("2_21yht")
-
-[node name="Pack2" type="Node3D"]
-
-[node name="Pack2" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_srisg")
-surface_material_override/0 = SubResource("StandardMaterial3D_ltdkt")
+[node name="pack2" instance=ExtResource("1_ve0ui")]

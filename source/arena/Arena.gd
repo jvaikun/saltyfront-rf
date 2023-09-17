@@ -1,17 +1,34 @@
 extends Node3D
 
+var attack_list = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for mech in $Mechs.get_children():
-		roll_stats(mech)
+	reset_arena()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ui_home"):
-		for mech in $Mechs.get_children():
-			roll_stats(mech)
+		reset_arena()
+	if Input.is_action_just_pressed("ui_page_up"):
+		$Mechs/MechActor.anim_attack(attack_list)
+
+
+func reset_arena():
+	$Mechs/MechActor.team = randi() % 8
+	$Mechs/MechActor.team = randi() % 8
+	for mech in $Mechs.get_children():
+		roll_stats(mech)
+	$Mechs/MechActor.attack_weapon = $Mechs/MechActor.weapon_list[0]
+	attack_list.clear()
+	for i in $Mechs/MechActor.weapon_list[3].fire_rate:
+		attack_list.append(
+			{"target":$Mechs/MechActor2, "part":"body", "type":"mgun", "damage":0, "multiplier":1, "effect_type":"none", "effect_duration":0},
+		)
+	$Mechs/MechActor.attack_target = $Mechs/MechActor2
+	$Mechs/MechActor2.attack_weapon = $Mechs/MechActor2.weapon_list[3]
+	$Mechs/MechActor2.attack_target = $Mechs/MechActor
 
 
 func roll_stats(mech):
@@ -23,7 +40,8 @@ func roll_stats(mech):
 	stats.arm_r = PartDB.arm[partSet]
 	stats.arm_l = PartDB.arm[partSet]
 	stats.legs = PartDB.legs[partSet]
-	var wpnSet = str(randi() % PartDB.weapon.size())
+	# sgun = 0, mgun = 4, flame = 9, rifle = 12, melee = 19
+	var wpnSet = "0" #str(randi() % PartDB.weapon.size())
 	stats.wpn_r = PartDB.weapon[wpnSet]
 	stats.wpn_l = PartDB.weapon[wpnSet]
 	var podSet = str(randi() % PartDB.pod.size())

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvp36hvou0gul"
-path.s3tc="res://.godot/imported/tex_missile_emp.png-2a54e75dcd1f3fd73571f748fd83a846.s3tc.ctex"
+uid="uid://s7du8nd4pqcr"
+path.s3tc="res://.godot/imported/tex_missile_sm.png-a5613171b5d26637d98355d43814777b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://bullets/tex_missile_emp.png"
-dest_files=["res://.godot/imported/tex_missile_emp.png-2a54e75dcd1f3fd73571f748fd83a846.s3tc.ctex"]
+source_file="res://bullets/textures/tex_missile_sm.png"
+dest_files=["res://.godot/imported/tex_missile_sm.png-a5613171b5d26637d98355d43814777b.s3tc.ctex"]
 
 [params]
 

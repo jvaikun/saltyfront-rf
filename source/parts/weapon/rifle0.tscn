@@ -1,8 +1,9 @@
 [gd_scene load_steps=24 format=3 uid="uid://fsb7m0ksbcyq"]
 
 [ext_resource type="Texture2D" uid="uid://dw8045b1t2cw" path="res://parts/weapon/textures/tex_rifle0.png" id="1"]
+[ext_resource type="Script" path="res://parts/weapon/rifle.gd" id="1_whu2i"]
 [ext_resource type="ArrayMesh" uid="uid://chat6txb7ns7b" path="res://parts/weapon/models/rifle0.obj" id="2"]
-[ext_resource type="Texture2D" uid="uid://bqg425k7vqa3i" path="res://Effects/muzzle_02.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bqg425k7vqa3i" path="res://effects/muzzle_02.png" id="3"]
 [ext_resource type="AudioStream" uid="uid://du4vnbv0ca73t" path="res://sfx/shoot/rifle_shoot7.wav" id="4"]
 [ext_resource type="AudioStream" uid="uid://b42v5nbecwmqj" path="res://sfx/shoot/rifle_shoot3.wav" id="5"]
 [ext_resource type="AudioStream" uid="uid://chjit888b4e0f" path="res://sfx/shoot/rifle_shoot4.wav" id="6"]
@@ -13,7 +14,6 @@
 [ext_resource type="AudioStream" uid="uid://dpqu6eekurs0e" path="res://sfx/shoot/rifle_shoot8.wav" id="11"]
 [ext_resource type="AudioStream" uid="uid://f15yrydr6bwx" path="res://sfx/shoot/rifle_shoot5.wav" id="12"]
 [ext_resource type="AudioStream" uid="uid://ce5p837khn7no" path="res://sfx/shoot/rifle_shoot9.wav" id="13"]
-[ext_resource type="Script" path="res://parts/weapon/weapon.gd" id="14"]
 [ext_resource type="AudioStream" uid="uid://scs0j00gocrq" path="res://sfx/ready/rifle_ready2.wav" id="15"]
 [ext_resource type="AudioStream" uid="uid://bko0gh4hid2oc" path="res://sfx/ready/rifle_ready1.wav" id="16"]
 [ext_resource type="AudioStream" uid="uid://bx4w6sxbuslvh" path="res://sfx/ready/rifle_ready0.wav" id="17"]
@@ -50,7 +50,7 @@ albedo_texture = ExtResource("3")
 [sub_resource type="QuadMesh" id="3"]
 
 [node name="rifle0" type="Node3D"]
-script = ExtResource("14")
+script = ExtResource("1_whu2i")
 
 [node name="SFXAim" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("rifle_ready0", "rifle_ready1", "rifle_ready2"), [ExtResource("17"), ExtResource("16"), ExtResource("15")]]

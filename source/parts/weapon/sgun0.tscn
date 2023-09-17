@@ -1,8 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://doevmpiutpu7l"]
 
 [ext_resource type="Texture2D" uid="uid://crplgr77xdqvm" path="res://parts/weapon/textures/tex_sgun0.png" id="1"]
+[ext_resource type="Script" path="res://parts/weapon/sgun.gd" id="1_3jqg7"]
 [ext_resource type="ArrayMesh" uid="uid://cyt8ttq2ephj4" path="res://parts/weapon/models/sgun0.obj" id="2"]
-[ext_resource type="Texture2D" uid="uid://bqg425k7vqa3i" path="res://Effects/muzzle_02.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bqg425k7vqa3i" path="res://effects/muzzle_02.png" id="3"]
 [ext_resource type="AudioStream" uid="uid://wergnhdnmty2" path="res://sfx/shoot/sgun_shoot3.wav" id="4"]
 [ext_resource type="AudioStream" uid="uid://bkjifm5bmgtl" path="res://sfx/shoot/sgun_shoot2.wav" id="5"]
 [ext_resource type="AudioStream" uid="uid://dp08djs2djj2t" path="res://sfx/shoot/sgun_shoot0.wav" id="6"]
@@ -10,7 +11,6 @@
 [ext_resource type="AudioStream" uid="uid://sq548ixdhyrw" path="res://sfx/ready/sgun_ready0.wav" id="8"]
 [ext_resource type="AudioStream" uid="uid://bof6ldyyibsqr" path="res://sfx/ready/sgun_ready2.wav" id="9"]
 [ext_resource type="AudioStream" uid="uid://dvbse2aih2iwh" path="res://sfx/ready/sgun_ready1.wav" id="10"]
-[ext_resource type="Script" path="res://parts/weapon/weapon.gd" id="11"]
 
 [sub_resource type="StandardMaterial3D" id="1"]
 resource_local_to_scene = true
@@ -44,7 +44,7 @@ albedo_texture = ExtResource("3")
 [sub_resource type="QuadMesh" id="3"]
 
 [node name="sgun0" type="Node3D"]
-script = ExtResource("11")
+script = ExtResource("1_3jqg7")
 
 [node name="SFXAim" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("sgun_ready0", "sgun_ready1", "sgun_ready2"), [ExtResource("8"), ExtResource("10"), ExtResource("9")]]

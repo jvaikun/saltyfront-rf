@@ -1,12 +1,16 @@
 extends Area3D
 
-const obj_spark = preload("res://effects/hit_sparks.tscn")
-
 var speed = 30
-var target_mech = null
+var target = null
 var adjust = Vector3.ZERO
 var direction = Vector3.ZERO
-var data = null
+var part = "body"
+var type = "mgun"
+var damage = 0
+var multiplier = 1
+var effect_type = "none"
+var effect_duration = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,18 +23,13 @@ func _physics_process(delta):
 	global_translate(velocity)
 
 
-func set_target(target, spread):
-	target_mech = target
+func set_target(target_mech, spread):
+	target = target_mech
 	adjust = Vector3(
 		randf() * spread * 2 - spread,
 		randf() * spread * 2 - spread + 1.0,
 		randf() * spread * 2 - spread
 	)
-	direction = target_mech.global_transform.origin + adjust - self.global_transform.origin
-	look_at(target_mech.global_transform.origin + adjust, Vector3.UP)
+	direction = target.global_transform.origin + adjust - self.global_transform.origin
+	look_at(target.global_transform.origin + adjust, Vector3.UP)
 
-
-func _on_Bullet_tree_exiting():
-	var inst_spark = obj_spark.instantiate()
-	get_parent().add_child(inst_spark)
-	inst_spark.global_transform.origin = global_transform.origin

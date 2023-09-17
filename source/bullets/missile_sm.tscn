@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bxc6hk86lcw2q"]
 
-[ext_resource type="Texture2D" uid="uid://s7du8nd4pqcr" path="res://bullets/tex_missile_sm.png" id="2"]
-[ext_resource type="ArrayMesh" uid="uid://bg22idvcgd7pb" path="res://bullets/missile_sm.obj" id="4"]
+[ext_resource type="Texture2D" uid="uid://s7du8nd4pqcr" path="res://bullets/textures/tex_missile_sm.png" id="2"]
+[ext_resource type="ArrayMesh" uid="uid://bg22idvcgd7pb" path="res://bullets/models/missile_sm.obj" id="4"]
 [ext_resource type="Script" path="res://bullets/missile.gd" id="7"]
 
 [sub_resource type="BoxShape3D" id="1"]

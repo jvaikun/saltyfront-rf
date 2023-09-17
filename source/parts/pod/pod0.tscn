@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://djbuuwhjh7v2o" path="res://sfx/shoot/missile_shoot2.ogg" id="4"]
 [ext_resource type="AudioStream" uid="uid://by33fdx00i4l" path="res://sfx/shoot/missile_shoot1.ogg" id="5"]
 [ext_resource type="AudioStream" uid="uid://mjg3ey4vf6dg" path="res://sfx/shoot/missile_shoot0.ogg" id="6"]
-[ext_resource type="Script" path="res://parts/weapon/weapon.gd" id="7"]
+[ext_resource type="Script" path="res://parts/pod/pod.gd" id="7"]
 [ext_resource type="AudioStream" uid="uid://scs0j00gocrq" path="res://sfx/ready/rifle_ready2.wav" id="8"]
 [ext_resource type="AudioStream" uid="uid://bko0gh4hid2oc" path="res://sfx/ready/rifle_ready1.wav" id="9"]
 [ext_resource type="AudioStream" uid="uid://bx4w6sxbuslvh" path="res://sfx/ready/rifle_ready0.wav" id="10"]

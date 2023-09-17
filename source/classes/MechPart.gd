@@ -17,9 +17,9 @@ func _ready():
 
 
 func impact(type, damage, crit):
-	var spark_inst = hitspark_obj.instance()
+	var spark_inst = hitspark_obj.instantiate()
 	spark_damage.add_child(spark_inst)
-	var dmgnum = dmgnum_obj.instance()
+	var dmgnum = dmgnum_obj.instantiate()
 	spark_damage.add_child(dmgnum)
 	if type == "repair":
 		dmgnum.label.modulate = Color(0, 1, 0, 1)

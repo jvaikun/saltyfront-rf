@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3]
 
-[ext_resource path="res://bullets/tex_missile_md.png" type="Texture2D" id=1]
-[ext_resource path="res://bullets/missile_md.obj" type="ArrayMesh" id=6]
-[ext_resource path="res://bullets/missile.gd" type="Script" id=7]
+[ext_resource type="Texture2D" uid="uid://dj34osdx3okgm" path="res://bullets/textures/tex_missile_md.png" id="1"]
+[ext_resource type="ArrayMesh" uid="uid://dg6nobq0pjnds" path="res://bullets/models/missile_md.obj" id="6"]
+[ext_resource type="Script" path="res://bullets/missile.gd" id="7"]
 
 [sub_resource type="BoxShape3D" id=1]
 size = Vector3( 0.05, 0.05, 0.25 )
