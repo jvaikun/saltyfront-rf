@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dw8045b1t2cw" path="res://parts/weapon/textures/tex_rifle0.png" id="1"]
 [ext_resource type="Script" path="res://parts/weapon/rifle.gd" id="1_whu2i"]
 [ext_resource type="ArrayMesh" uid="uid://chat6txb7ns7b" path="res://parts/weapon/models/rifle0.obj" id="2"]
-[ext_resource type="Texture2D" uid="uid://bqg425k7vqa3i" path="res://effects/muzzle_02.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bqg425k7vqa3i" path="res://effects/mech/tex_muzzle.png" id="3"]
 [ext_resource type="AudioStream" uid="uid://du4vnbv0ca73t" path="res://sfx/shoot/rifle_shoot7.wav" id="4"]
 [ext_resource type="AudioStream" uid="uid://b42v5nbecwmqj" path="res://sfx/shoot/rifle_shoot3.wav" id="5"]
 [ext_resource type="AudioStream" uid="uid://chjit888b4e0f" path="res://sfx/shoot/rifle_shoot4.wav" id="6"]
@@ -59,6 +59,7 @@ resources = [PackedStringArray("rifle_ready0", "rifle_ready1", "rifle_ready2"), 
 resources = [PackedStringArray("rifle_shoot0", "rifle_shoot1", "rifle_shoot2", "rifle_shoot3", "rifle_shoot4", "rifle_shoot5", "rifle_shoot6", "rifle_shoot7", "rifle_shoot8", "rifle_shoot9"), [ExtResource("9"), ExtResource("8"), ExtResource("7"), ExtResource("5"), ExtResource("6"), ExtResource("12"), ExtResource("10"), ExtResource("4"), ExtResource("11"), ExtResource("13")]]
 
 [node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 32
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 material_override = SubResource("1")

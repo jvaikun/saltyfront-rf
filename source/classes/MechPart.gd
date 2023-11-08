@@ -1,7 +1,7 @@
 extends Node3D
 
-const hitspark_obj = preload("res://effects/spark_hit.tscn")
-const dmgnum_obj = preload("res://effects/damage_num.tscn")
+const hitspark_obj = preload("res://effects/mech/spark_hit.tscn")
+const dmgnum_obj = preload("res://effects/mech/damage_num.tscn")
 const tex_broken = preload("res://parts/tex_damage.png")
 
 var mat_base = null
@@ -17,8 +17,9 @@ func _ready():
 
 
 func impact(type, damage, crit):
-	var spark_inst = hitspark_obj.instantiate()
-	spark_damage.add_child(spark_inst)
+	if type != "splash":
+		var spark_inst = hitspark_obj.instantiate()
+		spark_damage.add_child(spark_inst)
 	var dmgnum = dmgnum_obj.instantiate()
 	spark_damage.add_child(dmgnum)
 	if type == "repair":

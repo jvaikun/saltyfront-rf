@@ -1,9 +1,9 @@
 [gd_scene load_steps=24 format=3]
 
 [ext_resource type="Script" path="res://classes/MechPart.gd" id="1_5citd"]
-[ext_resource type="Texture2D" path="res://parts/legs/models/mech_legs6_tex_legs06.png" id="2_soq3m"]
-[ext_resource type="Texture2D" path="res://parts/legs/textures/tex_legs6.png" id="3_nrnt1"]
-[ext_resource type="PackedScene" path="res://effects/spark_damage.tscn" id="4_w8ap7"]
+[ext_resource type="Texture2D" uid="uid://caeuptqkb02j" path="res://parts/legs/models/mech_legs6_tex_legs06.png" id="2_soq3m"]
+[ext_resource type="Texture2D" uid="uid://7qwvr8yxno7v" path="res://parts/legs/textures/tex_legs6.png" id="3_nrnt1"]
+[ext_resource type="PackedScene" uid="uid://giyrlu465m2u" path="res://effects/mech/spark_damage.tscn" id="4_w8ap7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7qhh"]
 resource_name = "mat_legs"

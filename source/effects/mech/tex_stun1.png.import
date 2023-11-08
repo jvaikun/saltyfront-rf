@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxluss23ch4p8"
-path.s3tc="res://.godot/imported/tex_stun2.png-e6745969a3e4d391c0d6408164ca137d.s3tc.ctex"
+uid="uid://d1p5btiswlih6"
+path.s3tc="res://.godot/imported/tex_stun1.png-d168bc1d64e7d6971f4d0a3543be2b1a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://effects/tex_stun2.png"
-dest_files=["res://.godot/imported/tex_stun2.png-e6745969a3e4d391c0d6408164ca137d.s3tc.ctex"]
+source_file="res://effects/mech/tex_stun1.png"
+dest_files=["res://.godot/imported/tex_stun1.png-d168bc1d64e7d6971f4d0a3543be2b1a.s3tc.ctex"]
 
 [params]
 

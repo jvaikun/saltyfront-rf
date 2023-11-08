@@ -10,8 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://scs0j00gocrq" path="res://sfx/ready/rifle_ready2.wav" id="9"]
 [ext_resource type="AudioStream" uid="uid://bko0gh4hid2oc" path="res://sfx/ready/rifle_ready1.wav" id="10"]
 [ext_resource type="AudioStream" uid="uid://bx4w6sxbuslvh" path="res://sfx/ready/rifle_ready0.wav" id="11"]
-[ext_resource type="Texture2D" uid="uid://cr01ia0yhhqra" path="res://effects/tex_fire.png" id="11_5y7p1"]
-[ext_resource type="Texture2D" uid="uid://dpv44ce8h2fd0" path="res://effects/tex_smoke.png" id="11_w046d"]
+[ext_resource type="Texture2D" uid="uid://cr01ia0yhhqra" path="res://Effects/tex_fire.png" id="11_5y7p1"]
+[ext_resource type="Texture2D" uid="uid://dpv44ce8h2fd0" path="res://Effects/tex_smoke.png" id="11_w046d"]
 
 [sub_resource type="StandardMaterial3D" id="1"]
 resource_local_to_scene = true
@@ -142,6 +142,7 @@ resources = [PackedStringArray("rifle_ready0", "rifle_ready1", "rifle_ready2"), 
 resources = [PackedStringArray("flame_shoot0", "flame_shoot1", "flame_shoot2", "flame_shoot3"), [ExtResource("7"), ExtResource("6"), ExtResource("5"), ExtResource("4")]]
 
 [node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 32
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 material_override = SubResource("1")

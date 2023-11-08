@@ -57,6 +57,7 @@ resources = [PackedStringArray("rifle_ready0", "rifle_ready1", "rifle_ready2"), 
 resources = [PackedStringArray("step0", "step1"), [ExtResource("3"), ExtResource("4")]]
 
 [node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 32
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 material_override = SubResource("1")

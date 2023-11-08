@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://giyrlu465m2u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8xg2x"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+use_particle_trails = true
+
+[sub_resource type="Gradient" id="Gradient_utx83"]
+offsets = PackedFloat32Array(0, 0.504065)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 0.4, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ku58p"]
+gradient = SubResource("Gradient_utx83")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tfpqq"]
+resource_local_to_scene = true
+lifetime_randomness = 1.0
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+color_ramp = SubResource("GradientTexture1D_ku58p")
+
+[sub_resource type="Curve" id="Curve_3dkl6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_aptsd"]
+size = 0.05
+curve = SubResource("Curve_3dkl6")
+
+[node name="SparkDamage" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_8xg2x")
+emitting = false
+lifetime = 0.5
+explosiveness = 0.5
+trail_enabled = true
+trail_lifetime = 0.05
+process_material = SubResource("ParticleProcessMaterial_tfpqq")
+draw_pass_1 = SubResource("RibbonTrailMesh_aptsd")

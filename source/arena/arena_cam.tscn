@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://djs63j26o78u7"]
+
+[ext_resource type="Script" path="res://arena/arena_cam.gd" id="1_q178c"]
+
+[node name="ArenaCam" type="Node3D"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+script = ExtResource("1_q178c")
+
+[node name="CamPitch" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+
+[node name="CamNode" type="Camera3D" parent="CamPitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+projection = 1
+size = 8.0

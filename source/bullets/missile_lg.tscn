@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://4u5ysvd2h6ea"]
 
 [ext_resource type="PackedScene" uid="uid://rtrr3qa3bmh4" path="res://effects/smoke_trail.tscn" id="1"]
-[ext_resource type="ArrayMesh" uid="uid://c057i3qrugsvw" path="res://bullets/missile_lg.obj" id="2"]
+[ext_resource type="ArrayMesh" uid="uid://c057i3qrugsvw" path="res://bullets/models/missile_lg.obj" id="2"]
 [ext_resource type="Script" path="res://bullets/missile.gd" id="4"]
-[ext_resource type="Texture2D" uid="uid://btcg0ilt6ekdd" path="res://bullets/tex_missile_lg.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://btcg0ilt6ekdd" path="res://bullets/textures/tex_missile_lg.png" id="6"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(0.06, 0.06, 0.3)
@@ -72,7 +72,7 @@ libraries = {
 "": SubResource("AnimationLibrary_gcmdw")
 }
 
-[node name="missile_lg" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 material_override = SubResource("13")
 mesh = ExtResource("2")

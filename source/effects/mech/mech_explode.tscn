@@ -1,0 +1,264 @@
+[gd_scene load_steps=25 format=3 uid="uid://cjn4pnhs08lgl"]
+
+[ext_resource type="Script" path="res://effects/mech/mech_explode.gd" id="1_sqfxl"]
+[ext_resource type="Texture2D" uid="uid://3w70ryxc77s7" path="res://effects/mech/tex_shock.png" id="1_uhu57"]
+[ext_resource type="AudioStream" uid="uid://b285al33ym76p" path="res://sfx/explode/explode_lg0.wav" id="2_i4o1g"]
+[ext_resource type="Texture2D" uid="uid://cr01ia0yhhqra" path="res://effects/tex_fire.png" id="2_koqn3"]
+[ext_resource type="AudioStream" uid="uid://cpqsxex1og6qm" path="res://sfx/explode/explode_lg1.wav" id="3_olmii"]
+[ext_resource type="AudioStream" uid="uid://cxg7tk5ktfi00" path="res://sfx/explode/explode_lg2.wav" id="4_fcgks"]
+[ext_resource type="AudioStream" uid="uid://62cjjtlronkn" path="res://sfx/explode/explode_lg3.wav" id="5_c6uwv"]
+[ext_resource type="AudioStream" uid="uid://duco0ij4sb6dp" path="res://sfx/explode/explode_lg4.wav" id="6_hy7tq"]
+[ext_resource type="AudioStream" uid="uid://xfmence8id80" path="res://sfx/explode/explode_lg5.wav" id="7_ui1bg"]
+[ext_resource type="AudioStream" uid="uid://tnre27fqmv5v" path="res://sfx/explode/explode_lg6.wav" id="8_8esn1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pswxy"]
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_8jndo"]
+material = SubResource("StandardMaterial3D_pswxy")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhxiv"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_uhu57")
+
+[sub_resource type="QuadMesh" id="QuadMesh_arvk7"]
+material = SubResource("StandardMaterial3D_lhxiv")
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4fpe8"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_koqn3")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_s5147"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_heo10"]
+gradient = SubResource("Gradient_s5147")
+
+[sub_resource type="Curve" id="Curve_gm8nn"]
+min_value = 0.5
+max_value = 2.0
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.25, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_igv2b"]
+curve = SubResource("Curve_gm8nn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8fhr3"]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 80.0
+gravity = Vector3(0, 2, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 2.0
+angular_velocity_min = 5.0
+angular_velocity_max = 15.0
+angle_max = 360.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_igv2b")
+color_ramp = SubResource("GradientTexture1D_heo10")
+
+[sub_resource type="QuadMesh" id="QuadMesh_44s1o"]
+
+[sub_resource type="Animation" id="Animation_6gs6j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shockwave:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shockwave:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shockwave:mesh:material:albedo_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FireSmoke:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tov7i"]
+resource_name = "explode"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1), Vector3(1, 1, 1), Vector3(0.1, 0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shockwave:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shockwave:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(8, 8, 8)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shockwave:mesh:material:albedo_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.02, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FireSmoke:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.02),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xcmkv"]
+_data = {
+"RESET": SubResource("Animation_6gs6j"),
+"explode": SubResource("Animation_tov7i")
+}
+
+[node name="MechExplode" type="Node3D"]
+script = ExtResource("1_sqfxl")
+
+[node name="Sounds" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("explode_lg0", "explode_lg1", "explode_lg2", "explode_lg3", "explode_lg4", "explode_lg5", "explode_lg6"), [ExtResource("2_i4o1g"), ExtResource("3_olmii"), ExtResource("4_fcgks"), ExtResource("5_c6uwv"), ExtResource("6_hy7tq"), ExtResource("7_ui1bg"), ExtResource("8_8esn1")]]
+
+[node name="Flash" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
+mesh = SubResource("SphereMesh_8jndo")
+
+[node name="Shockwave" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("QuadMesh_arvk7")
+
+[node name="FireSmoke" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_4fpe8")
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8fhr3")
+draw_pass_1 = SubResource("QuadMesh_44s1o")
+
+[node name="Anims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xcmkv")
+}
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]

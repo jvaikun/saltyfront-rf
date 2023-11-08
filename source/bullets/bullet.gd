@@ -18,7 +18,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _process(delta):
 	var velocity = direction.normalized() * delta * speed
 	global_translate(velocity)
 
@@ -32,4 +32,8 @@ func set_target(target_mech, spread):
 	)
 	direction = target.global_transform.origin + adjust - self.global_transform.origin
 	look_at(target.global_transform.origin + adjust, Vector3.UP)
+
+
+func destroy():
+	queue_free()
 

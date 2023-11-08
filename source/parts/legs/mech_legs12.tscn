@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=25 format=3 uid="uid://dpbojo6nsomoc"]
 
 [ext_resource type="Script" path="res://classes/MechPart.gd" id="1_0ipst"]
-[ext_resource type="Texture2D" path="res://parts/legs/models/mech_legs12_tex_legs12.png" id="2_evoed"]
-[ext_resource type="Texture2D" path="res://parts/legs/textures/tex_legs12.png" id="3_dnuy8"]
-[ext_resource type="PackedScene" path="res://effects/spark_damage.tscn" id="4_808sw"]
+[ext_resource type="Texture2D" uid="uid://bhykqck35lkm4" path="res://parts/legs/models/mech_legs12_tex_legs12.png" id="2_evoed"]
+[ext_resource type="Texture2D" uid="uid://cfkjcb3fgfnfo" path="res://parts/legs/textures/tex_legs12.png" id="3_dnuy8"]
+[ext_resource type="PackedScene" uid="uid://giyrlu465m2u" path="res://effects/mech/spark_damage.tscn" id="4_808sw"]
+[ext_resource type="PackedScene" uid="uid://c5ugry1m5yvhe" path="res://effects/mech/mech_thruster.tscn" id="5_baxcm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_00s7r"]
 resource_name = "mat_legs4"
@@ -87,16 +88,17 @@ color_ramp = SubResource("GradientTexture1D_h3xgu")
 [sub_resource type="BoxMesh" id="BoxMesh_y84x8"]
 size = Vector3(0.01, 0.1, 0.01)
 
-[sub_resource type="Animation" id="Animation_bvmto"]
-resource_name = "reset"
-length = 0.0333333
+[sub_resource type="Animation" id="Animation_etmya"]
+resource_name = "idle-loop"
+length = 1.03333
+loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
 tracks/0/path = NodePath("Armature/Skeleton3D:root")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.08, 0)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.08, 0, 0.0666667, 1, 0, 1.0786, 0, 0.133333, 1, 0, 1.0692, 0, 0.266667, 1, 0, 1.0408, 0, 0.333333, 1, 0, 1.0314, 0, 0.4, 1, 0, 1.0378, 0, 0.466667, 1, 0, 1.0786, 0, 0.6, 1, 0, 1.0786, 0, 0.666667, 1, 0, 1.0378, 0, 0.733333, 1, 0, 1.0314, 0, 0.8, 1, 0, 1.0408, 0, 0.933333, 1, 0, 1.0692, 0, 1, 1, 0, 1.0786, 0, 1.03333, 1, 0, 1.08, 0)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = true
 tracks/1/enabled = true
@@ -162,6 +164,31 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, 0, 1.08, 0)
 
+[sub_resource type="Animation" id="Animation_bvmto"]
+resource_name = "reset"
+length = 0.0333333
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D:root")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.08, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D:leg.l")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D:leg.r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_s2g4p"]
 resource_name = "shoot_in_left"
 length = 0.366667
@@ -211,32 +238,6 @@ tracks/2/path = NodePath("Armature/Skeleton3D:root")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, 0, 1.08, 0)
-
-[sub_resource type="Animation" id="Animation_etmya"]
-resource_name = "idle-loop"
-length = 1.03333
-loop_mode = 1
-tracks/0/type = "position_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Armature/Skeleton3D:root")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.08, 0, 0.0666667, 1, 0, 1.0786, 0, 0.133333, 1, 0, 1.0692, 0, 0.266667, 1, 0, 1.0408, 0, 0.333333, 1, 0, 1.0314, 0, 0.4, 1, 0, 1.0378, 0, 0.466667, 1, 0, 1.0786, 0, 0.6, 1, 0, 1.0786, 0, 0.666667, 1, 0, 1.0378, 0, 0.733333, 1, 0, 1.0314, 0, 0.8, 1, 0, 1.0408, 0, 0.933333, 1, 0, 1.0692, 0, 1, 1, 0, 1.0786, 0, 1.03333, 1, 0, 1.08, 0)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Armature/Skeleton3D:leg.l")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("Armature/Skeleton3D:leg.r")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_cxesq"]
 resource_name = "walk-loop"
@@ -310,16 +311,30 @@ skin = SubResource("Skin_0fa1r")
 surface_material_override/0 = SubResource("StandardMaterial3D_e5t4f")
 
 [node name="Hip" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08, 0)
 bone_name = "root"
 bone_idx = 0
 
-[node name="Sparks" type="GPUParticles3D" parent="Armature/Skeleton3D/Hip" instance=ExtResource("4_808sw")]
+[node name="Sparks" parent="Armature/Skeleton3D/Hip" instance=ExtResource("4_808sw")]
 material_override = SubResource("StandardMaterial3D_lgbdf")
-cast_shadow = 0
-emitting = false
-explosiveness = 1.0
 process_material = SubResource("13")
 draw_pass_1 = SubResource("BoxMesh_y84x8")
+
+[node name="LegL" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.9, 0)
+bone_name = "leg.l"
+bone_idx = 1
+
+[node name="Thruster" parent="Armature/Skeleton3D/LegL" instance=ExtResource("5_baxcm")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.2, -0.5, 0)
+
+[node name="LegR" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.9, 0)
+bone_name = "leg.r"
+bone_idx = 2
+
+[node name="Thruster" parent="Armature/Skeleton3D/LegR" instance=ExtResource("5_baxcm")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.2, -0.5, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

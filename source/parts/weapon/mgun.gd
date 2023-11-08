@@ -10,8 +10,6 @@ signal attack_finished
 
 var sfx_shoot : Array
 var sfx_aim : Array
-var shot_list : Array
-var shot_index = 0
 
 
 func _ready():
@@ -29,16 +27,14 @@ func spawn_bullet(data):
 	bullet_inst.speed = speed
 
 
-func start_attack(shot_data):
-	shot_list = shot_data
-	shot_index = 0
+func start_attack(shot_list):
 	$SoundPlayer.stream = $SFXAim.get_resource(sfx_aim.pick_random())
 	$SoundPlayer.play()
 	await $SoundPlayer.finished
-	while shot_index < shot_list.size():
+	for shot in shot_list:
 		shot_fired.emit()
 		muzzle_flash()
-		spawn_bullet(shot_list[shot_index])
+		spawn_bullet(shot)
 		$SoundPlayer.stream = $SFXShoot.get_resource(sfx_shoot.pick_random())
 		$SoundPlayer.play()
 		await get_tree().create_timer(shot_time).timeout
@@ -47,7 +43,6 @@ func start_attack(shot_data):
 			$Eject.transform,
 			$Eject.process_material.direction * $Eject.process_material.initial_velocity_min,
 			$Eject.process_material.color, $Eject.process_material.color, 0)
-		shot_index += 1
 	$Muzzle.hide()
 	attack_finished.emit()
 

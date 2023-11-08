@@ -194,8 +194,17 @@ func anim_attack(shot_list):
 		attack_anim_side.play("shoot_in", -1, anim_speed, false)
 		await mech_parts.legs.anim.animation_finished
 	# Attack loop
-	attack_weapon.obj.start_attack(shot_list)
-	await attack_weapon.obj.attack_finished
+	if attack_weapon.type == "melee":
+		for shot in shot_list:
+			mech_parts.body.anim.stop()
+			attack_anim_side.stop()
+			mech_parts.body.anim.play("melee_" + attack_weapon.side, -1, anim_speed, false)
+			attack_anim_side.play("melee", -1, anim_speed, false)
+			attack_weapon.obj.attack(shot)
+			await attack_anim_side.animation_finished
+	else:
+		attack_weapon.obj.start_attack(shot_list)
+		await attack_weapon.obj.attack_finished
 	# Attack end animation
 	for part in ["arm_r", "arm_l", "body", "legs"]:
 		mech_parts[part].anim.stop()
@@ -214,16 +223,6 @@ func anim_attack(shot_list):
 		await mech_parts.legs.anim.animation_finished
 	#print("Team " + str(team) + ", Mech " + str(num) + " attack done")
 	attack_finished.emit()
-
-
-func spawn_bullet(target, object, hardpoint, speed, spread, data):
-	var bullet_inst = object.instantiate()
-	add_child(bullet_inst)
-	bullet_inst.global_transform.origin = hardpoint.global_transform.origin
-	bullet_inst.data = data
-	bullet_inst.set_target(target, spread)
-	bullet_inst.speed = speed
-	return bullet_inst
 
 
 func anim_walk(toggle : bool = true):
@@ -403,14 +402,20 @@ func glow(skl_name):
 
 # Randomly play effect in the corresponding array in the effect dictionary
 func play_sfx(sfx_name):
-	var audio_inst = AudioStreamPlayer.new()
-	add_child(audio_inst)
-	audio_inst.finished.connect(audio_inst.queue_free)
 	if sfx_name in sound_fx.keys():
-		audio_inst.stream = $Resources.get_resource(sfx_name + str(randi() % sound_fx[sfx_name]))
+		$SoundPlayer.stream = $Resources.get_resource(sfx_name + str(randi() % sound_fx[sfx_name]))
 	else:
-		audio_inst.stream = $Resources.get_resource(sfx_name)
-	audio_inst.play()
+		$SoundPlayer.stream = $Resources.get_resource(sfx_name)
+	$SoundPlayer.play()
+
+
+func death():
+	var explode_obj = load("res://effects/mech/mech_explode.tscn")
+	var explode_inst = explode_obj.instantiate()
+	get_parent().add_child(explode_inst)
+	explode_inst.global_position = self.global_position
+	await get_tree().create_timer(0.1).timeout
+	queue_free()
 
 
 func damage(data):
@@ -425,10 +430,14 @@ func damage(data):
 #		if "effect" in data:
 #			add_effect(data.effect)
 		# If a destroyed arm/leg was hit, apply half damage to the body instead
+		var hit_type = "hit"
+		if data.type == "splash":
+			hit_type = "splash"
 		if data.part != "body" && part_hp[data.part] <= 0:
 			data.part = "body"
 			data.damage = data.damage/2
-		mech_parts[data.part].obj.impact("hit", data.damage, data.multiplier)
+			hit_type = "splash"
+		mech_parts[data.part].obj.impact(hit_type, data.damage, data.multiplier)
 		match data.type:
 			"melee":
 				play_sfx("step_mech")
@@ -458,11 +467,6 @@ func _on_weapon_shot_fired():
 	match attack_weapon.type:
 		"flame":
 			await get_tree().create_timer(0.1).timeout
-		"melee":
-			mech_parts.body.anim.stop()
-			attack_anim_side.stop()
-			mech_parts.body.anim.play("melee_" + attack_weapon.side, -1, anim_speed, false)
-			attack_anim_side.play("melee", -1, anim_speed, false)
 		"mgun":
 			attack_anim_side.stop()
 			attack_anim_side.play("shoot", -1, anim_speed * 2, false)
@@ -499,5 +503,5 @@ func _on_hit_box_area_entered(area):
 							"effect_type":"none",
 							"effect_duration":0,
 						})
-			area.queue_free()
+			area.destroy()
 

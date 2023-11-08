@@ -30,12 +30,12 @@
 [ext_resource type="AudioStream" uid="uid://xm71n17v1wmu" path="res://sfx/miss/bullet_miss6.wav" id="50"]
 [ext_resource type="FontFile" uid="uid://b20jdsyu8cy2h" path="res://ui/fonts/font_square_mini.ttf" id="55_us67o"]
 [ext_resource type="Texture2D" uid="uid://3qg6hakqxsdb" path="res://ui/textures/ui_frame.png" id="56_71o1v"]
-[ext_resource type="Texture2D" uid="uid://q5yxd1gvap13" path="res://effects/tex_stun3.png" id="61"]
+[ext_resource type="Texture2D" uid="uid://q5yxd1gvap13" path="res://effects/mech/tex_stun3.png" id="61"]
 [ext_resource type="AudioStream" uid="uid://d0yc3tboc10rh" path="res://sfx/miss/bullet_miss8.wav" id="62"]
-[ext_resource type="Texture2D" uid="uid://d1p5btiswlih6" path="res://effects/tex_stun1.png" id="63"]
-[ext_resource type="Texture2D" uid="uid://cxluss23ch4p8" path="res://effects/tex_stun2.png" id="66"]
+[ext_resource type="Texture2D" uid="uid://d1p5btiswlih6" path="res://effects/mech/tex_stun1.png" id="63"]
+[ext_resource type="Texture2D" uid="uid://cxluss23ch4p8" path="res://effects/mech/tex_stun2.png" id="66"]
 [ext_resource type="AudioStream" uid="uid://vvglbcflqrqh" path="res://sfx/skill_activate.wav" id="67"]
-[ext_resource type="Texture2D" uid="uid://crtyiox0rj77y" path="res://effects/tex_stun0.png" id="69"]
+[ext_resource type="Texture2D" uid="uid://crtyiox0rj77y" path="res://effects/mech/tex_stun0.png" id="69"]
 [ext_resource type="AudioStream" uid="uid://iq4s4r3yvj6e" path="res://sfx/miss/bullet_miss7.wav" id="73"]
 [ext_resource type="AudioStream" uid="uid://cxwqdv4ipdsbm" path="res://sfx/hit/bullet_hit14.wav" id="79"]
 [ext_resource type="AudioStream" uid="uid://hvm6phoxyltx" path="res://sfx/hit/bullet_hit6.wav" id="80"]
@@ -60,8 +60,8 @@
 [sub_resource type="SphereShape3D" id="1"]
 radius = 1.0
 
-[sub_resource type="SphereShape3D" id="2"]
-radius = 1.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_sv5m7"]
+size = Vector3(2, 2, 1)
 
 [sub_resource type="Gradient" id="10"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -231,7 +231,7 @@ shape = SubResource("1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Collision" type="CollisionShape3D" parent="HitBox"]
-shape = SubResource("2")
+shape = SubResource("BoxShape3D_sv5m7")
 
 [node name="Effects" type="Node3D" parent="."]
 
@@ -266,9 +266,6 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.5, 0)
 visible = false
 spot_range = 2.5
-
-[node name="CamPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="MechTag" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -319,5 +316,8 @@ vertical_alignment = 1
 
 [node name="Parts" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 32
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

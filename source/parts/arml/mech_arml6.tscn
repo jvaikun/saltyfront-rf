@@ -1,9 +1,9 @@
 [gd_scene load_steps=27 format=3]
 
 [ext_resource type="Script" path="res://classes/MechPart.gd" id="1_8f1mu"]
-[ext_resource type="Texture2D" path="res://parts/arml/models/mech_arml6_tex_arml06.png" id="2_ab2e6"]
-[ext_resource type="Texture2D" path="res://parts/arml/textures/tex_arml6.png" id="3_k4rwa"]
-[ext_resource type="PackedScene" path="res://effects/spark_damage.tscn" id="4_ky646"]
+[ext_resource type="Texture2D" uid="uid://cp23kecdlpbok" path="res://parts/arml/models/mech_arml6_tex_arml06.png" id="2_ab2e6"]
+[ext_resource type="Texture2D" uid="uid://bsqovebkt6kq8" path="res://parts/arml/textures/tex_arml6.png" id="3_k4rwa"]
+[ext_resource type="PackedScene" uid="uid://giyrlu465m2u" path="res://effects/mech/spark_damage.tscn" id="4_ky646"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvsd3"]
 resource_name = "mat_arml"

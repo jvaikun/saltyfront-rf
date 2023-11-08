@@ -1,48 +1,269 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbdeymgceovl5"]
+[gd_scene load_steps=17 format=3 uid="uid://dbdeymgceovl5"]
 
 [ext_resource type="Script" path="res://arena/arena.gd" id="1_ahysj"]
 [ext_resource type="PackedScene" uid="uid://blalfjvqi78v5" path="res://mech/mech_actor.tscn" id="2_ad8rd"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bslk"]
-albedo_color = Color(0, 0.2, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_kgq84"]
-material = SubResource("StandardMaterial3D_4bslk")
-size = Vector2(20, 20)
+[ext_resource type="PackedScene" uid="uid://bdppvleucduiq" path="res://arena/unit_status.tscn" id="2_wq256"]
+[ext_resource type="PackedScene" uid="uid://djs63j26o78u7" path="res://arena/arena_cam.tscn" id="3_2yo7h"]
+[ext_resource type="PackedScene" uid="uid://ctmau1boidrle" path="res://arena/unit_info.tscn" id="3_76veq"]
+[ext_resource type="Texture2D" uid="uid://dsx3wdbyvuxxa" path="res://arena/textures/team_pip_frame.png" id="3_ihuyk"]
+[ext_resource type="PackedScene" uid="uid://fhws1gi8kqlb" path="res://arena/attack_info.tscn" id="4_of1ji"]
+[ext_resource type="Texture2D" uid="uid://cf04beu558882" path="res://arena/textures/team_pip.png" id="4_xp46t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfexv"]
-size = Vector3(20, 0.5, 20)
+size = Vector3(40, 0.5, 40)
+
+[sub_resource type="Gradient" id="Gradient_soj13"]
+colors = PackedColorArray(0.2, 0.2, 0.2, 1, 0.396078, 0.396078, 0.396078, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hqk5u"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ucerg"]
+color_ramp = SubResource("Gradient_soj13")
+noise = SubResource("FastNoiseLite_hqk5u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kd0k"]
+albedo_texture = SubResource("NoiseTexture2D_ucerg")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mvw83"]
+size = Vector2(40, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jdr3"]
+albedo_color = Color(0, 0.2, 0, 1)
+metallic_specular = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lm044"]
+size = Vector2(200, 200)
 
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_ahysj")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="ArenaUI" type="CanvasLayer" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("PlaneMesh_kgq84")
+[node name="Team1Info" type="VBoxContainer" parent="ArenaUI"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -226.0
+offset_right = 132.0
+offset_bottom = 226.0
+grow_vertical = 2
+alignment = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-shape = SubResource("BoxShape3D_xfexv")
+[node name="UnitStatus1" parent="ArenaUI/Team1Info" instance=ExtResource("2_wq256")]
+layout_mode = 2
 
-[node name="ArenaCam" type="Node3D" parent="."]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+[node name="UnitStatus2" parent="ArenaUI/Team1Info" instance=ExtResource("2_wq256")]
+layout_mode = 2
 
-[node name="CamPitch" type="Node3D" parent="ArenaCam"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+[node name="UnitStatus3" parent="ArenaUI/Team1Info" instance=ExtResource("2_wq256")]
+layout_mode = 2
 
-[node name="Camera3D" type="Camera3D" parent="ArenaCam/CamPitch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
-projection = 1
-size = 10.0
+[node name="UnitStatus4" parent="ArenaUI/Team1Info" instance=ExtResource("2_wq256")]
+layout_mode = 2
+
+[node name="Team2Info" type="VBoxContainer" parent="ArenaUI"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -226.0
+offset_bottom = 226.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="UnitStatus1" parent="ArenaUI/Team2Info" instance=ExtResource("2_wq256")]
+layout_mode = 2
+
+[node name="UnitStatus2" parent="ArenaUI/Team2Info" instance=ExtResource("2_wq256")]
+layout_mode = 2
+
+[node name="UnitStatus3" parent="ArenaUI/Team2Info" instance=ExtResource("2_wq256")]
+layout_mode = 2
+
+[node name="UnitStatus4" parent="ArenaUI/Team2Info" instance=ExtResource("2_wq256")]
+layout_mode = 2
+
+[node name="TopBar" type="HBoxContainer" parent="ArenaUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="TeamInfo1" type="PanelContainer" parent="ArenaUI/TopBar"]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="ArenaUI/TopBar/TeamInfo1"]
+layout_mode = 2
+
+[node name="TeamName" type="Label" parent="ArenaUI/TopBar/TeamInfo1/Content"]
+layout_mode = 2
+text = "Team Name"
+horizontal_alignment = 1
+
+[node name="TeamCount" type="TextureProgressBar" parent="ArenaUI/TopBar/TeamInfo1/Content"]
+layout_mode = 2
+max_value = 4.0
+value = 1.0
+fill_mode = 1
+texture_over = ExtResource("3_ihuyk")
+texture_progress = ExtResource("4_xp46t")
+
+[node name="MatchInfo" type="PanelContainer" parent="ArenaUI/TopBar"]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="ArenaUI/TopBar/MatchInfo"]
+layout_mode = 2
+
+[node name="VS" type="Label" parent="ArenaUI/TopBar/MatchInfo/Content"]
+layout_mode = 2
+text = "- VS -"
+horizontal_alignment = 1
+
+[node name="MatchName" type="Label" parent="ArenaUI/TopBar/MatchInfo/Content"]
+layout_mode = 2
+text = "Match Name"
+horizontal_alignment = 1
+
+[node name="TeamInfo2" type="PanelContainer" parent="ArenaUI/TopBar"]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="ArenaUI/TopBar/TeamInfo2"]
+layout_mode = 2
+
+[node name="TeamName" type="Label" parent="ArenaUI/TopBar/TeamInfo2/Content"]
+layout_mode = 2
+text = "Team Name"
+horizontal_alignment = 1
+
+[node name="TeamCount" type="TextureProgressBar" parent="ArenaUI/TopBar/TeamInfo2/Content"]
+layout_mode = 2
+max_value = 4.0
+value = 1.0
+texture_over = ExtResource("3_ihuyk")
+texture_progress = ExtResource("4_xp46t")
+
+[node name="MapInfo" type="PanelContainer" parent="ArenaUI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="ArenaUI/MapInfo"]
+layout_mode = 2
+text = "Map Name
+Time, Conditions"
+
+[node name="POV1" type="PanelContainer" parent="ArenaUI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+offset_right = 320.0
+grow_vertical = 0
+
+[node name="ViewCont" type="SubViewportContainer" parent="ArenaUI/POV1"]
+layout_mode = 2
+
+[node name="Viewport" type="SubViewport" parent="ArenaUI/POV1/ViewCont"]
+handle_input_locally = false
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="POVCam" type="Camera3D" parent="ArenaUI/POV1/ViewCont/Viewport"]
+
+[node name="POV2" type="PanelContainer" parent="ArenaUI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -180.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ViewCont" type="SubViewportContainer" parent="ArenaUI/POV2"]
+layout_mode = 2
+
+[node name="Viewport" type="SubViewport" parent="ArenaUI/POV2/ViewCont"]
+handle_input_locally = false
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="POVCam" type="Camera3D" parent="ArenaUI/POV2/ViewCont/Viewport"]
+
+[node name="ActionBar" type="HBoxContainer" parent="ArenaUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="UnitInfo1" parent="ArenaUI/ActionBar" instance=ExtResource("3_76veq")]
+layout_mode = 2
+
+[node name="AttackInfo1" parent="ArenaUI/ActionBar" instance=ExtResource("4_of1ji")]
+layout_mode = 2
+
+[node name="AttackInfo2" parent="ArenaUI/ActionBar" instance=ExtResource("4_of1ji")]
+layout_mode = 2
+
+[node name="UnitInfo2" parent="ArenaUI/ActionBar" instance=ExtResource("3_76veq")]
+layout_mode = 2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 6, 0)
+
+[node name="ArenaCam" parent="." instance=ExtResource("3_2yo7h")]
 
 [node name="Mechs" type="Node3D" parent="."]
 
 [node name="MechActor" parent="Mechs" instance=ExtResource("2_ad8rd")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 0)
 
 [node name="MechActor2" parent="Mechs" instance=ExtResource("2_ad8rd")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -5, 0, 0)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -3, 0, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 6, 0)
+[node name="MechActor3" parent="Mechs" instance=ExtResource("2_ad8rd")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19, 0, 17)
+
+[node name="MechActor4" parent="Mechs" instance=ExtResource("2_ad8rd")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19, 0, 19)
+
+[node name="MechActor5" parent="Mechs" instance=ExtResource("2_ad8rd")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0, -13)
+
+[node name="MechActor6" parent="Mechs" instance=ExtResource("2_ad8rd")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0, -15)
+
+[node name="MechActor7" parent="Mechs" instance=ExtResource("2_ad8rd")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0, -17)
+
+[node name="MechActor8" parent="Mechs" instance=ExtResource("2_ad8rd")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0, -19)
+
+[node name="ArenaMap" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ArenaMap"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaMap/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_xfexv")
+
+[node name="MapGround" type="MeshInstance3D" parent="ArenaMap/StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_7kd0k")
+mesh = SubResource("PlaneMesh_mvw83")
+
+[node name="WorldGround" type="MeshInstance3D" parent="ArenaMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+material_override = SubResource("StandardMaterial3D_8jdr3")
+mesh = SubResource("PlaneMesh_lm044")

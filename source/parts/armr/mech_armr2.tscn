@@ -1,9 +1,9 @@
 [gd_scene load_steps=27 format=3]
 
 [ext_resource type="Script" path="res://classes/MechPart.gd" id="1_1x12c"]
-[ext_resource type="Texture2D" path="res://parts/armr/models/mech_armr2_tex_armr02.png" id="2_3lo87"]
-[ext_resource type="Texture2D" path="res://parts/armr/textures/tex_armr2.png" id="3_2isfu"]
-[ext_resource type="PackedScene" path="res://effects/spark_damage.tscn" id="4_dhpjx"]
+[ext_resource type="Texture2D" uid="uid://bn21a1d45lrr2" path="res://parts/armr/models/mech_armr2_tex_armr02.png" id="2_3lo87"]
+[ext_resource type="Texture2D" uid="uid://b5g2bjlw3kkjy" path="res://parts/armr/textures/tex_armr2.png" id="3_2isfu"]
+[ext_resource type="PackedScene" uid="uid://giyrlu465m2u" path="res://effects/mech/spark_damage.tscn" id="4_dhpjx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n57ny"]
 resource_name = "mat_armr"

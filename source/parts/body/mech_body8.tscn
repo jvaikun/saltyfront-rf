@@ -1,9 +1,9 @@
 [gd_scene load_steps=24 format=3]
 
 [ext_resource type="Script" path="res://classes/MechPart.gd" id="1_xwta0"]
-[ext_resource type="Texture2D" path="res://parts/body/models/mech_body8_tex_body08.png" id="2_2ipyl"]
-[ext_resource type="Texture2D" path="res://parts/body/textures/tex_body8.png" id="3_hf3f3"]
-[ext_resource type="PackedScene" path="res://effects/spark_damage.tscn" id="4_6xd0i"]
+[ext_resource type="Texture2D" uid="uid://bwmla2ir1kcpj" path="res://parts/body/models/mech_body8_tex_body08.png" id="2_2ipyl"]
+[ext_resource type="Texture2D" uid="uid://emvhy5yluqdh" path="res://parts/body/textures/tex_body8.png" id="3_hf3f3"]
+[ext_resource type="PackedScene" uid="uid://giyrlu465m2u" path="res://effects/mech/spark_damage.tscn" id="4_6xd0i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4oidl"]
 resource_name = "mat_body"

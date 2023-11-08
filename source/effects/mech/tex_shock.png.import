@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqg425k7vqa3i"
-path.s3tc="res://.godot/imported/tex_muzzle.png-1e7ca693120d80f7be739e4a46965d52.s3tc.ctex"
+uid="uid://3w70ryxc77s7"
+path.s3tc="res://.godot/imported/tex_shock.png-52a8348bfc5b5bfc88c0b3b8ca659a91.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://effects/tex_muzzle.png"
-dest_files=["res://.godot/imported/tex_muzzle.png-1e7ca693120d80f7be739e4a46965d52.s3tc.ctex"]
+source_file="res://effects/mech/tex_shock.png"
+dest_files=["res://.godot/imported/tex_shock.png-52a8348bfc5b5bfc88c0b3b8ca659a91.s3tc.ctex"]
 
 [params]
 

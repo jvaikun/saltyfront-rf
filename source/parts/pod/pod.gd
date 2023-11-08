@@ -1,7 +1,7 @@
 extends Node3D
 
 const bullet_obj = preload("res://bullets/missile_lg.tscn")
-const speed = 30
+const speed = 10
 const spread = 0.2
 const shot_time = 0.2
 

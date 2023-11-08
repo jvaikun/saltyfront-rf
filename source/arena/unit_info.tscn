@@ -1,0 +1,123 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctmau1boidrle"]
+
+[ext_resource type="Texture2D" uid="uid://dndx7s0juehth" path="res://ui/textures/portraits.png" id="1_2oe6x"]
+[ext_resource type="Texture2D" uid="uid://0xxm07hctfmx" path="res://ui/textures/bar_bg.png" id="2_8yfrc"]
+[ext_resource type="Texture2D" uid="uid://tt5clnei2e82" path="res://ui/textures/bar_fg.png" id="3_qftev"]
+[ext_resource type="Texture2D" uid="uid://ddfva6venyvat" path="res://ui/textures/bar_fill.png" id="4_jvle0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1u5n"]
+atlas = ExtResource("1_2oe6x")
+region = Rect2(0, 0, 64, 80)
+
+[node name="UnitInfo" type="PanelContainer"]
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PilotName" type="Label" parent="Content"]
+layout_mode = 2
+text = "Pilot Name"
+
+[node name="Info" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="Content/Info"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_f1u5n")
+stretch_mode = 4
+
+[node name="HPInfo" type="GridContainer" parent="Content/Info"]
+layout_mode = 2
+columns = 3
+
+[node name="BodyLabel" type="Label" parent="Content/Info/HPInfo"]
+layout_mode = 2
+text = "Body"
+horizontal_alignment = 2
+
+[node name="BodyBar" type="TextureProgressBar" parent="Content/Info/HPInfo"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("2_8yfrc")
+texture_over = ExtResource("3_qftev")
+texture_progress = ExtResource("4_jvle0")
+
+[node name="BodyNum" type="Label" parent="Content/Info/HPInfo"]
+layout_mode = 2
+text = "000"
+
+[node name="ArmLLabel" type="Label" parent="Content/Info/HPInfo"]
+layout_mode = 2
+text = "Arm L"
+horizontal_alignment = 2
+
+[node name="ArmLBar" type="TextureProgressBar" parent="Content/Info/HPInfo"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("2_8yfrc")
+texture_over = ExtResource("3_qftev")
+texture_progress = ExtResource("4_jvle0")
+
+[node name="ArmLNum" type="Label" parent="Content/Info/HPInfo"]
+layout_mode = 2
+text = "000"
+
+[node name="ArmRLabel" type="Label" parent="Content/Info/HPInfo"]
+layout_mode = 2
+text = "Arm R"
+horizontal_alignment = 2
+
+[node name="ArmRBar" type="TextureProgressBar" parent="Content/Info/HPInfo"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("2_8yfrc")
+texture_over = ExtResource("3_qftev")
+texture_progress = ExtResource("4_jvle0")
+
+[node name="ArmRNum" type="Label" parent="Content/Info/HPInfo"]
+layout_mode = 2
+text = "000"
+
+[node name="LegsLabel" type="Label" parent="Content/Info/HPInfo"]
+layout_mode = 2
+text = "Legs"
+horizontal_alignment = 2
+
+[node name="LegsBar" type="TextureProgressBar" parent="Content/Info/HPInfo"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("2_8yfrc")
+texture_over = ExtResource("3_qftev")
+texture_progress = ExtResource("4_jvle0")
+
+[node name="LegsNum" type="Label" parent="Content/Info/HPInfo"]
+layout_mode = 2
+text = "000"

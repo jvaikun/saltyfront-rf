@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://crplgr77xdqvm" path="res://parts/weapon/textures/tex_sgun0.png" id="1"]
 [ext_resource type="Script" path="res://parts/weapon/sgun.gd" id="1_3jqg7"]
 [ext_resource type="ArrayMesh" uid="uid://cyt8ttq2ephj4" path="res://parts/weapon/models/sgun0.obj" id="2"]
-[ext_resource type="Texture2D" uid="uid://bqg425k7vqa3i" path="res://effects/muzzle_02.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bqg425k7vqa3i" path="res://effects/mech/tex_muzzle.png" id="3"]
 [ext_resource type="AudioStream" uid="uid://wergnhdnmty2" path="res://sfx/shoot/sgun_shoot3.wav" id="4"]
 [ext_resource type="AudioStream" uid="uid://bkjifm5bmgtl" path="res://sfx/shoot/sgun_shoot2.wav" id="5"]
 [ext_resource type="AudioStream" uid="uid://dp08djs2djj2t" path="res://sfx/shoot/sgun_shoot0.wav" id="6"]
@@ -53,6 +53,7 @@ resources = [PackedStringArray("sgun_ready0", "sgun_ready1", "sgun_ready2"), [Ex
 resources = [PackedStringArray("sgun_shoot0", "sgun_shoot1", "sgun_shoot2", "sgun_shoot3"), [ExtResource("6"), ExtResource("7"), ExtResource("5"), ExtResource("4")]]
 
 [node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 32
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 material_override = SubResource("1")
