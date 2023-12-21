@@ -40,9 +40,9 @@ curve = SubResource("Curve_oflps")
 lifetime_randomness = 0.5
 direction = Vector3(0, 0, -1)
 spread = 5.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 5.0
 initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_wr0bs")
 color_ramp = SubResource("GradientTexture1D_gw0q5")
 
@@ -70,14 +70,14 @@ gradient = SubResource("Gradient_5t5j7")
 [sub_resource type="ParticleProcessMaterial" id="3"]
 emission_shape = 1
 emission_sphere_radius = 0.1
+angle_max = 360.0
 direction = Vector3(0, 1, 0)
 spread = 5.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 1.0
 initial_velocity_max = 1.0
 angular_velocity_min = -15.0
 angular_velocity_max = 15.0
-angle_max = 360.0
+gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_6ksr5")
 
 [sub_resource type="StandardMaterial3D" id="4"]

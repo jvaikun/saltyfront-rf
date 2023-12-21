@@ -131,5 +131,5 @@ func get_los(target):
 	var from = global_transform.origin + Vector3.UP
 	var to = target.global_transform.origin + Vector3.UP
 	var space_state = get_world_3d().direct_space_state
-	var raycast = space_state.intersect_ray(from, to, [], 1)
+	var raycast = 0 #space_state.intersect_ray(from, to, [], 1)
 	return raycast.is_empty()

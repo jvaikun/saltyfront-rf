@@ -90,7 +90,6 @@ func load_mechs(team_list):
 	var all_mechs = (team1 + team2)
 	var all_data = (team_list[0].mechs + team_list[1].mechs)
 	for i in all_mechs.size():
-		all_mechs[i].team = all_data[i].team
 		all_mechs[i].mech_data = all_data[i]
 		all_mechs[i].state = all_mechs[i].MechState.DONE
 		all_mechs[i].setup_mech()
@@ -189,4 +188,8 @@ func roll_stats(mech):
 	# Attach stat block to mech
 	mech.mech_data = stats
 	mech.setup_mech()
+
+
+func _on_visibility_changed():
+	hangar_cam.current = visible
 

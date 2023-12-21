@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://24cbtspsg2rl"]
+
+[ext_resource type="Texture2D" uid="uid://bda7mq1uvn74s" path="res://ui/textures/bgm_frame.png" id="1_5x55d"]
+[ext_resource type="Script" path="res://main/bgm_player/bgm_player.gd" id="1_wu08l"]
+[ext_resource type="FontFile" uid="uid://b20jdsyu8cy2h" path="res://ui/fonts/font_square_mini.ttf" id="3_j2uw1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7w4cp"]
+texture = ExtResource("1_5x55d")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[node name="BGMPlayer" type="PanelContainer"]
+texture_filter = 1
+offset_right = 1.0
+offset_bottom = 23.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_7w4cp")
+script = ExtResource("1_wu08l")
+
+[node name="ClipFiles" type="ResourcePreloader" parent="."]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+
+[node name="Clip" type="AudioStreamPlayer" parent="."]
+
+[node name="Ticker" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_j2uw1")
+theme_override_font_sizes/font_size = 32
+text = " +++ BGM TICKER TEXT +++ "

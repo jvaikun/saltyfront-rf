@@ -1,76 +1,140 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdppvleucduiq"]
+[gd_scene load_steps=15 format=3 uid="uid://bdppvleucduiq"]
 
+[ext_resource type="Script" path="res://arena/unit_status.gd" id="1_j86vn"]
 [ext_resource type="Texture2D" uid="uid://dndx7s0juehth" path="res://ui/textures/portraits.png" id="1_xo1x5"]
 [ext_resource type="Texture2D" uid="uid://bcs4vo13scopn" path="res://arena/textures/mech_tag.png" id="2_pg7bj"]
+[ext_resource type="Texture2D" uid="uid://b2sdfrrk5pwcv" path="res://arena/textures/mechdmg_outline.png" id="3_f7q3r"]
 [ext_resource type="Texture2D" uid="uid://cx0x5po56gn3o" path="res://arena/textures/mechdmg_arml.png" id="3_n5y62"]
 [ext_resource type="Texture2D" uid="uid://dbspmjj1jh111" path="res://arena/textures/mechdmg_armr.png" id="4_g0epr"]
 [ext_resource type="Texture2D" uid="uid://nyw1tww6cndx" path="res://arena/textures/mechdmg_body.png" id="5_idfls"]
 [ext_resource type="Texture2D" uid="uid://c7ge4hq7c3026" path="res://arena/textures/mechdmg_legs.png" id="6_c8h61"]
+[ext_resource type="FontFile" uid="uid://b20jdsyu8cy2h" path="res://ui/fonts/font_square_mini.ttf" id="8_3cg8h"]
+[ext_resource type="Texture2D" uid="uid://bop4iqna28s1u" path="res://arena/textures/highlight.png" id="8_5mb4l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sg3h7"]
+bg_color = Color(0, 0.12549, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ianmm"]
+resource_local_to_scene = true
 atlas = ExtResource("1_xo1x5")
 region = Rect2(0, 0, 64, 80)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8l05"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0, 0.12549, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 1, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mvclo"]
 content_margin_left = 8.0
 
 [node name="UnitStatus" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_sg3h7")
+script = ExtResource("1_j86vn")
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Info" type="HBoxContainer" parent="Content"]
+[node name="Info" type="MarginContainer" parent="Content"]
 layout_mode = 2
 
-[node name="Pilot" type="MarginContainer" parent="Content/Info"]
+[node name="Status" type="HBoxContainer" parent="Content/Info"]
 layout_mode = 2
 
-[node name="TeamColor" type="ColorRect" parent="Content/Info/Pilot"]
+[node name="Pilot" type="MarginContainer" parent="Content/Info/Status"]
 layout_mode = 2
 
-[node name="Portrait" type="TextureRect" parent="Content/Info/Pilot"]
+[node name="TeamColor" type="ColorRect" parent="Content/Info/Status/Pilot"]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="Content/Info/Status/Pilot"]
 texture_filter = 1
 layout_mode = 2
 texture = SubResource("AtlasTexture_ianmm")
 stretch_mode = 4
 
-[node name="Tag" type="TextureRect" parent="Content/Info/Pilot"]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("2_pg7bj")
-stretch_mode = 2
-
-[node name="TagNum" type="Label" parent="Content/Info/Pilot"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_mvclo")
-text = "0"
-
-[node name="MechDmg" type="MarginContainer" parent="Content/Info"]
+[node name="MechDmg" type="MarginContainer" parent="Content/Info/Status"]
 layout_mode = 2
 
-[node name="DmgArmL" type="TextureRect" parent="Content/Info/MechDmg"]
+[node name="DmgArmL" type="TextureRect" parent="Content/Info/Status/MechDmg"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("3_n5y62")
 
-[node name="DmgArmR" type="TextureRect" parent="Content/Info/MechDmg"]
+[node name="DmgArmR" type="TextureRect" parent="Content/Info/Status/MechDmg"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("4_g0epr")
 
-[node name="DmgBody" type="TextureRect" parent="Content/Info/MechDmg"]
+[node name="DmgBody" type="TextureRect" parent="Content/Info/Status/MechDmg"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("5_idfls")
 
-[node name="DmgLegs" type="TextureRect" parent="Content/Info/MechDmg"]
+[node name="DmgLegs" type="TextureRect" parent="Content/Info/Status/MechDmg"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("6_c8h61")
+
+[node name="DmgOutline" type="TextureRect" parent="Content/Info/Status/MechDmg"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_f7q3r")
+
+[node name="Death" type="Label" parent="Content/Info"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("8_3cg8h")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_m8l05")
+text = "S M O K E D"
+horizontal_alignment = 1
 
 [node name="PilotName" type="Label" parent="Content"]
 layout_mode = 2
 text = "Pilot Name"
 horizontal_alignment = 1
+
+[node name="Highlight" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("8_5mb4l")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="TeamNum" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Tag" type="TextureRect" parent="TeamNum"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 80.0
+texture = ExtResource("2_pg7bj")
+stretch_mode = 2
+
+[node name="Number" type="Label" parent="TeamNum"]
+layout_mode = 0
+offset_right = 18.0
+offset_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mvclo")
+text = "0"

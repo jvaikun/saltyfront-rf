@@ -796,3 +796,5 @@ transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74
 [node name="HangarCam" type="Camera3D" parent="."]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -2.5, 2, 17)
 environment = ExtResource("6_am0md")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

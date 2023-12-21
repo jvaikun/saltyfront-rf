@@ -1,54 +1,94 @@
 extends Node3D
 
 const test_obj = preload("res://effects/mech/mech_explode.tscn")
+const map_default = "res://maps/map.tscn"
 
 @onready var mech_list = $Mechs.get_children()
-@onready var pov1 = $ArenaUI/POV1/ViewCont/Viewport
-@onready var pov2 = $ArenaUI/POV2/ViewCont/Viewport
-@onready var pov_cam1 = $ArenaUI/POV1/ViewCont/Viewport/POVCam
-@onready var pov_cam2 = $ArenaUI/POV2/ViewCont/Viewport/POVCam
+@onready var pov_cam = $ArenaUI/ActionBar/POV/Content/ViewCont/Viewport/POVCam
+@onready var combat_pov_cam1 = $ArenaUI/POV1/ViewCont/Viewport/POVCam
+@onready var combat_pov_cam2 = $ArenaUI/POV2/ViewCont/Viewport/POVCam
+@onready var top_bar = $ArenaUI/TopBar
+@onready var team_info_list = $ArenaUI/Team1Info.get_children() + $ArenaUI/Team2Info.get_children()
 
+var match_data : Dictionary
+var map_node = null
+var start_points = []
 var attack_list = []
 var focus_mech_index = 0
+var focus_mech = null
 
-# Called when the node enters the scene tree for the first time.
+var turn_queue = []
+
+signal match_ended
+
+
 func _ready():
 	$ArenaCam.target_mech = mech_list[focus_mech_index]
-	reset_arena()
-	pov_cam1.transform = mech_list[focus_mech_index].transform
-	pov_cam1.global_position = mech_list[focus_mech_index].cam_point.global_position
-	pov_cam2.transform = $Mechs/MechActor2.transform
-	pov_cam2.global_position = $Mechs/MechActor2.cam_point.global_position
+	load_map(map_default)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_home"):
-		reset_arena()
 	if Input.is_action_just_pressed("ui_end"):
+		end_match()
+	if Input.is_action_just_pressed("ui_page_up"):
 		roll_attack()
 		$Mechs/MechActor.anim_attack(attack_list)
-	if Input.is_action_just_pressed("ui_page_up"):
-		var test_inst = test_obj.instantiate()
-		add_child(test_inst)
 	if Input.is_action_just_pressed("ui_page_down"):
 		focus_mech_index += 1
 		if focus_mech_index >= mech_list.size():
 			focus_mech_index = 0
 		$ArenaCam.target_mech = mech_list[focus_mech_index]
-		pov_cam1.transform = mech_list[focus_mech_index].transform
-		pov_cam1.global_position = mech_list[focus_mech_index].cam_point.global_position
+		update_markers(mech_list[focus_mech_index])
+		pov_cam.transform = mech_list[focus_mech_index].transform
+		pov_cam.global_position = mech_list[focus_mech_index].cam_point.global_position
 
 
-func reset_arena():
-	$Mechs/MechActor.team = randi() % 8
-	$Mechs/MechActor.team = randi() % 8
-	for mech in $Mechs.get_children():
-		roll_stats(mech)
-	$Mechs/MechActor.attack_weapon = $Mechs/MechActor.weapon_list[3]
-	$Mechs/MechActor.attack_target = $Mechs/MechActor2
-	$Mechs/MechActor2.attack_weapon = $Mechs/MechActor2.weapon_list[3]
-	$Mechs/MechActor2.attack_target = $Mechs/MechActor
+func load_map(map_path):
+	var map_obj = load(map_path)
+	if is_instance_valid(map_node):
+		map_node.free()
+	map_node = map_obj.instantiate()
+	add_child(map_node)
+
+
+func setup_map():
+	# Setup mech data and actors
+	var this_team
+	var this_mech
+	for i in match_data.teams.size():
+		this_team = match_data.teams[i]
+		for j in this_team.mechs.size():
+			this_mech = this_team.mechs[j]
+			this_mech.reset_data()
+			this_mech.team = this_team.index
+			this_mech.num = j
+			this_mech.actor_node = mech_list[(i * 4) + j]
+			mech_list[(i * this_team.size()) + j].mech_data = this_mech
+			mech_list[(i * this_team.size()) + j].setup_mech()
+	# Place actors at start positions
+	var spawn_groups = map_node.get_node("Spawns").get_children()
+	spawn_groups.shuffle()
+	var spawn_points = []
+	for i in match_data.teams.size():
+		spawn_points.append_array(spawn_groups[i].get_children())
+	for j in spawn_points.size():
+		mech_list[j].global_transform = spawn_points[j].global_transform
+	# Update UI
+	top_bar.match_info = match_data
+	for i in team_info_list.size():
+		team_info_list[i].focus_mech = mech_list[i].mech_data
+		team_info_list[i].update_info()
+	focus_mech_index = 0
+	update_markers(mech_list[focus_mech_index])
+	pov_cam.transform = mech_list[focus_mech_index].transform
+	pov_cam.global_position = mech_list[focus_mech_index].cam_point.global_position
+
+
+func end_match():
+	if is_instance_valid(map_node):
+		map_node.queue_free()
+	hide()
+	match_ended.emit()
 
 
 func roll_attack():
@@ -75,9 +115,9 @@ func roll_stats(mech):
 	stats.arm_l = PartDB.arm[partSet]
 	stats.legs = PartDB.legs[partSet]
 	# sgun = 0, mgun = 4, flame = 9, rifle = 12, melee = 19
-	var wpnSet = "4" #str(randi() % PartDB.weapon.size())
-	stats.wpn_r = PartDB.weapon[wpnSet]
-	stats.wpn_l = PartDB.weapon[wpnSet]
+	var wpn_type = "mgun"
+	stats.wpn_r = PartDB.get_rand_weapon_type(wpn_type)
+	stats.wpn_l = PartDB.get_rand_weapon_type(wpn_type)
 	var podSet = str(randi() % PartDB.pod.size())
 	stats.pod_r = PartDB.pod[podSet]
 	stats.pod_l = PartDB.pod[podSet]
@@ -85,3 +125,38 @@ func roll_stats(mech):
 	# Attach stat block to mech
 	mech.mech_data = stats
 	mech.setup_mech()
+
+
+func hide_markers():
+	$Markers/Select.visible = false
+	$Markers/Move.visible = false
+	$Markers/Attack.visible = false
+
+
+func update_markers(mech):
+	focus_mech = mech
+	if is_instance_valid(focus_mech):
+		$Markers/Select.position = focus_mech.get_position() + Vector3(0, 0.02, 0)
+		$Markers/Select.visible = true
+		if is_instance_valid(focus_mech.move_target):
+			$Markers/Move.position = focus_mech.move_target.get_position() + Vector3(0, 0.02, 0)
+			$Markers/Move.visible = true
+		else:
+			$Markers/Move.visible = false
+		if is_instance_valid(focus_mech.attack_target):
+			$Markers/Attack.position = focus_mech.attack_target.get_position() + Vector3(0, 0.02, 0)
+			$Markers/Attack.visible = true
+		else:
+			$Markers/Attack.visible = false
+	else:
+		hide_markers()
+
+
+func update_ui():
+	pass
+
+
+func _on_visibility_changed():
+	$ArenaUI.visible = visible
+	$ArenaCam.cam_node.current = visible
+

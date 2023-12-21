@@ -74,6 +74,16 @@ func _ready():
 		file.close()
 
 
+func get_rand_weapon_type(type):
+	var weapon_id = "0"
+	var weapon_pool = []
+	for w_key in weapon.keys():
+		if weapon[w_key].type == type:
+			weapon_pool.append(w_key)
+	weapon_id = weapon_pool.pick_random()
+	return weapon[weapon_id]
+
+
 func get_weapon(primary, secondary):
 	var primary_pool = []
 	var secondary_pool = []
@@ -84,7 +94,7 @@ func get_weapon(primary, secondary):
 			secondary_pool.append(w_key)
 	var weapon_id = "0"
 	if randf() < 0.5:
-		weapon_id = primary_pool[randi() % primary_pool.size()]
+		weapon_id = primary_pool.pick_random()
 	else:
-		weapon_id = secondary_pool[randi() % secondary_pool.size()]
+		weapon_id = secondary_pool.pick_random()
 	return weapon[weapon_id]

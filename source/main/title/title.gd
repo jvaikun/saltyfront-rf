@@ -37,6 +37,7 @@ var game_config = ConfigFile.new()
 
 
 func _ready():
+	
 	# Check for config file and display settings
 	var err = game_config.load("settings.cfg")
 	if err == OK:

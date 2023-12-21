@@ -1,6 +1,62 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvfdm2nsot88v"]
+[gd_scene load_steps=13 format=3 uid="uid://bvfdm2nsot88v"]
 
+[ext_resource type="Script" path="res://main/transition/transition.gd" id="1_v03jq"]
 [ext_resource type="Shader" path="res://main/transition/mask_dissolve.gdshader" id="1_vbnxj"]
+[ext_resource type="Texture2D" uid="uid://dftl6p8q240k6" path="res://ui/textures/crt_filter.png" id="2_07ser"]
+[ext_resource type="PackedScene" uid="uid://q1krfrspi1wx" path="res://main/transition/sub_window.tscn" id="2_ji1j7"]
+[ext_resource type="FontFile" uid="uid://olbpo2kjhuul" path="res://ui/fonts/font_terminal.ttf" id="2_tm2r2"]
+[ext_resource type="Texture2D" uid="uid://do5nlmxfexcvy" path="res://main/transition/godot_logo2.png" id="3_gncpd"]
+
+[sub_resource type="Animation" id="Animation_wjtc5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bootup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bsgbi"]
+resource_name = "boot_up"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bootup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_messages"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86bk5"]
+_data = {
+"RESET": SubResource("Animation_wjtc5"),
+"boot_up": SubResource("Animation_bsgbi")
+}
 
 [sub_resource type="Gradient" id="Gradient_emtbb"]
 
@@ -20,8 +76,147 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_v03jq")
+
+[node name="Bootup" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Left" type="VBoxContainer" parent="Bootup"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 512.0
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="SubWindow" parent="Bootup/Left" instance=ExtResource("2_ji1j7")]
+layout_mode = 2
+head_text = "Video"
+
+[node name="SubWindow2" parent="Bootup/Left" instance=ExtResource("2_ji1j7")]
+layout_mode = 2
+head_text = "Comms"
+
+[node name="SubWindow3" parent="Bootup/Left" instance=ExtResource("2_ji1j7")]
+layout_mode = 2
+head_text = "E-Commerce"
+
+[node name="Center" type="VBoxContainer" parent="Bootup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -450.0
+offset_right = 324.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Top" type="Label" parent="Bootup/Center"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_tm2r2")
+theme_override_font_sizes/font_size = 48
+text = "A D O N A I  E L O H I M
+E T A O I N  S H R D L U
+Sphinx of Black Quartz
+Judge My Vow"
+horizontal_alignment = 1
+
+[node name="Credits" type="VBoxContainer" parent="Bootup/Center"]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="Bootup/Center/Credits"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_tm2r2")
+theme_override_font_sizes/font_size = 48
+text = "SaltyOS Tournament System
+
+Created By:
+Tupperwarez
+Pizza Illuminati
+
+Powered By:"
+max_lines_visible = 7
+
+[node name="Logo" type="TextureRect" parent="Bootup/Center/Credits"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+texture = ExtResource("3_gncpd")
+stretch_mode = 5
+
+[node name="Slogan" type="VBoxContainer" parent="Bootup/Center"]
+layout_mode = 2
+
+[node name="Line1" type="Label" parent="Bootup/Center/Slogan"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_tm2r2")
+theme_override_font_sizes/font_size = 48
+text = "Cast In The Name of Hype"
+horizontal_alignment = 1
+
+[node name="Line2" type="Label" parent="Bootup/Center/Slogan"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_tm2r2")
+theme_override_font_sizes/font_size = 48
+text = "YE NOT SALTY"
+horizontal_alignment = 1
+
+[node name="Right" type="VBoxContainer" parent="Bootup"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="SubWindow" parent="Bootup/Right" instance=ExtResource("2_ji1j7")]
+layout_mode = 2
+head_text = "Legal"
+
+[node name="SubWindow2" parent="Bootup/Right" instance=ExtResource("2_ji1j7")]
+layout_mode = 2
+head_text = "Security"
+
+[node name="SubWindow3" parent="Bootup/Right" instance=ExtResource("2_ji1j7")]
+layout_mode = 2
+head_text = "Safety"
+
+[node name="CRT" type="TextureRect" parent="Bootup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_07ser")
+stretch_mode = 1
 
 [node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_86bk5")
+}
 
 [node name="ScreenBuffer" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_0acb6")

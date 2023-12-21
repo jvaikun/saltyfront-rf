@@ -1,0 +1,1359 @@
+[gd_scene load_steps=16 format=3 uid="uid://bfgtmo3yy5jq1"]
+
+[ext_resource type="Texture2D" uid="uid://uiue7x6t4suf" path="res://maps/textures/skyline.png" id="1_cehai"]
+[ext_resource type="PackedScene" uid="uid://7ubbwrsj8vds" path="res://maps/map_tile.tscn" id="1_twboe"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6bstq"]
+
+[sub_resource type="Sky" id="Sky_mi2xf"]
+sky_material = SubResource("ProceduralSkyMaterial_6bstq")
+
+[sub_resource type="Environment" id="Environment_oj54p"]
+background_mode = 2
+sky = SubResource("Sky_mi2xf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8p6gx"]
+transparency = 1
+albedo_texture = ExtResource("1_cehai")
+uv1_scale = Vector3(4, 1.5, 1.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5hu1v"]
+flip_faces = true
+top_radius = 30.0
+bottom_radius = 30.0
+height = 30.0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jdr3"]
+albedo_color = Color(0, 0.2, 0, 1)
+metallic_specular = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lm044"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xfexv"]
+size = Vector3(40, 0.5, 40)
+
+[sub_resource type="Gradient" id="Gradient_soj13"]
+colors = PackedColorArray(0.2, 0.2, 0.2, 1, 0.396078, 0.396078, 0.396078, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hqk5u"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ucerg"]
+color_ramp = SubResource("Gradient_soj13")
+noise = SubResource("FastNoiseLite_hqk5u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kd0k"]
+albedo_texture = SubResource("NoiseTexture2D_ucerg")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mvw83"]
+size = Vector2(40, 40)
+
+[node name="Map" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oj54p")
+
+[node name="LightSource" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 6, 0)
+
+[node name="SkyBox" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+layers = 2
+material_override = SubResource("StandardMaterial3D_8p6gx")
+mesh = SubResource("CylinderMesh_5hu1v")
+
+[node name="WorldGround" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+layers = 2
+material_override = SubResource("StandardMaterial3D_8jdr3")
+mesh = SubResource("PlaneMesh_lm044")
+
+[node name="Spawns" type="Node3D" parent="."]
+
+[node name="Group1" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 19)
+
+[node name="Point1" type="Marker3D" parent="Spawns/Group1"]
+gizmo_extents = 1.0
+
+[node name="Point2" type="Marker3D" parent="Spawns/Group1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Point3" type="Marker3D" parent="Spawns/Group1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Point4" type="Marker3D" parent="Spawns/Group1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Group2" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -19)
+
+[node name="Point1" type="Marker3D" parent="Spawns/Group2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Point2" type="Marker3D" parent="Spawns/Group2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Point3" type="Marker3D" parent="Spawns/Group2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Point4" type="Marker3D" parent="Spawns/Group2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Group3" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 19)
+
+[node name="Point1" type="Marker3D" parent="Spawns/Group3"]
+gizmo_extents = 1.0
+
+[node name="Point2" type="Marker3D" parent="Spawns/Group3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Point3" type="Marker3D" parent="Spawns/Group3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Point4" type="Marker3D" parent="Spawns/Group3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Group4" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -19)
+
+[node name="Point1" type="Marker3D" parent="Spawns/Group4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Point2" type="Marker3D" parent="Spawns/Group4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Point3" type="Marker3D" parent="Spawns/Group4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Point4" type="Marker3D" parent="Spawns/Group4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 0, 0)
+gizmo_extents = 1.0
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="Collision" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_xfexv")
+
+[node name="MapGround" type="MeshInstance3D" parent="Ground"]
+material_override = SubResource("StandardMaterial3D_7kd0k")
+mesh = SubResource("PlaneMesh_mvw83")
+
+[node name="NavGrid" type="Node3D" parent="."]
+
+[node name="MapTile" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -19)
+
+[node name="MapTile2" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -19)
+
+[node name="MapTile3" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -19)
+
+[node name="MapTile4" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -19)
+
+[node name="MapTile5" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -19)
+
+[node name="MapTile6" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -19)
+
+[node name="MapTile7" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -19)
+
+[node name="MapTile8" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -19)
+
+[node name="MapTile9" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -19)
+
+[node name="MapTile10" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -19)
+
+[node name="MapTile11" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -19)
+
+[node name="MapTile12" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -19)
+
+[node name="MapTile13" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -19)
+
+[node name="MapTile14" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -19)
+
+[node name="MapTile15" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -19)
+
+[node name="MapTile16" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -19)
+
+[node name="MapTile17" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -19)
+
+[node name="MapTile18" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -19)
+
+[node name="MapTile19" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -19)
+
+[node name="MapTile20" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -19)
+
+[node name="MapTile21" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -17)
+
+[node name="MapTile22" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -17)
+
+[node name="MapTile23" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -17)
+
+[node name="MapTile24" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -17)
+
+[node name="MapTile25" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -17)
+
+[node name="MapTile26" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -17)
+
+[node name="MapTile27" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -17)
+
+[node name="MapTile28" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -17)
+
+[node name="MapTile29" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -17)
+
+[node name="MapTile30" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -17)
+
+[node name="MapTile31" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -17)
+
+[node name="MapTile32" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -17)
+
+[node name="MapTile33" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -17)
+
+[node name="MapTile34" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -17)
+
+[node name="MapTile35" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -17)
+
+[node name="MapTile36" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -17)
+
+[node name="MapTile37" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -17)
+
+[node name="MapTile38" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -17)
+
+[node name="MapTile39" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -17)
+
+[node name="MapTile40" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -17)
+
+[node name="MapTile41" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -15)
+
+[node name="MapTile42" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -15)
+
+[node name="MapTile43" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -15)
+
+[node name="MapTile44" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -15)
+
+[node name="MapTile45" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -15)
+
+[node name="MapTile46" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -15)
+
+[node name="MapTile47" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -15)
+
+[node name="MapTile48" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -15)
+
+[node name="MapTile49" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -15)
+
+[node name="MapTile50" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -15)
+
+[node name="MapTile51" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -15)
+
+[node name="MapTile52" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -15)
+
+[node name="MapTile53" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -15)
+
+[node name="MapTile54" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -15)
+
+[node name="MapTile55" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -15)
+
+[node name="MapTile56" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -15)
+
+[node name="MapTile57" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -15)
+
+[node name="MapTile58" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -15)
+
+[node name="MapTile59" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -15)
+
+[node name="MapTile60" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -15)
+
+[node name="MapTile61" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -13)
+
+[node name="MapTile62" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -13)
+
+[node name="MapTile63" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -13)
+
+[node name="MapTile64" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -13)
+
+[node name="MapTile65" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -13)
+
+[node name="MapTile66" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -13)
+
+[node name="MapTile67" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -13)
+
+[node name="MapTile68" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -13)
+
+[node name="MapTile69" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -13)
+
+[node name="MapTile70" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -13)
+
+[node name="MapTile71" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -13)
+
+[node name="MapTile72" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -13)
+
+[node name="MapTile73" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -13)
+
+[node name="MapTile74" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -13)
+
+[node name="MapTile75" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -13)
+
+[node name="MapTile76" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -13)
+
+[node name="MapTile77" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -13)
+
+[node name="MapTile78" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -13)
+
+[node name="MapTile79" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -13)
+
+[node name="MapTile80" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -13)
+
+[node name="MapTile81" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -11)
+
+[node name="MapTile82" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -11)
+
+[node name="MapTile83" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -11)
+
+[node name="MapTile84" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -11)
+
+[node name="MapTile85" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -11)
+
+[node name="MapTile86" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -11)
+
+[node name="MapTile87" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -11)
+
+[node name="MapTile88" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -11)
+
+[node name="MapTile89" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -11)
+
+[node name="MapTile90" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -11)
+
+[node name="MapTile91" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -11)
+
+[node name="MapTile92" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -11)
+
+[node name="MapTile93" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -11)
+
+[node name="MapTile94" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -11)
+
+[node name="MapTile95" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -11)
+
+[node name="MapTile96" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -11)
+
+[node name="MapTile97" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -11)
+
+[node name="MapTile98" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -11)
+
+[node name="MapTile99" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -11)
+
+[node name="MapTile100" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -11)
+
+[node name="MapTile101" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -9)
+
+[node name="MapTile102" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -9)
+
+[node name="MapTile103" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -9)
+
+[node name="MapTile104" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -9)
+
+[node name="MapTile105" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -9)
+
+[node name="MapTile106" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -9)
+
+[node name="MapTile107" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -9)
+
+[node name="MapTile108" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -9)
+
+[node name="MapTile109" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -9)
+
+[node name="MapTile110" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -9)
+
+[node name="MapTile111" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -9)
+
+[node name="MapTile112" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -9)
+
+[node name="MapTile113" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -9)
+
+[node name="MapTile114" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -9)
+
+[node name="MapTile115" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -9)
+
+[node name="MapTile116" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -9)
+
+[node name="MapTile117" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -9)
+
+[node name="MapTile118" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -9)
+
+[node name="MapTile119" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -9)
+
+[node name="MapTile120" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -9)
+
+[node name="MapTile121" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -7)
+
+[node name="MapTile122" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -7)
+
+[node name="MapTile123" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -7)
+
+[node name="MapTile124" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -7)
+
+[node name="MapTile125" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -7)
+
+[node name="MapTile126" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -7)
+
+[node name="MapTile127" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -7)
+
+[node name="MapTile128" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
+
+[node name="MapTile129" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -7)
+
+[node name="MapTile130" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -7)
+
+[node name="MapTile131" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+
+[node name="MapTile132" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -7)
+
+[node name="MapTile133" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7)
+
+[node name="MapTile134" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -7)
+
+[node name="MapTile135" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -7)
+
+[node name="MapTile136" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -7)
+
+[node name="MapTile137" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -7)
+
+[node name="MapTile138" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -7)
+
+[node name="MapTile139" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -7)
+
+[node name="MapTile140" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -7)
+
+[node name="MapTile141" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -5)
+
+[node name="MapTile142" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -5)
+
+[node name="MapTile143" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -5)
+
+[node name="MapTile144" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -5)
+
+[node name="MapTile145" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -5)
+
+[node name="MapTile146" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -5)
+
+[node name="MapTile147" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
+
+[node name="MapTile148" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
+
+[node name="MapTile149" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
+
+[node name="MapTile150" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
+
+[node name="MapTile151" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
+
+[node name="MapTile152" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
+
+[node name="MapTile153" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
+
+[node name="MapTile154" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -5)
+
+[node name="MapTile155" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -5)
+
+[node name="MapTile156" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -5)
+
+[node name="MapTile157" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -5)
+
+[node name="MapTile158" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -5)
+
+[node name="MapTile159" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -5)
+
+[node name="MapTile160" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -5)
+
+[node name="MapTile161" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -3)
+
+[node name="MapTile162" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -3)
+
+[node name="MapTile163" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -3)
+
+[node name="MapTile164" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -3)
+
+[node name="MapTile165" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -3)
+
+[node name="MapTile166" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -3)
+
+[node name="MapTile167" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -3)
+
+[node name="MapTile168" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+
+[node name="MapTile169" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+
+[node name="MapTile170" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+
+[node name="MapTile171" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
+
+[node name="MapTile172" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+
+[node name="MapTile173" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
+
+[node name="MapTile174" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -3)
+
+[node name="MapTile175" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -3)
+
+[node name="MapTile176" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -3)
+
+[node name="MapTile177" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -3)
+
+[node name="MapTile178" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -3)
+
+[node name="MapTile179" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -3)
+
+[node name="MapTile180" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -3)
+
+[node name="MapTile181" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -1)
+
+[node name="MapTile182" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -1)
+
+[node name="MapTile183" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -1)
+
+[node name="MapTile184" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -1)
+
+[node name="MapTile185" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -1)
+
+[node name="MapTile186" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -1)
+
+[node name="MapTile187" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
+
+[node name="MapTile188" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+
+[node name="MapTile189" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
+
+[node name="MapTile190" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="MapTile191" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="MapTile192" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
+
+[node name="MapTile193" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
+
+[node name="MapTile194" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
+
+[node name="MapTile195" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -1)
+
+[node name="MapTile196" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -1)
+
+[node name="MapTile197" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -1)
+
+[node name="MapTile198" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -1)
+
+[node name="MapTile199" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -1)
+
+[node name="MapTile200" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -1)
+
+[node name="MapTile201" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 1)
+
+[node name="MapTile202" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 1)
+
+[node name="MapTile203" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 1)
+
+[node name="MapTile204" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 1)
+
+[node name="MapTile205" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 1)
+
+[node name="MapTile206" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 1)
+
+[node name="MapTile207" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
+
+[node name="MapTile208" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1)
+
+[node name="MapTile209" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
+
+[node name="MapTile210" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="MapTile211" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="MapTile212" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
+
+[node name="MapTile213" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
+
+[node name="MapTile214" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
+
+[node name="MapTile215" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 1)
+
+[node name="MapTile216" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 1)
+
+[node name="MapTile217" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 1)
+
+[node name="MapTile218" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 1)
+
+[node name="MapTile219" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 1)
+
+[node name="MapTile220" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 1)
+
+[node name="MapTile221" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 3)
+
+[node name="MapTile222" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 3)
+
+[node name="MapTile223" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 3)
+
+[node name="MapTile224" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 3)
+
+[node name="MapTile225" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 3)
+
+[node name="MapTile226" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 3)
+
+[node name="MapTile227" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
+
+[node name="MapTile228" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
+
+[node name="MapTile229" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+
+[node name="MapTile230" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
+
+[node name="MapTile231" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="MapTile232" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+
+[node name="MapTile233" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
+
+[node name="MapTile234" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 3)
+
+[node name="MapTile235" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 3)
+
+[node name="MapTile236" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 3)
+
+[node name="MapTile237" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 3)
+
+[node name="MapTile238" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 3)
+
+[node name="MapTile239" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 3)
+
+[node name="MapTile240" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 3)
+
+[node name="MapTile241" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 5)
+
+[node name="MapTile242" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 5)
+
+[node name="MapTile243" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 5)
+
+[node name="MapTile244" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 5)
+
+[node name="MapTile245" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 5)
+
+[node name="MapTile246" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 5)
+
+[node name="MapTile247" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
+
+[node name="MapTile248" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
+
+[node name="MapTile249" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
+
+[node name="MapTile250" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
+
+[node name="MapTile251" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
+
+[node name="MapTile252" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
+
+[node name="MapTile253" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
+
+[node name="MapTile254" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 5)
+
+[node name="MapTile255" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 5)
+
+[node name="MapTile256" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 5)
+
+[node name="MapTile257" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 5)
+
+[node name="MapTile258" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 5)
+
+[node name="MapTile259" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 5)
+
+[node name="MapTile260" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 5)
+
+[node name="MapTile261" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 7)
+
+[node name="MapTile262" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 7)
+
+[node name="MapTile263" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 7)
+
+[node name="MapTile264" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 7)
+
+[node name="MapTile265" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 7)
+
+[node name="MapTile266" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 7)
+
+[node name="MapTile267" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
+
+[node name="MapTile268" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 7)
+
+[node name="MapTile269" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
+
+[node name="MapTile270" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
+
+[node name="MapTile271" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
+
+[node name="MapTile272" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
+
+[node name="MapTile273" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
+
+[node name="MapTile274" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7)
+
+[node name="MapTile275" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 7)
+
+[node name="MapTile276" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 7)
+
+[node name="MapTile277" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 7)
+
+[node name="MapTile278" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 7)
+
+[node name="MapTile279" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 7)
+
+[node name="MapTile280" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 7)
+
+[node name="MapTile281" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 9)
+
+[node name="MapTile282" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 9)
+
+[node name="MapTile283" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 9)
+
+[node name="MapTile284" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 9)
+
+[node name="MapTile285" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 9)
+
+[node name="MapTile286" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 9)
+
+[node name="MapTile287" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 9)
+
+[node name="MapTile288" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 9)
+
+[node name="MapTile289" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 9)
+
+[node name="MapTile290" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 9)
+
+[node name="MapTile291" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9)
+
+[node name="MapTile292" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9)
+
+[node name="MapTile293" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9)
+
+[node name="MapTile294" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 9)
+
+[node name="MapTile295" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 9)
+
+[node name="MapTile296" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 9)
+
+[node name="MapTile297" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 9)
+
+[node name="MapTile298" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 9)
+
+[node name="MapTile299" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 9)
+
+[node name="MapTile300" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 9)
+
+[node name="MapTile301" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 11)
+
+[node name="MapTile302" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 11)
+
+[node name="MapTile303" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 11)
+
+[node name="MapTile304" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 11)
+
+[node name="MapTile305" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 11)
+
+[node name="MapTile306" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 11)
+
+[node name="MapTile307" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 11)
+
+[node name="MapTile308" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 11)
+
+[node name="MapTile309" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 11)
+
+[node name="MapTile310" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 11)
+
+[node name="MapTile311" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 11)
+
+[node name="MapTile312" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 11)
+
+[node name="MapTile313" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 11)
+
+[node name="MapTile314" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 11)
+
+[node name="MapTile315" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 11)
+
+[node name="MapTile316" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 11)
+
+[node name="MapTile317" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 11)
+
+[node name="MapTile318" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 11)
+
+[node name="MapTile319" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 11)
+
+[node name="MapTile320" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 11)
+
+[node name="MapTile321" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 13)
+
+[node name="MapTile322" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 13)
+
+[node name="MapTile323" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 13)
+
+[node name="MapTile324" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 13)
+
+[node name="MapTile325" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 13)
+
+[node name="MapTile326" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 13)
+
+[node name="MapTile327" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 13)
+
+[node name="MapTile328" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 13)
+
+[node name="MapTile329" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 13)
+
+[node name="MapTile330" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 13)
+
+[node name="MapTile331" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 13)
+
+[node name="MapTile332" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 13)
+
+[node name="MapTile333" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 13)
+
+[node name="MapTile334" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 13)
+
+[node name="MapTile335" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 13)
+
+[node name="MapTile336" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 13)
+
+[node name="MapTile337" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 13)
+
+[node name="MapTile338" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 13)
+
+[node name="MapTile339" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 13)
+
+[node name="MapTile340" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 13)
+
+[node name="MapTile341" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 15)
+
+[node name="MapTile342" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 15)
+
+[node name="MapTile343" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 15)
+
+[node name="MapTile344" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 15)
+
+[node name="MapTile345" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 15)
+
+[node name="MapTile346" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 15)
+
+[node name="MapTile347" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 15)
+
+[node name="MapTile348" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 15)
+
+[node name="MapTile349" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 15)
+
+[node name="MapTile350" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 15)
+
+[node name="MapTile351" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 15)
+
+[node name="MapTile352" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 15)
+
+[node name="MapTile353" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 15)
+
+[node name="MapTile354" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 15)
+
+[node name="MapTile355" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 15)
+
+[node name="MapTile356" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 15)
+
+[node name="MapTile357" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 15)
+
+[node name="MapTile358" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
+
+[node name="MapTile359" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 15)
+
+[node name="MapTile360" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 15)
+
+[node name="MapTile361" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 17)
+
+[node name="MapTile362" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 17)
+
+[node name="MapTile363" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 17)
+
+[node name="MapTile364" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 17)
+
+[node name="MapTile365" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 17)
+
+[node name="MapTile366" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 17)
+
+[node name="MapTile367" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 17)
+
+[node name="MapTile368" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 17)
+
+[node name="MapTile369" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 17)
+
+[node name="MapTile370" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 17)
+
+[node name="MapTile371" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 17)
+
+[node name="MapTile372" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 17)
+
+[node name="MapTile373" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 17)
+
+[node name="MapTile374" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 17)
+
+[node name="MapTile375" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 17)
+
+[node name="MapTile376" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 17)
+
+[node name="MapTile377" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 17)
+
+[node name="MapTile378" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 17)
+
+[node name="MapTile379" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 17)
+
+[node name="MapTile380" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 17)
+
+[node name="MapTile381" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 19)
+
+[node name="MapTile382" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 19)
+
+[node name="MapTile383" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 19)
+
+[node name="MapTile384" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 19)
+
+[node name="MapTile385" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 19)
+
+[node name="MapTile386" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 19)
+
+[node name="MapTile387" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 19)
+
+[node name="MapTile388" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 19)
+
+[node name="MapTile389" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 19)
+
+[node name="MapTile390" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 19)
+
+[node name="MapTile391" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 19)
+
+[node name="MapTile392" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 19)
+
+[node name="MapTile393" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 19)
+
+[node name="MapTile394" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 19)
+
+[node name="MapTile395" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 19)
+
+[node name="MapTile396" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 19)
+
+[node name="MapTile397" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 19)
+
+[node name="MapTile398" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 19)
+
+[node name="MapTile399" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 19)
+
+[node name="MapTile400" parent="NavGrid" instance=ExtResource("1_twboe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 19)

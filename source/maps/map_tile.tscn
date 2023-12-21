@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://7ubbwrsj8vds"]
+
+[ext_resource type="Texture2D" uid="uid://mhjv1cufxtjc" path="res://arena/textures/active.png" id="1_iwu1x"]
+[ext_resource type="Script" path="res://maps/map_tile.gd" id="1_nx6f2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ugrg"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_iwu1x")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h4psw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fhg0l"]
+size = Vector3(2, 0.2, 2)
+
+[node name="MapTile" type="Area3D"]
+script = ExtResource("1_nx6f2")
+
+[node name="Highlight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_3ugrg")
+mesh = SubResource("PlaneMesh_h4psw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fhg0l")

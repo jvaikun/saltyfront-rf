@@ -12,20 +12,21 @@ config_version=5
 
 config/name="SaltyFront Refactor G4"
 run/main_scene="res://main/title/title.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://sf_icon.png"
 
 [autoload]
 
-UserDB="*res://autoload/UserDB.gd"
-PartDB="*res://autoload/PartDB.gd"
-GameData="*res://autoload/GameData.gd"
-ChatBot="*res://autoload/ChatBot.gd"
+UserDB="*res://autoload/user_db.gd"
+PartDB="*res://autoload/part_db.gd"
+GameData="*res://autoload/game_data.gd"
+ChatBot="*res://autoload/chat_bot.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=2
 
 [input]
 

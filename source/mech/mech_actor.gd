@@ -40,6 +40,8 @@ var attack_target = null
 var attack_weapon = null
 var attack_anim_side = null
 
+var move_target = null
+
 var state = MechState.DONE
 var is_dead = false
 var part_data = {}
@@ -52,8 +54,6 @@ var armRHP = 5 : set = set_armRHP
 var armLHP = 5 : set = set_armLHP
 var legsHP = 5 : set = set_legsHP
 var dodge_total = 0
-var team = 0
-var num = 0
 var cam_point = null
 var mech_parts = {
 	"body": {"path":"", "obj":null, "anim":null},
@@ -159,16 +159,6 @@ func set_legsHP(value):
 		legsHP = value
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
-
 # Perform attack animation and deal damage to target
 func anim_attack(shot_list):
 	if shot_list == null || !is_instance_valid(attack_target):
@@ -261,7 +251,7 @@ func setup_mech():
 		else:
 			mech_parts[part].path = part_paths[part] % mech_data[part].model
 	
-	var team_color = GameData.TEAM_DEFS[team].mech_color
+	var team_color = GameData.TEAM_DEFS[mech_data.team].mech_color
 	
 	mech_parts.legs.obj = load(mech_parts.legs.path).instantiate()
 	$Parts.add_child(mech_parts.legs.obj)
@@ -363,8 +353,8 @@ func setup_mech():
 #		unit_list = friends + enemies
 	cam_point = mech_parts.body.obj.get_node("Armature/Skeleton3D/Head")
 	if !prop_mode:
-		$MechTag/SubViewport/Tag.modulate = GameData.TEAM_DEFS[team].ui_color
-		$MechTag/SubViewport/Label.text = str(num)
+		$MechTag/SubViewport/Tag.modulate = GameData.TEAM_DEFS[mech_data.team].ui_color
+		$MechTag/SubViewport/Label.text = str(mech_data.num)
 		$MechTag.show()
 
 

@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://q1krfrspi1wx"]
+
+[ext_resource type="FontFile" uid="uid://b20jdsyu8cy2h" path="res://ui/fonts/font_square_mini.ttf" id="1_c040d"]
+[ext_resource type="Script" path="res://main/transition/sub_window.gd" id="1_g0sjk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blk5w"]
+bg_color = Color(0, 0.12549, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k47m5"]
+bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11cj8"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+
+[node name="SubWindow" type="PanelContainer"]
+custom_minimum_size = Vector2(512, 256)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_blk5w")
+script = ExtResource("1_g0sjk")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.12549, 0, 1)
+theme_override_fonts/font = ExtResource("1_c040d")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_k47m5")
+text = "Sub System Window"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_c040d")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_11cj8")
+text = "Sub System Message 1
+Sub System Message 2
+Sub System Message 3
+Sub System Message 4"

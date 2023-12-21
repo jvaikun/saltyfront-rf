@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b83bo64dska66"]
+[gd_scene load_steps=13 format=3 uid="uid://b83bo64dska66"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_5xsr4"]
 [ext_resource type="PackedScene" uid="uid://bc8sok5jho4ym" path="res://main/signup/signup.tscn" id="2_j85o4"]
+[ext_resource type="PackedScene" uid="uid://dbdeymgceovl5" path="res://arena/arena.tscn" id="3_jjjd3"]
 [ext_resource type="PackedScene" uid="uid://drrt672mw5vs1" path="res://main/versus_header/versus_header.tscn" id="3_rbx5r"]
 [ext_resource type="PackedScene" uid="uid://bitw7fwae0v2b" path="res://main/mech_info/mech_info.tscn" id="4_ydy5s"]
 [ext_resource type="PackedScene" uid="uid://rfbg4stojcvr" path="res://main/bet_info/bet_info.tscn" id="5_3swrr"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bfvlqbs3ljt5" path="res://main/tour_stats/tour_stats.tscn" id="8_cim1b"]
 [ext_resource type="PackedScene" uid="uid://dy5fjo10iooin" path="res://hangar/hangar.tscn" id="9_gc3wm"]
 [ext_resource type="PackedScene" uid="uid://bvfdm2nsot88v" path="res://main/transition/transition.tscn" id="10_xhuac"]
+[ext_resource type="PackedScene" uid="uid://24cbtspsg2rl" path="res://main/bgm_player/bgm_player.tscn" id="12_gu32w"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -21,6 +23,8 @@ grow_vertical = 2
 script = ExtResource("1_5xsr4")
 
 [node name="Hangar" parent="." instance=ExtResource("9_gc3wm")]
+
+[node name="Arena" parent="." instance=ExtResource("3_jjjd3")]
 
 [node name="Signup" parent="." groups=["ui_signup"] instance=ExtResource("2_j85o4")]
 layout_mode = 1
@@ -96,9 +100,21 @@ offset_bottom = 40.0
 [node name="Transition" parent="." instance=ExtResource("10_xhuac")]
 layout_mode = 1
 
+[node name="BGMPlayer" parent="." instance=ExtResource("12_gu32w")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -416.0
+offset_right = 0.0
+offset_bottom = 72.0
+grow_horizontal = 0
+
+[connection signal="match_ended" from="Arena" to="." method="_on_match_ended"]
 [connection signal="signup_ended" from="Signup" to="." method="_on_signup_signup_ended"]
 [connection signal="timer_ended" from="VersusHeader" to="." method="_on_versus_header_timer_ended"]
 [connection signal="focus_changed" from="MechInfo" to="." method="_on_mech_info_focus_changed"]
 [connection signal="focus_changed" from="MatchStats" to="." method="_on_match_stats_focus_changed"]
 [connection signal="bracket_ended" from="Bracket" to="." method="_on_bracket_bracket_ended"]
 [connection signal="summary_done" from="TourStats" to="." method="_on_tour_stats_summary_done"]
+[connection signal="bootup_finished" from="Transition" to="." method="_on_transition_bootup_finished"]

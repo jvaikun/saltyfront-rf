@@ -1,7 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cox5pe41f3a0l"]
 
-[sub_resource type="Animation" id="Animation_mgknb"]
-resource_name = "normal"
+[sub_resource type="Animation" id="Animation_mq0it"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -40,7 +39,8 @@ tracks/2/keys = {
 "values": [1.0]
 }
 
-[sub_resource type="Animation" id="Animation_mq0it"]
+[sub_resource type="Animation" id="Animation_mgknb"]
+resource_name = "normal"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false

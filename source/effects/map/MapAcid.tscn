@@ -1,138 +1,134 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=15 format=3 uid="uid://brl3hgjlurg43"]
 
-[ext_resource path="res://Effects/circle_05.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://2c8c2bsg2rcd" path="res://Effects/circle_05.png" id="1"]
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id="17"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("BaseMesh:material_override:albedo_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 0, 0, 0, 0.501961 ) ]
+"values": [Color(0, 0, 0, 0.501961)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("ParticleEffect:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ false ]
+"values": [false]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id="18"]
 resource_name = "begin"
 length = 0.4
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("BaseMesh:material_override:albedo_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.4 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 1, 0, 0.12549 ) ]
+"values": [Color(0, 0, 0, 0), Color(0, 1, 0, 0.12549)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("ParticleEffect:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.4 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ false, true ]
+"values": [false, true]
 }
 
-[sub_resource type="Gradient" id=10]
-colors = PackedColorArray( 0, 1, 0, 1, 0, 0, 0, 0 )
+[sub_resource type="Gradient" id="10"]
+colors = PackedColorArray(0, 1, 0, 1, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture2D" id=11]
-gradient = SubResource( 10 )
+[sub_resource type="GradientTexture2D" id="11"]
+gradient = SubResource("10")
 width = 256
 
-[sub_resource type="Curve" id=12]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.247191, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="12"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.247191, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="CurveTexture" id=4]
-width = 256
-curve = SubResource( 12 )
+[sub_resource type="CurveTexture" id="4"]
+curve = SubResource("12")
 
-[sub_resource type="ParticleProcessMaterial" id=5]
+[sub_resource type="ParticleProcessMaterial" id="5"]
 emission_shape = 2
-emission_box_extents = Vector3( 1, 0.1, 1 )
-direction = Vector3( 0, 1, 0 )
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
 spread = 0.0
-gravity = Vector3( 0, -4, 0 )
-initial_velocity = 2.0
-scale = 0.5
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 11 )
+gravity = Vector3(0, -4, 0)
+scale_curve = SubResource("4")
+color_ramp = SubResource("11")
 
-[sub_resource type="StandardMaterial3D" id=6]
-flags_unshaded = true
+[sub_resource type="StandardMaterial3D" id="6"]
+blend_mode = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
-params_blend_mode = 1
-params_billboard_mode = 3
+albedo_texture = ExtResource("1")
+billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_texture = ExtResource( 1 )
 
-[sub_resource type="QuadMesh" id=7]
-material = SubResource( 6 )
+[sub_resource type="QuadMesh" id="7"]
+material = SubResource("6")
 
-[sub_resource type="FastNoiseLite" id=19]
+[sub_resource type="FastNoiseLite" id="19"]
 fractal_octaves = 2
-period = 16.0
 
-[sub_resource type="NoiseTexture" id=20]
-flags = 3
+[sub_resource type="NoiseTexture2D" id="20"]
 width = 128
 height = 128
 seamless = true
-noise = SubResource( 19 )
+noise = SubResource("19")
 
-[sub_resource type="StandardMaterial3D" id=13]
+[sub_resource type="StandardMaterial3D" id="13"]
 resource_local_to_scene = true
-flags_transparent = true
-flags_unshaded = true
+transparency = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color( 0, 0, 0, 0.501961 )
-albedo_texture = SubResource( 20 )
+albedo_color = Color(0, 0, 0, 0.501961)
+albedo_texture = SubResource("20")
 
-[sub_resource type="QuadMesh" id=14]
-size = Vector2( 2, 2 )
+[sub_resource type="QuadMesh" id="14"]
+size = Vector2(2, 2)
 
 [node name="MapAcid" type="Node3D"]
 
 [node name="AnimEffect" type="AnimationPlayer" parent="."]
 autoplay = "begin"
-anims/RESET = SubResource( 17 )
-anims/begin = SubResource( 18 )
+anims/RESET = SubResource("17")
+anims/begin = SubResource("18")
 
 [node name="ParticleEffect" type="Particles" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 emitting = false
 amount = 4
 randomness = 1.0
-process_material = SubResource( 5 )
-draw_pass_1 = SubResource( 7 )
+process_material = SubResource("5")
+draw_pass_1 = SubResource("7")
 
 [node name="BaseMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.001, 0 )
-material_override = SubResource( 13 )
-mesh = SubResource( 14 )
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.001, 0)
+material_override = SubResource("13")
+mesh = SubResource("14")

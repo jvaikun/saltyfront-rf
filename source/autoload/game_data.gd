@@ -44,6 +44,9 @@ var anim_speed_fast : float = 2.0
 var wait_time : float = 0.25
 var wait_time_fast : float = 0.0
 
+# Buffer variables
+var team_list = []
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
