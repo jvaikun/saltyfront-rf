@@ -97,9 +97,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Transition" parent="." instance=ExtResource("10_xhuac")]
-layout_mode = 1
-
 [node name="BGMPlayer" parent="." instance=ExtResource("12_gu32w")]
 layout_mode = 1
 anchors_preset = 1
@@ -109,6 +106,9 @@ offset_left = -416.0
 offset_right = 0.0
 offset_bottom = 72.0
 grow_horizontal = 0
+
+[node name="Transition" parent="." instance=ExtResource("10_xhuac")]
+layout_mode = 1
 
 [connection signal="match_ended" from="Arena" to="." method="_on_match_ended"]
 [connection signal="signup_ended" from="Signup" to="." method="_on_signup_signup_ended"]

@@ -15,6 +15,7 @@ const TEAM_DEFS = [
 
 # File system variables
 var file
+var config = ConfigFile.new()
 var rec_path = "../data/records/"
 var screenshot_path = "../sshot"
 var screenshot_count = 0
@@ -52,7 +53,6 @@ var team_list = []
 func _ready():
 	randomize()
 	# Load settings from settings.cfg, or defaults if not available
-	var config = ConfigFile.new()
 	var err = config.load("settings.cfg")
 	if err == OK:
 		print("Config file loaded, getting settings...")

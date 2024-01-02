@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://24cbtspsg2rl"]
+[gd_scene load_steps=7 format=3 uid="uid://24cbtspsg2rl"]
 
 [ext_resource type="Texture2D" uid="uid://bda7mq1uvn74s" path="res://ui/textures/bgm_frame.png" id="1_5x55d"]
 [ext_resource type="Script" path="res://main/bgm_player/bgm_player.gd" id="1_wu08l"]
-[ext_resource type="FontFile" uid="uid://b20jdsyu8cy2h" path="res://ui/fonts/font_square_mini.ttf" id="3_j2uw1"]
+[ext_resource type="AudioStream" uid="uid://bpnlprnata3af" path="res://sfx/new_bets.wav" id="3_dmynf"]
+[ext_resource type="FontFile" uid="uid://owt2qu7ynjnf" path="res://ui/fonts/ST-SimpleSquare.otf" id="3_hup5p"]
+[ext_resource type="AudioStream" uid="uid://b3l5dyftk0oj2" path="res://sfx/new_tournament.wav" id="4_4guyy"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7w4cp"]
 texture = ExtResource("1_5x55d")
@@ -13,20 +15,36 @@ texture_margin_bottom = 16.0
 
 [node name="BGMPlayer" type="PanelContainer"]
 texture_filter = 1
-offset_right = 1.0
-offset_bottom = 23.0
+custom_minimum_size = Vector2(480, 0)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -480.0
+offset_bottom = 63.0
+grow_horizontal = 0
+size_flags_horizontal = 8
 theme_override_styles/panel = SubResource("StyleBoxTexture_7w4cp")
 script = ExtResource("1_wu08l")
 
+[node name="ScrollTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Ticker" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_hup5p")
+theme_override_font_sizes/font_size = 32
+text = " +++ BGM TICKER TEXT +++ "
+horizontal_alignment = 2
+vertical_alignment = 3
+clip_text = true
+
 [node name="ClipFiles" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("new_bets", "new_tournament"), [ExtResource("3_dmynf"), ExtResource("4_4guyy")]]
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 
 [node name="Clip" type="AudioStreamPlayer" parent="."]
 
-[node name="Ticker" type="Label" parent="."]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_fonts/font = ExtResource("3_j2uw1")
-theme_override_font_sizes/font_size = 32
-text = " +++ BGM TICKER TEXT +++ "
+[connection signal="timeout" from="ScrollTimer" to="." method="_on_scroll_timer_timeout"]
+[connection signal="finished" from="BGM" to="." method="play_track"]

@@ -113,17 +113,19 @@ func clear_effects():
 			effects[effect].instance.queue_free()
 
 
-# Reset all data. self is used here to trigger the setter functions
+# Reset all data
 func reset_data():
-	self.can_move = false
-	self.can_atk = false
+	set_move(false)
+	set_atk(false)
 	curr_mech = null
 	curr_item = null
 
-# Only reset markers. self is used here to trigger the setter functions
+
+# Only reset markers
 func unmark():
-	self.can_move = false
-	self.can_atk = false
+	set_move(false)
+	set_atk(false)
+
 
 # Check line of sight between a point 1 unit above our position,
 # to a point 1 unit above the target position, where the target is another NavPoint
@@ -131,5 +133,7 @@ func get_los(target):
 	var from = global_transform.origin + Vector3.UP
 	var to = target.global_transform.origin + Vector3.UP
 	var space_state = get_world_3d().direct_space_state
-	var raycast = 0 #space_state.intersect_ray(from, to, [], 1)
-	return raycast.is_empty()
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	var result = space_state.intersect_ray(query)
+	return result.is_empty()
+

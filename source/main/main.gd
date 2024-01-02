@@ -6,6 +6,7 @@ enum GameState {START, PREFIGHT, FIGHT, POSTFIGHT, TOUR_END, RESET}
 # Accessor vars
 @onready var hangar = $Hangar
 @onready var arena = $Arena
+@onready var bgm_player = $BGMPlayer
 @onready var transition = $Transition
 
 # Modules
@@ -163,5 +164,6 @@ func _on_match_stats_focus_changed(index):
 
 
 func _on_transition_bootup_finished():
+	bgm_player.play_track()
 	$Signup.signup_start(tournament.tour_count, signup_timer)
 
